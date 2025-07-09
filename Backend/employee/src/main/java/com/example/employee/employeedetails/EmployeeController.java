@@ -4,6 +4,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.employee.employeedetails.dto.CreateEmployeeDTO;
+import com.example.employee.employeedetails.dto.UpdateEmployeeDTO;
+
+import com.example.employee.contract.dto.ContractCreateDTO;
+import com.example.employee.contract.dto.ContractUpdateDTO;
+import com.example.employee.contract.dto.ContractResponseDTO;
+
 import jakarta.validation.Valid;
 
 import java.util.List;

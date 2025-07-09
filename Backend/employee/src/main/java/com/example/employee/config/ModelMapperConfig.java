@@ -6,7 +6,7 @@ import org.modelmapper.spi.MappingContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.example.employee.employeedetails.CreateEmployeeDTO;
+import com.example.employee.employeedetails.dto.CreateEmployeeDTO;
 import com.example.employee.employeedetails.Employee;
 
 @Configuration

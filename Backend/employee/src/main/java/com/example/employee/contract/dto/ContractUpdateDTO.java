@@ -1,71 +1,25 @@
-package com.example.employee.contract;
+package com.example.employee.contract.dto;
+
+import com.example.employee.contract.Contract.ContractType;
+import com.example.employee.contract.Contract.WorkType;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import com.example.employee.employeedetails.Employee;
-import org.hibernate.annotations.CreationTimestamp;
-import jakarta.persistence.*;
+public class ContractUpdateDTO {
 
-@Entity
-@Table(name = "contracts")
-public class Contract {
-
-    public enum ContractType {
-        Temporary,
-        Permanent
-    }
-
-    public enum WorkType {
-        FullTime,
-        PartTime
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "contract_type", nullable = false)
     private ContractType contractType;
-
-    @Column(name = "contract_term", length = 100)
     private String contractTerm;
-
-    @Column(name = "start_date")
     private LocalDate startDate;
-
-    @Column(name = "finish_date")
     private LocalDate finishDate;
-
-    @Column(name = "ongoing", nullable = false)
-    private boolean ongoing = false;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "work_type", nullable = false)
+    private boolean ongoing;
     private WorkType workType;
-
-    @Column(name = "hours_per_week", precision = 4, scale = 1)
     private BigDecimal hoursPerWeek;
-
-    @CreationTimestamp
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
-
-    @Column(name = "updated_at")
+    private int employeeId;
     private LocalDateTime updatedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id", nullable = false)
-    private Employee employee;
-
     // Getters and Setters
-
-    public Long getId() {
-        return id;
-    }
-
     public ContractType getContractType() {
         return contractType;
     }
@@ -122,12 +76,12 @@ public class Contract {
         this.hoursPerWeek = hoursPerWeek;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
     public LocalDateTime getUpdatedAt() {
@@ -136,13 +90,5 @@ public class Contract {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
     }
 }

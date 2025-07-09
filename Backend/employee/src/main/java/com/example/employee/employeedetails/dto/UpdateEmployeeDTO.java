@@ -1,4 +1,4 @@
-package com.example.employee.employeedetails;
+package com.example.employee.employeedetails.dto;
 
 import jakarta.validation.constraints.*;
 import java.sql.Date;

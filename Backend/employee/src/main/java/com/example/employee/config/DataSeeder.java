@@ -10,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Locale;
@@ -58,7 +59,7 @@ public class DataSeeder implements CommandLineRunner {
             // Random start date within past year
             LocalDate startDate = faker.date().past(365, java.util.concurrent.TimeUnit.DAYS)
                     .toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            contract.setStartDate(null);
+            contract.setStartDate(startDate);
 
             // Random finish date after start date, or null if ongoing
             boolean ongoing = random.nextBoolean();
@@ -73,6 +74,7 @@ public class DataSeeder implements CommandLineRunner {
             double hours = 10.0 + (40.0 - 10.0) * random.nextDouble();
             contract.setHoursPerWeek(BigDecimal.valueOf(Math.round(hours * 10) / 10.0));
 
+            contract.setCreatedAt(LocalDateTime.now());
             contractRepository.save(contract);
         }
 
