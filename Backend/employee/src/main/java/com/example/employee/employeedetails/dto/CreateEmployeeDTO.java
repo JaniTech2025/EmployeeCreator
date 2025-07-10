@@ -1,7 +1,7 @@
 package com.example.employee.employeedetails.dto;
 
 import jakarta.validation.constraints.*;
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class CreateEmployeeDTO {
 
@@ -23,9 +23,11 @@ public class CreateEmployeeDTO {
 
     private String employee_status;
 
-    private Date created_at;
+    private LocalDate created_at;
 
-    private Date updated_at;
+    private LocalDate updated_at;
+
+    private String photoUrl;
 
     // Getters and Setters
 
@@ -85,19 +87,27 @@ public class CreateEmployeeDTO {
         this.employee_status = employee_status;
     }
 
-    public Date getCreated_at() {
+    public LocalDate getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(Date created_at) {
+    public void setCreated_at(LocalDate created_at) {
         this.created_at = created_at;
     }
 
-    public Date getUpdated_at() {
+    public LocalDate getUpdated_at() {
         return updated_at;
     }
 
-    public void setUpdated_at(Date updated_at) {
+    public void setUpdated_at(LocalDate updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public String getphotoUrl() {
+        return photoUrl;
+    }
+
+    public void setphotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 }

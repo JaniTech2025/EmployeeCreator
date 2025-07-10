@@ -1,68 +1,31 @@
-package com.example.employee.employeedetails;
+package com.example.employee.employeedetails.dto;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import java.util.ArrayList;
+import com.example.employee.contract.dto.ContractDTO;
+import java.time.LocalDate;
 import java.util.List;
 
-import com.example.employee.contract.*;
+public class EmployeeWithContractsDTO {
 
-import java.time.LocalDate;
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
-
-@Entity
-@Table(name = "employee_details")
-public class Employee {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(name = "first_name")
     private String fname;
-
-    @Column
     private String middle_name;
-
-    @Column
     private String last_name;
-
-    @Column
     private String email;
-
-    @Column
     private String mobile_number;
-
-    @Column
     private String residential_address;
-
-    @Column
     private String employee_status;
-
-    @Column
     private LocalDate created_at;
-
-    @Column
     private LocalDate updated_at;
 
-    @Column
     private String photoUrl;
 
-    // Getters and Setters
+    private List<ContractDTO> contracts;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -122,14 +85,6 @@ public class Employee {
         this.employee_status = employee_status;
     }
 
-    public String getPhotoUrl() {
-        return photoUrl;
-    }
-
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
-    }
-
     public LocalDate getCreated_at() {
         return created_at;
     }
@@ -138,20 +93,27 @@ public class Employee {
         this.created_at = created_at;
     }
 
-    public void setUpdated_at(LocalDate updated_at) {
-        this.updated_at = updated_at;
-    }
-
     public LocalDate getUpdated_at() {
         return updated_at;
     }
 
-    public List<Contract> getContracts() {
+    public void setUpdated_at(LocalDate updated_at) {
+        this.updated_at = updated_at;
+    }
+
+    public List<ContractDTO> getContracts() {
         return contracts;
     }
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Contract> contracts = new ArrayList<>();
+    public void setContracts(List<ContractDTO> contracts) {
+        this.contracts = contracts;
+    }
 
+    public String getphotoUrl() {
+        return photoUrl;
+    }
+
+    public void setphotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
 }

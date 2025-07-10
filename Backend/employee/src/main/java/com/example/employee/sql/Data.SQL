@@ -1,5 +1,5 @@
 INSERT INTO employee_details 
-(first_name, middle_name, last_name, email, mobile_number, photo_url, residential_address, employee_status)
+(first_name, middle_name, last_name, email, mobile_number, photoUrl, residential_address, employee_status)
 VALUES 
 ('Alice', 'Marie', 'Johnson', 'alice.johnson@example.com', '0412345678', 'https://example.com/photos/alice.jpg', '123 Main St, Sydney', 'Active'),
 ('Bob', NULL, 'Smith', 'bob.smith@example.com', '0423456789', NULL, '456 High St, Melbourne', 'Active'),
@@ -20,7 +20,7 @@ VALUES
 
 
 INSERT INTO employee_details_archive 
-(id, first_name, middle_name, last_name, email, mobile_number, photo_url, residential_address, employee_status, deleted_at, deleted_by)
+(id, first_name, middle_name, last_name, email, mobile_number, photoUrl, residential_address, employee_status, deleted_at, deleted_by)
 VALUES 
 (3, 'Charlie', 'Lee', 'Brown', 'charlie.brown@example.com', NULL, NULL, '789 River Rd, Brisbane', 'Inactive', NOW(), 'admin.user'),
 (5, 'Edward', NULL, 'White', 'edward.white@example.com', '0445678901', NULL, '654 Ocean Ave, Adelaide', 'On Leave', NOW(), 'hr.manager');

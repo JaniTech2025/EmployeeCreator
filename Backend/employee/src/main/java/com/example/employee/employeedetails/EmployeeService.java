@@ -2,27 +2,30 @@ package com.example.employee.employeedetails;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
-import org.modelmapper.ModelMapper;
-import org.springframework.stereotype.Service;
+import com.example.employee.contract.dto.ContractDTO;
 import com.example.employee.employeedetails.dto.CreateEmployeeDTO;
+import com.example.employee.employeedetails.dto.EmployeeWithContractsDTO;
 import com.example.employee.employeedetails.dto.UpdateEmployeeDTO;
+import com.example.employee.employeedetails.mapper.EmployeeMapper;
+
+import org.springframework.stereotype.Service;
 
 @Service
 public class EmployeeService {
 
-    private EmployeeRepository employeeRepository;
-    private ModelMapper modelMapper;
+    private final EmployeeRepository employeeRepository;
+    private final EmployeeMapper employeeMapper;
 
-    EmployeeService(EmployeeRepository employeeRepository, ModelMapper modelMapper) {
+    public EmployeeService(EmployeeRepository employeeRepository, EmployeeMapper employeeMapper) {
         this.employeeRepository = employeeRepository;
-        this.modelMapper = modelMapper;
+        this.employeeMapper = employeeMapper;
     }
 
     public Employee create(CreateEmployeeDTO data) {
-        Employee newEmployee = modelMapper.map(data, Employee.class);
-        Employee savedEmployee = this.employeeRepository.save(newEmployee);
-        return savedEmployee;
+        Employee newEmployee = employeeMapper.toEntity(data);
+        return this.employeeRepository.save(newEmployee);
     }
 
     public List<Employee> findAll() {
@@ -38,21 +41,18 @@ public class EmployeeService {
         if (foundEmployee.isEmpty()) {
             return false;
         }
-        Employee employeeFromDb = foundEmployee.get();
-        this.employeeRepository.delete(employeeFromDb);
+        this.employeeRepository.delete(foundEmployee.get());
         return true;
     }
 
     public Optional<Employee> updateById(Long id, UpdateEmployeeDTO data) {
         Optional<Employee> foundEmployee = this.findById(id);
-
         if (foundEmployee.isEmpty()) {
             return foundEmployee;
         }
 
         Employee employeeFromDB = foundEmployee.get();
-
-        this.modelMapper.map(data, employeeFromDB);
+        employeeMapper.updateEntityFromDTO(data, employeeFromDB);
         this.employeeRepository.save(employeeFromDB);
         return Optional.of(employeeFromDB);
     }
@@ -64,11 +64,16 @@ public class EmployeeService {
         }
 
         Employee employeeFromDB = foundEmployee.get();
-
-        modelMapper.map(data, employeeFromDB);
-
-        employeeRepository.save(employeeFromDB);
+        employeeMapper.updateEntityFromDTO(data, employeeFromDB);
+        this.employeeRepository.save(employeeFromDB);
         return Optional.of(employeeFromDB);
+    }
+
+    public List<EmployeeWithContractsDTO> getAllEmployeesWithContracts() {
+        List<Employee> employees = employeeRepository.findAllWithContracts();
+        return employees.stream()
+                .map(employeeMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
 }

@@ -5,7 +5,7 @@ CREATE TABLE employee_details (
     last_name VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
     mobile_number VARCHAR(20),
-    photo_url TEXT,
+    photoUrl TEXT,
     residential_address TEXT,
     employee_status VARCHAR(100),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -36,7 +36,7 @@ CREATE TABLE employee_details_archive (
     last_name VARCHAR(100),
     email VARCHAR(150),
     mobile_number VARCHAR(20),
-    photo_url TEXT,
+    photoUrl TEXT,
     residential_address TEXT,
     employee_status VARCHAR(100),
 

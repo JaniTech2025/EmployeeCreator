@@ -1,72 +1,36 @@
-package com.example.employee.contract;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
+package com.example.employee.contract.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import com.example.employee.employeedetails.Employee;
-import org.hibernate.annotations.CreationTimestamp;
-import jakarta.persistence.*;
+import com.example.employee.contract.Contract.ContractType;
+import com.example.employee.contract.Contract.WorkType;
 
-@Entity
-@Table(name = "contracts")
-public class Contract {
+public class ContractDTO {
 
-    public enum ContractType {
-        Temporary,
-        Permanent
-    }
-
-    public enum WorkType {
-        FullTime,
-        PartTime
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "contract_type", nullable = false)
     private ContractType contractType;
-
-    @Column(name = "contract_term", length = 100)
     private String contractTerm;
-
-    @Column(name = "start_date")
     private LocalDate startDate;
-
-    @Column(name = "finish_date")
     private LocalDate finishDate;
-
-    @Column(name = "ongoing", nullable = false)
-    private boolean ongoing = false;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "work_type", nullable = false)
+    private boolean ongoing;
     private WorkType workType;
-
-    @Column(name = "hours_per_week", precision = 4, scale = 1)
     private BigDecimal hoursPerWeek;
-
-    @CreationTimestamp
-    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
-
-    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id", nullable = false)
-    @JsonBackReference
-    private Employee employee;
+    // Optional: You can include employeeId if needed
+    private Integer employeeId;
 
     // Getters and Setters
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public ContractType getContractType() {
@@ -141,11 +105,11 @@ public class Contract {
         this.updatedAt = updatedAt;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public Integer getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
     }
 }

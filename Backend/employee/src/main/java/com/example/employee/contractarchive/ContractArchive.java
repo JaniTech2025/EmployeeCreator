@@ -1,18 +1,14 @@
-package com.example.employee.contract;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
+package com.example.employee.contractarchive;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import com.example.employee.employeedetails.Employee;
-import org.hibernate.annotations.CreationTimestamp;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "contracts")
-public class Contract {
+@Table(name = "contracts_archive")
+public class ContractArchive {
 
     public enum ContractType {
         Temporary,
@@ -25,7 +21,6 @@ public class Contract {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Enumerated(EnumType.STRING)
@@ -51,22 +46,26 @@ public class Contract {
     @Column(name = "hours_per_week", precision = 4, scale = 1)
     private BigDecimal hoursPerWeek;
 
-    @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id", nullable = false)
-    @JsonBackReference
-    private Employee employee;
+    @Column(name = "employee_id", nullable = false)
+    private Long employeeId;
+
+    @Column(name = "archived_at", nullable = false)
+    private LocalDateTime archivedAt;
 
     // Getters and Setters
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public ContractType getContractType() {
@@ -141,11 +140,19 @@ public class Contract {
         this.updatedAt = updatedAt;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public Long getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public LocalDateTime getArchivedAt() {
+        return archivedAt;
+    }
+
+    public void setArchivedAt(LocalDateTime archivedAt) {
+        this.archivedAt = archivedAt;
     }
 }
