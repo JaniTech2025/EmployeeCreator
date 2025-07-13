@@ -146,12 +146,16 @@ public class Employee {
         return updated_at;
     }
 
-    public List<Contract> getContracts() {
-        return contracts;
-    }
-
     @JsonManagedReference
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Contract> contracts = new ArrayList<>();
+
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
+    }
+
+    public List<Contract> getContracts() {
+        return contracts;
+    }
 
 }

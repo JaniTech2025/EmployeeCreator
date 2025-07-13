@@ -5,6 +5,7 @@ import com.example.employee.contract.Contract.WorkType;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.validation.constraints.*;
 
@@ -33,7 +34,10 @@ public class ContractCreateDTO {
     @Min(1)
     private int employeeId;
 
-    // Getters and Setters
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
+
     public ContractType getContractType() {
         return contractType;
     }
@@ -88,6 +92,14 @@ public class ContractCreateDTO {
 
     public void setHoursPerWeek(BigDecimal hoursPerWeek) {
         this.hoursPerWeek = hoursPerWeek;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 
     public int getEmployeeId() {

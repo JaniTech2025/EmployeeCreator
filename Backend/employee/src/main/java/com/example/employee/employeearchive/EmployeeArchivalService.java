@@ -42,7 +42,7 @@ public class EmployeeArchivalService {
     }
 
     @Transactional
-    public boolean archiveEmployeeById(Long employeeId) {
+    public boolean archiveEmployeeById(int employeeId) {
         try {
             Employee employee = employeeRepository.findById(employeeId)
                     .orElseThrow(() -> new IllegalArgumentException("Employee not found with id: " + employeeId));

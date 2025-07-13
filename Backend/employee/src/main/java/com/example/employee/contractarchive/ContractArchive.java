@@ -21,7 +21,7 @@ public class ContractArchive {
     }
 
     @Id
-    private Long id;
+    private int id;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "contract_type", nullable = false)
@@ -53,18 +53,18 @@ public class ContractArchive {
     private LocalDateTime updatedAt;
 
     @Column(name = "employee_id", nullable = false)
-    private Long employeeId;
+    private int employeeId;
 
     @Column(name = "archived_at", nullable = false)
     private LocalDateTime archivedAt;
 
     // Getters and Setters
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -140,11 +140,11 @@ public class ContractArchive {
         this.updatedAt = updatedAt;
     }
 
-    public Long getEmployeeId() {
+    public int getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(Long employeeId) {
+    public void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
     }
 

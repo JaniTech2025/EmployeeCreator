@@ -26,7 +26,7 @@ public class Contract {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "contract_type", nullable = false)
@@ -65,8 +65,12 @@ public class Contract {
 
     // Getters and Setters
 
-    public Long getId() {
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public ContractType getContractType() {

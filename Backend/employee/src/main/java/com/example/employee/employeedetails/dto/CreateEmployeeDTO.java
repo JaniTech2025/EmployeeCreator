@@ -1,7 +1,9 @@
 package com.example.employee.employeedetails.dto;
 
+import java.util.List;
 import jakarta.validation.constraints.*;
 import java.time.LocalDate;
+import com.example.employee.contract.dto.ContractCreateDTO;
 
 public class CreateEmployeeDTO {
 
@@ -29,7 +31,17 @@ public class CreateEmployeeDTO {
 
     private String photoUrl;
 
-    // Getters and Setters
+    // json input is a list, so using List format
+    // at any point of time, an employee can have only one contract
+    private List<ContractCreateDTO> contracts;
+
+    public List<ContractCreateDTO> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(List<ContractCreateDTO> contracts) {
+        this.contracts = contracts;
+    }
 
     public String getFname() {
         return fname;

@@ -16,7 +16,7 @@ public class EmployeeArchiveController {
     }
 
     @PostMapping("/{employeeId}")
-    public ResponseEntity<String> archiveEmployee(@PathVariable Long employeeId) {
+    public ResponseEntity<String> archiveEmployee(@PathVariable int employeeId) {
         boolean archived = employeeArchivalService.archiveEmployeeById(employeeId);
         if (archived) {
             return ResponseEntity.ok("Employee archived successfully.");

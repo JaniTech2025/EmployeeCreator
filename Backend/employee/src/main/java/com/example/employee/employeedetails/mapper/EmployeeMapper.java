@@ -2,6 +2,9 @@ package com.example.employee.employeedetails.mapper;
 
 import com.example.employee.contract.Contract;
 import com.example.employee.contract.dto.ContractDTO;
+import com.example.employee.contract.dto.ContractCreateDTO;
+import com.example.employee.contract.dto.ContractUpdateDTO;
+
 import com.example.employee.employeedetails.Employee;
 import com.example.employee.employeedetails.dto.CreateEmployeeDTO;
 import com.example.employee.employeedetails.dto.EmployeeWithContractsDTO;
@@ -23,6 +26,20 @@ public interface EmployeeMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "photoUrl", source = "photoUrl")
     Employee toEntity(CreateEmployeeDTO dto);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "contracts", ignore = true) // optional if you want to set manually
+    Employee toEmployee(CreateEmployeeDTO dto);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "employee", ignore = true)
+    Contract toContract(ContractCreateDTO dto);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "employee", ignore = true)
+    Contract toContract(ContractUpdateDTO dto);
 
     @Mapping(target = "photoUrl", source = "photoUrl")
     void updateEntityFromDTO(UpdateEmployeeDTO dto, @MappingTarget Employee employee);
@@ -46,7 +63,7 @@ public interface EmployeeMapper {
                     return (start == null || !today.isBefore(start)) &&
                             (end == null || !today.isAfter(end));
                 })
-                .findFirst() // there will only be one active contract
+                .findFirst()
                 .map(contract -> {
                     ContractDTO dto = new ContractDTO();
                     dto.setId(contract.getId());
@@ -59,7 +76,7 @@ public interface EmployeeMapper {
                     dto.setHoursPerWeek(contract.getHoursPerWeek());
                     dto.setCreatedAt(contract.getCreatedAt());
                     dto.setUpdatedAt(contract.getUpdatedAt());
-                    dto.setEmployeeId(contract.getEmployee().getId());
+                    dto.setId(contract.getEmployee().getId());
                     return List.of(dto);
                 })
                 .orElse(List.of()); // no active contract

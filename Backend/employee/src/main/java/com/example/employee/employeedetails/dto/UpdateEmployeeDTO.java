@@ -1,7 +1,10 @@
 package com.example.employee.employeedetails.dto;
 
 import jakarta.validation.constraints.*;
+import java.util.List;
+
 import java.time.LocalDate;
+import com.example.employee.contract.dto.ContractUpdateDTO;
 
 public class UpdateEmployeeDTO {
 
@@ -25,6 +28,16 @@ public class UpdateEmployeeDTO {
     private LocalDate updated_at;
 
     private String photoUrl;
+
+    private List<ContractUpdateDTO> contracts;
+
+    public List<ContractUpdateDTO> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(List<ContractUpdateDTO> contracts) {
+        this.contracts = contracts;
+    }
 
     // Getters and Setters
 

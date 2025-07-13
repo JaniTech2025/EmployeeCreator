@@ -10,13 +10,22 @@ import org.mapstruct.*;
 public interface ContractMapper {
 
     @Mapping(target = "employee.id", source = "employeeId")
-    @Mapping(target = "createdAt", ignore = true) // set by DB/Hibernate
-    @Mapping(target = "updatedAt", ignore = true) // set by DB/Hibernate
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
     Contract toEntity(ContractCreateDTO dto);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "employee", ignore = true)
+    Contract toContract(ContractCreateDTO dto);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "employee", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    Contract toContract(ContractUpdateDTO dto);
+
     @Mapping(target = "employee.id", source = "employeeId")
-    @Mapping(target = "createdAt", ignore = true) // don't overwrite createdAt
-    @Mapping(target = "updatedAt", ignore = true) // updatedAt handled elsewhere
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
     void updateFromDTO(ContractUpdateDTO dto, @MappingTarget Contract contract);
 
     @Mapping(target = "employeeId", source = "employee.id")

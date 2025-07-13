@@ -41,7 +41,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Employee> getById(@PathVariable Long id) throws NotFoundException {
+    public ResponseEntity<Employee> getById(@PathVariable int id) throws NotFoundException {
         Optional<Employee> foundEmployee = this.employeeService.findById(id);
         if (foundEmployee.isPresent()) {
             return new ResponseEntity<>(foundEmployee.get(), HttpStatus.OK);
@@ -50,7 +50,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id) throws NotFoundException {
+    public ResponseEntity<Void> deleteById(@PathVariable int id) throws NotFoundException {
         boolean deleted = this.employeeService.deleteById(id);
         if (deleted) {
             return ResponseEntity.noContent().build();
@@ -61,7 +61,7 @@ public class EmployeeController {
     // PUT for full update - expects full employee data in DTO
     @PutMapping("/{id}")
     public ResponseEntity<Employee> replaceEmployee(
-            @PathVariable Long id,
+            @PathVariable int id,
             @Valid @RequestBody UpdateEmployeeDTO data) throws NotFoundException {
 
         Optional<Employee> updated = this.employeeService.updateById(id, data);
@@ -74,7 +74,7 @@ public class EmployeeController {
     // PATCH for partial update - expects partial fields in DTO
     @PatchMapping("/{id}")
     public ResponseEntity<Employee> updateEmployee(
-            @PathVariable Long id,
+            @PathVariable int id,
             @Valid @RequestBody UpdateEmployeeDTO data) throws NotFoundException {
 
         Optional<Employee> updated = this.employeeService.updateById(id, data);

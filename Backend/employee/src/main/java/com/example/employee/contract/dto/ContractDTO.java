@@ -9,7 +9,7 @@ import com.example.employee.contract.Contract.WorkType;
 
 public class ContractDTO {
 
-    private Long id;
+    private int id;
     private ContractType contractType;
     private String contractTerm;
     private LocalDate startDate;
@@ -25,11 +25,11 @@ public class ContractDTO {
 
     // Getters and Setters
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

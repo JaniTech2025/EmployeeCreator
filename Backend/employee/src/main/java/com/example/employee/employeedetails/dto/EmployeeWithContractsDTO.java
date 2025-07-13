@@ -6,7 +6,7 @@ import java.util.List;
 
 public class EmployeeWithContractsDTO {
 
-    private Integer id;
+    private int id;
     private String fname;
     private String middle_name;
     private String last_name;
