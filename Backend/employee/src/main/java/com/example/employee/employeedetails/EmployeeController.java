@@ -49,13 +49,21 @@ public class EmployeeController {
         throw new NotFoundException("Employee with id " + id + " does not exist");
     }
 
+    // @DeleteMapping("/{id}")
+    // public ResponseEntity<Void> deleteById(@PathVariable int id) throws
+    // NotFoundException {
+    // boolean deleted = this.employeeService.deleteById(id);
+    // if (deleted) {
+    // return ResponseEntity.noContent().build();
+    // }
+    // throw new NotFoundException("Employee with id " + id + " does not exist");
+    // }
+
+    // Archive first, delete later
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable int id) throws NotFoundException {
-        boolean deleted = this.employeeService.deleteById(id);
-        if (deleted) {
-            return ResponseEntity.noContent().build();
-        }
-        throw new NotFoundException("Employee with id " + id + " does not exist");
+    public ResponseEntity<Void> archiveAndDeleteEmployee(@PathVariable int id) {
+        employeeService.archiveAndDeleteEmployee(id);
+        return ResponseEntity.noContent().build();
     }
 
     // PUT for full update - expects full employee data in DTO
