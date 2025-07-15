@@ -20,7 +20,7 @@ public class ContractResponseDTO {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private int employeeId;
-    private String employeeFullName;
+    private String employeeFullName; // Check this
 
     // Getters and Setters
 

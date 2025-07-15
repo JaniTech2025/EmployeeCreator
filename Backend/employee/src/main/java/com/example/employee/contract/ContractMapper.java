@@ -29,8 +29,9 @@ public interface ContractMapper {
     void updateFromDTO(ContractUpdateDTO dto, @MappingTarget Contract contract);
 
     @Mapping(target = "employeeId", source = "employee.id")
-    @Mapping(target = "employeeFullName", expression = "java(contract.getEmployee().getFname() + \" \" + contract.getEmployee().getLast_name())")
+    @Mapping(target = "employeeFullName", expression = "java(contract.getEmployee().getFirstName() + \" \" + contract.getEmployee().getLastName())")
     @Mapping(target = "createdAt", source = "createdAt")
     @Mapping(target = "updatedAt", source = "updatedAt")
     ContractResponseDTO toResponseDTO(Contract contract);
+
 }

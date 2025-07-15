@@ -65,23 +65,23 @@ public class DataSeeder implements CommandLineRunner {
         // Clean up existing data
         contractRepository.deleteAll();
         employeeRepository.deleteAll();
-        employeeArchiveRepository.deleteAll();
-        contractArchiveRepository.deleteAll();
+        // employeeArchiveRepository.deleteAll();
+        // contractArchiveRepository.deleteAll();
 
         List<String> photoUrls = fetchRandomPhotoUrls(10);
 
         for (int i = 0; i < 10; i++) {
             Employee emp = new Employee();
-            emp.setFname(faker.name().firstName());
-            emp.setMiddle_name(random.nextBoolean() ? faker.name().firstName() : null);
-            emp.setLast_name(faker.name().lastName());
+            emp.setFirstName(faker.name().firstName());
+            emp.setMiddleName(random.nextBoolean() ? faker.name().firstName() : null);
+            emp.setLastName(faker.name().lastName());
             emp.setEmail(faker.internet().emailAddress());
-            emp.setMobile_number(faker.phoneNumber().cellPhone());
+            emp.setMobileNumber(faker.phoneNumber().cellPhone());
             emp.setPhotoUrl(photoUrls.get(i));
-            emp.setResidential_address(faker.address().fullAddress());
-            emp.setEmployee_status("Active");
-            emp.setCreated_at(LocalDate.now().minusMonths(3));
-            emp.setUpdated_at(LocalDate.now());
+            emp.setResidentialAddress(faker.address().fullAddress());
+            emp.setEmployeeStatus("Active");
+            emp.setCreatedAt(LocalDate.now().minusMonths(3));
+            emp.setUpdatedAt(LocalDate.now());
             employeeRepository.save(emp);
 
             Contract contract = new Contract();
@@ -93,7 +93,8 @@ public class DataSeeder implements CommandLineRunner {
             contract.setStartDate(startDate);
             boolean ongoing = random.nextBoolean();
             contract.setOngoing(ongoing);
-            contract.setFinishDate(ongoing ? null : LocalDate.now().plusMonths(3 + random.nextInt(6)));
+            contract.setFinishDate(ongoing ? null
+                    : LocalDate.now().plusMonths(3 + random.nextInt(6)));
             contract.setWorkType(faker.options().option(Contract.WorkType.values()));
             double hours = 10.0 + (40.0 - 10.0) * random.nextDouble();
             contract.setHoursPerWeek(BigDecimal.valueOf(Math.round(hours * 10) / 10.0));
@@ -101,15 +102,17 @@ public class DataSeeder implements CommandLineRunner {
             contract.setUpdatedAt(LocalDateTime.now());
             contractRepository.save(contract);
 
-            // ARCHIVE section
-            EmployeeArchive archiveEmp = employeeArchiveMapper.toArchive(emp);
-            employeeArchiveRepository.save(archiveEmp);
+            // Prepare archive tables
 
-            ContractArchive archiveContract = contractArchiveMapper.toArchive(contract);
-            contractArchiveRepository.save(archiveContract);
+            // EmployeeArchive archiveEmp = employeeArchiveMapper.toArchive(emp);
+            // employeeArchiveRepository.save(archiveEmp);
+
+            // ContractArchive archiveContract = contractArchiveMapper.toArchive(contract);
+            // archiveContract.setEmployee(archiveEmp);
+            // contractArchiveRepository.save(archiveContract);
         }
 
-        System.out.println("Seeded 10 employees, contracts, and their archive records.");
+        System.out.println("Seeded 10 employees and their contracts");
     }
 
     private List<String> fetchRandomPhotoUrls(int count) {

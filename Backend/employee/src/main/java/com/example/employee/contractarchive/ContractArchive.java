@@ -4,6 +4,14 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import com.example.employee.contract.Contract;
+
+import com.example.employee.contractarchive.ContractArchive;
+
+import com.example.employee.employeearchive.EmployeeArchive;
+
+// import com.example.employee.employeedetails.Employee;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -22,6 +30,10 @@ public class ContractArchive {
 
     @Id
     private int id;
+
+    @OneToOne
+    @JoinColumn(name = "id")
+    private Contract contract;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "contract_type", nullable = false)
@@ -52,8 +64,14 @@ public class ContractArchive {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @Column(name = "employee_id", nullable = false)
-    private int employeeId;
+    // @ManyToOne(optional = false)
+    // @JoinColumn(name = "employee_id", nullable = false)
+    // @Column(name = "employee_id", nullable = false)
+    // private int employeeId;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "employee_id", nullable = false)
+    private EmployeeArchive employee;
 
     @Column(name = "archived_at", nullable = false)
     private LocalDateTime archivedAt;
@@ -140,12 +158,20 @@ public class ContractArchive {
         this.updatedAt = updatedAt;
     }
 
-    public int getEmployeeId() {
-        return employeeId;
+    // public int getEmployeeId() {
+    // return employeeId;
+    // }
+
+    // public void setEmployeeId(int employeeId) {
+    // this.employeeId = employeeId;
+    // }
+
+    public EmployeeArchive getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployee(EmployeeArchive employee) {
+        this.employee = employee;
     }
 
     public LocalDateTime getArchivedAt() {
@@ -155,4 +181,9 @@ public class ContractArchive {
     public void setArchivedAt(LocalDateTime archivedAt) {
         this.archivedAt = archivedAt;
     }
+
+    public void setContract(Contract contract) {
+        this.contract = contract;
+    }
+
 }

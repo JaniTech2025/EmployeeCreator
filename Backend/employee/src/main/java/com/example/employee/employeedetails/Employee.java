@@ -27,67 +27,71 @@ public class Employee {
     private Integer id;
 
     @Column(name = "first_name")
-    private String fname;
+    private String firstName;
 
-    @Column
-    private String middle_name;
+    @Column(name = "middle_name")
+    private String middleName;
 
-    @Column
-    private String last_name;
+    @Column(name = "last_name")
+    private String lastName;
 
     @Column
     private String email;
 
-    @Column
-    private String mobile_number;
+    @Column(name = "mobile_number")
+    private String mobileNumber;
 
-    @Column
-    private String residential_address;
+    @Column(name = "residential_address")
+    private String residentialAddress;
 
-    @Column
-    private String employee_status;
+    @Column(name = "employee_status")
+    private String employeeStatus;
 
-    @Column
-    private LocalDate created_at;
+    @Column(name = "created_at")
+    private LocalDate createdAt;
 
-    @Column
-    private LocalDate updated_at;
+    @Column(name = "updated_at")
+    private LocalDate updatedAt;
 
-    @Column
+    @Column(name = "photoUrl") // if this column name in DB is camelCase, otherwise change accordingly
     private String photoUrl;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Contract> contracts = new ArrayList<>();
 
     // Getters and Setters
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getFname() {
-        return fname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFname(String fname) {
-        this.fname = fname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getMiddle_name() {
-        return middle_name;
+    public String getMiddleName() {
+        return middleName;
     }
 
-    public void setMiddle_name(String middle_name) {
-        this.middle_name = middle_name;
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -98,28 +102,44 @@ public class Employee {
         this.email = email;
     }
 
-    public String getMobile_number() {
-        return mobile_number;
+    public String getMobileNumber() {
+        return mobileNumber;
     }
 
-    public void setMobile_number(String mobile_number) {
-        this.mobile_number = mobile_number;
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 
-    public String getResidential_address() {
-        return residential_address;
+    public String getResidentialAddress() {
+        return residentialAddress;
     }
 
-    public void setResidential_address(String residential_address) {
-        this.residential_address = residential_address;
+    public void setResidentialAddress(String residentialAddress) {
+        this.residentialAddress = residentialAddress;
     }
 
-    public String getEmployee_status() {
-        return employee_status;
+    public String getEmployeeStatus() {
+        return employeeStatus;
     }
 
-    public void setEmployee_status(String employee_status) {
-        this.employee_status = employee_status;
+    public void setEmployeeStatus(String employeeStatus) {
+        this.employeeStatus = employeeStatus;
+    }
+
+    public LocalDate getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public String getPhotoUrl() {
@@ -130,32 +150,11 @@ public class Employee {
         this.photoUrl = photoUrl;
     }
 
-    public LocalDate getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(LocalDate created_at) {
-        this.created_at = created_at;
-    }
-
-    public void setUpdated_at(LocalDate updated_at) {
-        this.updated_at = updated_at;
-    }
-
-    public LocalDate getUpdated_at() {
-        return updated_at;
-    }
-
-    @JsonManagedReference
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Contract> contracts = new ArrayList<>();
-
-    public void setContracts(List<Contract> contracts) {
-        this.contracts = contracts;
-    }
-
     public List<Contract> getContracts() {
         return contracts;
     }
 
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
+    }
 }

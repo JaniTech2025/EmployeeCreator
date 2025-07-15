@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import jakarta.transaction.Transactional;
 
 import com.example.employee.contract.Contract;
-import com.example.employee.contract.dto.ContractDTO;
 import com.example.employee.contract.dto.ContractCreateDTO;
 import com.example.employee.contract.ContractRepository;
 import com.example.employee.contractarchive.ContractArchive;
@@ -23,6 +22,13 @@ import com.example.employee.employeedetails.dto.UpdateEmployeeDTO;
 import com.example.employee.employeedetails.mapper.EmployeeMapper;
 import com.example.employee.common.exceptions.NotFoundException;
 
+import com.example.employee.common.exceptions.ServiceValidationException;
+import com.example.employee.common.exceptions.ValidationErrors;
+
+// Import logger
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -36,6 +42,7 @@ public class EmployeeService {
     private final EmployeeArchiveRepository employeeArchiveRepository;
     private final EmployeeArchiveMapper employeeArchiveMapper;
     private final EmployeeMapper employeeMapper;
+    private static final Logger logger = LoggerFactory.getLogger(EmployeeService.class);
 
     public EmployeeService(
             EmployeeRepository employeeRepository,
@@ -55,16 +62,18 @@ public class EmployeeService {
     }
 
     public Employee create(CreateEmployeeDTO dto) {
+
+        logger.debug("Creating a new employee with data: {}", dto);
         Employee employee = new Employee();
-        employee.setFname(dto.getFname());
-        employee.setLast_name(dto.getLast_name());
+        employee.setFirstName(dto.getFirstName());
+        employee.setLastName(dto.getLastName());
         employee.setEmail(dto.getEmail());
-        employee.setMobile_number(dto.getMobile_number());
-        employee.setResidential_address(dto.getResidential_address());
-        employee.setEmployee_status(dto.getEmployee_status());
-        employee.setCreated_at(dto.getCreated_at());
-        employee.setUpdated_at(dto.getUpdated_at());
-        employee.setPhotoUrl(dto.getphotoUrl());
+        employee.setMobileNumber(dto.getMobileNumber());
+        employee.setResidentialAddress(dto.getResidentialAddress());
+        employee.setEmployeeStatus(dto.getEmployeeStatus());
+        employee.setCreatedAt(dto.getCreatedAt());
+        employee.setUpdatedAt(dto.getUpdatedAt());
+        employee.setPhotoUrl(dto.getPhotoUrl());
 
         List<ContractCreateDTO> contractDtos = dto.getContracts();
         if (contractDtos != null && !contractDtos.isEmpty()) {
@@ -86,71 +95,104 @@ public class EmployeeService {
             employee.setContracts(contracts);
         }
 
-        return employeeRepository.save(employee);
+        Employee saved = employeeRepository.save(employee);
+        logger.info("Employee created with ID: {}", saved.getId());
+        return saved;
     }
 
     public List<Employee> findAll() {
+        logger.debug("Fetching all employees");
         return this.employeeRepository.findAll();
     }
 
     public Optional<Employee> findById(int id) {
+        logger.debug("Fetching employee with ID: {}", id);
         return this.employeeRepository.findById(id);
     }
 
-    // Archive first, delete later
+    // Archive first and then delete
     @Transactional
     public void archiveAndDeleteEmployee(int employeeId) {
+
+        logger.info("Archiving employee with id: {}", employeeId);
+
         Employee employee = employeeRepository.findById(employeeId)
-                .orElseThrow(() -> new NotFoundException("Employee not found"));
+                .orElseThrow(() -> {
+                    logger.warn("Employee with ID {} not found for archiving", employeeId);
+                    return new NotFoundException("Employee not found");
+                });
 
         List<Contract> contracts = contractRepository.findByEmployeeId(employeeId);
         List<ContractArchive> archivedContracts = contracts.stream()
                 .map(contractArchiveMapper::toArchive)
                 .collect(Collectors.toList());
         contractArchiveRepository.saveAll(archivedContracts);
+        logger.debug("Archived ongoing and inactive contracts {}, for Employee id {}", contracts.size(),
+                employeeId);
 
         EmployeeArchive archivedEmployee = employeeArchiveMapper.toArchive(employee);
         employeeArchiveRepository.save(archivedEmployee);
+        logger.debug("Archived employee with id: {}", archivedEmployee.getId());
 
         contractRepository.deleteAll(contracts);
         employeeRepository.delete(employee);
+        logger.debug("Deleted employee with id: {}", employeeId);
     }
 
     public boolean deleteById(int id) {
+        logger.info("Deleting employee with id: {}", id);
         Optional<Employee> foundEmployee = this.findById(id);
         if (foundEmployee.isEmpty()) {
+            logger.warn("Employee with id: {} not found", id);
             return false;
         }
         this.employeeRepository.delete(foundEmployee.get());
+        logger.info("Deleted employee with id: {}", id);
         return true;
     }
 
     public Optional<Employee> updateById(int id, UpdateEmployeeDTO data) {
+        logger.info("Updating employee with id: {}", id);
         Optional<Employee> foundEmployee = this.findById(id);
         if (foundEmployee.isEmpty()) {
+            logger.warn("Employee with id: {} not found", id);
             return foundEmployee;
         }
 
         Employee employeeFromDB = foundEmployee.get();
         employeeMapper.updateEntityFromDTO(data, employeeFromDB);
         this.employeeRepository.save(employeeFromDB);
+        logger.info("Updated details for employee with id: {}", employeeFromDB.getId());
         return Optional.of(employeeFromDB);
     }
 
     public Optional<Employee> replaceById(int id, UpdateEmployeeDTO data) {
+        logger.info("Replace details for employee with id: {}", id);
         Optional<Employee> foundEmployee = this.findById(id);
         if (foundEmployee.isEmpty()) {
+            logger.warn("During update, employee with id: {}, not found", id);
             return Optional.empty();
         }
 
         Employee employeeFromDB = foundEmployee.get();
+        logger.info("Found record for employee with id: {}", id);
         employeeMapper.updateEntityFromDTO(data, employeeFromDB);
         this.employeeRepository.save(employeeFromDB);
+        logger.debug("Saved updated details for employee with ID: {}", id);
         return Optional.of(employeeFromDB);
     }
 
     public List<EmployeeWithContractsDTO> getAllEmployeesWithContracts() {
+        logger.debug("Getting details for all employees with contracts");
         List<Employee> employees = employeeRepository.findAllWithContracts();
+
+        if (employees.isEmpty()) {
+            logger.warn("Not found any employee with contracts");
+            return List.of();
+        }
+
+        logger.debug("Found employees with contracts");
+
         return employees.stream()
                 .map(employeeMapper::toDTO)
                 .collect(Collectors.toList());

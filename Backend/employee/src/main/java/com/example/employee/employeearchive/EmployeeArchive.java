@@ -3,6 +3,11 @@ package com.example.employee.employeearchive;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.time.LocalDate;
+import java.util.List;
+
+import com.example.employee.employeearchive.EmployeeArchive;
+import com.example.employee.contractarchive.ContractArchive;
+import com.example.employee.employeedetails.Employee;
 
 @Entity
 @Table(name = "employee_archive")
@@ -10,6 +15,10 @@ public class EmployeeArchive {
 
     @Id
     private int id;
+
+    @OneToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
 
     @Column(name = "first_name")
     private String fname;
@@ -43,6 +52,9 @@ public class EmployeeArchive {
 
     @Column
     private String photoUrl;
+
+    @OneToMany(mappedBy = "employee")
+    private List<ContractArchive> contractArchives;
 
     // Getters and Setters
 
@@ -141,4 +153,17 @@ public class EmployeeArchive {
     public void setArchivedAt(LocalDateTime archivedAt) {
         this.archivedAt = archivedAt;
     }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public List<ContractArchive> getContractArchives() {
+        return contractArchives;
+    }
+
+    public void setContractArchives(List<ContractArchive> contractArchives) {
+        this.contractArchives = contractArchives;
+    }
+
 }

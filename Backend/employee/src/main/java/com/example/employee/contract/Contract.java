@@ -1,6 +1,7 @@
 package com.example.employee.contract;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -30,32 +31,41 @@ public class Contract {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "contract_type", nullable = false)
+    @JsonProperty("contract_type")
     private ContractType contractType;
 
     @Column(name = "contract_term", length = 100)
+    @JsonProperty("contract_term")
     private String contractTerm;
 
     @Column(name = "start_date")
+    @JsonProperty("start_date")
     private LocalDate startDate;
 
     @Column(name = "finish_date")
+    @JsonProperty("finish_date")
     private LocalDate finishDate;
 
     @Column(name = "ongoing", nullable = false)
+    @JsonProperty("ongoing")
     private boolean ongoing = false;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "work_type", nullable = false)
+    @JsonProperty("work_type")
     private WorkType workType;
 
     @Column(name = "hours_per_week", precision = 4, scale = 1)
+    @JsonProperty("hours_per_week")
     private BigDecimal hoursPerWeek;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
+    @JsonProperty("created_at")
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
+    @JsonProperty("updated_at")
     private LocalDateTime updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -64,6 +74,8 @@ public class Contract {
     private Employee employee;
 
     // Getters and Setters
+    // (You can leave these as-is; Jackson uses fields with @JsonProperty for
+    // naming)
 
     public int getId() {
         return id;
