@@ -31,7 +31,7 @@ public class ContractCreateDTO {
     @DecimalMax("100.0")
     private BigDecimal hoursPerWeek;
 
-    @Min(1)
+    // @Min(1)
     private int employeeId;
 
     private LocalDateTime createdAt;

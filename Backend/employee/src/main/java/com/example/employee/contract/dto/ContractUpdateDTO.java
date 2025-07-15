@@ -2,7 +2,6 @@ package com.example.employee.contract.dto;
 
 import com.example.employee.contract.Contract.ContractType;
 import com.example.employee.contract.Contract.WorkType;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
@@ -10,24 +9,43 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class ContractUpdateDTO {
+
+    private Integer id;
+
     @JsonProperty("contract_type")
     private ContractType contractType;
+
     @JsonProperty("contract_term")
     private String contractTerm;
+
     @JsonProperty("start_date")
     private LocalDate startDate;
+
     @JsonProperty("finish_date")
     private LocalDate finishDate;
+
     private boolean ongoing;
+
     @JsonProperty("work_type")
     private WorkType workType;
+
     @JsonProperty("hours_per_week")
     private BigDecimal hoursPerWeek;
 
     private int employeeId;
+
+    @JsonProperty("updated_at")
     private LocalDateTime updatedAt;
 
-    // Getters and Setters
+    // ✅ Getter & Setter for id (needed in service layer)
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public ContractType getContractType() {
         return contractType;
     }

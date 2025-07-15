@@ -53,7 +53,7 @@ public class Employee {
     @Column(name = "updated_at")
     private LocalDate updatedAt;
 
-    @Column(name = "photoUrl") // if this column name in DB is camelCase, otherwise change accordingly
+    @Column(name = "photoUrl")
     private String photoUrl;
 
     @JsonManagedReference

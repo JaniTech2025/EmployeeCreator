@@ -61,9 +61,45 @@ public class EmployeeService {
         this.employeeMapper = employeeMapper;
     }
 
-    public Employee create(CreateEmployeeDTO dto) {
+    // public Employee create(CreateEmployeeDTO dto) {
+    // logger.debug("Creating a new employee with data: {}", dto);
 
+    // Employee employee = new Employee();
+    // employee.setFirstName(dto.getFirstName());
+    // employee.setLastName(dto.getLastName());
+    // employee.setEmail(dto.getEmail());
+    // employee.setMobileNumber(dto.getMobileNumber());
+    // employee.setResidentialAddress(dto.getResidentialAddress());
+    // employee.setEmployeeStatus(dto.getEmployeeStatus());
+    // employee.setCreatedAt(dto.getCreatedAt());
+    // employee.setUpdatedAt(dto.getUpdatedAt());
+    // employee.setPhotoUrl(dto.getPhotoUrl());
+
+    // List<ContractCreateDTO> contractDtos = dto.getContracts();
+    // if (contractDtos != null && !contractDtos.isEmpty()) {
+    // List<Contract> contracts = contractDtos.stream().map(contractDto -> {
+    // Contract contract = new Contract();
+    // contract.setContractType(contractDto.getContractType());
+    // contract.setContractTerm(contractDto.getContractTerm());
+    // contract.setStartDate(contractDto.getStartDate());
+    // contract.setFinishDate(contractDto.getFinishDate());
+    // contract.setOngoing(contractDto.isOngoing());
+    // contract.setWorkType(contractDto.getWorkType());
+    // contract.setHoursPerWeek(contractDto.getHoursPerWeek());
+    // return contract;
+    // }).toList();
+
+    // employee.setContracts(contracts);
+    // }
+
+    // Employee saved = employeeRepository.save(employee);
+    // logger.info("Employee created with ID: {}", saved.getId());
+    // return saved;
+    // }
+
+    public Employee create(CreateEmployeeDTO dto) {
         logger.debug("Creating a new employee with data: {}", dto);
+
         Employee employee = new Employee();
         employee.setFirstName(dto.getFirstName());
         employee.setLastName(dto.getLastName());
@@ -74,6 +110,8 @@ public class EmployeeService {
         employee.setCreatedAt(dto.getCreatedAt());
         employee.setUpdatedAt(dto.getUpdatedAt());
         employee.setPhotoUrl(dto.getPhotoUrl());
+
+        Employee savedEmployee = employeeRepository.save(employee);
 
         List<ContractCreateDTO> contractDtos = dto.getContracts();
         if (contractDtos != null && !contractDtos.isEmpty()) {
@@ -86,18 +124,19 @@ public class EmployeeService {
                 contract.setOngoing(contractDto.isOngoing());
                 contract.setWorkType(contractDto.getWorkType());
                 contract.setHoursPerWeek(contractDto.getHoursPerWeek());
-                contract.setCreatedAt(contractDto.getCreatedAt());
-                contract.setUpdatedAt(contractDto.getUpdatedAt());
-                contract.setEmployee(employee);
+
+                contract.setEmployee(savedEmployee);
+
                 return contract;
             }).toList();
 
-            employee.setContracts(contracts);
+            contracts = contractRepository.saveAll(contracts);
+
+            savedEmployee.setContracts(contracts);
         }
 
-        Employee saved = employeeRepository.save(employee);
-        logger.info("Employee created with ID: {}", saved.getId());
-        return saved;
+        logger.info("Employee created with ID: {}", savedEmployee.getId());
+        return savedEmployee;
     }
 
     public List<Employee> findAll() {
@@ -151,17 +190,71 @@ public class EmployeeService {
         return true;
     }
 
+    // public Optional<Employee> updateById(int id, UpdateEmployeeDTO data) {
+    // logger.info("Updating employee with id: {}", id);
+    // Optional<Employee> foundEmployee = this.findById(id);
+    // if (foundEmployee.isEmpty()) {
+    // logger.warn("Employee with id: {} not found", id);
+    // return foundEmployee;
+    // }
+
+    // Employee employeeFromDB = foundEmployee.get();
+    // employeeMapper.updateEntityFromDTO(data, employeeFromDB);
+    // this.employeeRepository.save(employeeFromDB);
+    // logger.info("Updated details for employee with id: {}",
+    // employeeFromDB.getId());
+    // return Optional.of(employeeFromDB);
+    // }
+
+    @Transactional
     public Optional<Employee> updateById(int id, UpdateEmployeeDTO data) {
         logger.info("Updating employee with id: {}", id);
         Optional<Employee> foundEmployee = this.findById(id);
+
         if (foundEmployee.isEmpty()) {
             logger.warn("Employee with id: {} not found", id);
-            return foundEmployee;
+            return Optional.empty();
         }
 
         Employee employeeFromDB = foundEmployee.get();
+
+        // Step 1: Update employee's basic fields
         employeeMapper.updateEntityFromDTO(data, employeeFromDB);
+
+        // Step 2: Handle contracts if provided
+        if (data.getContracts() != null) {
+            List<Contract> updatedContracts = data.getContracts().stream().map(contractDTO -> {
+                Contract contract;
+
+                // Update existing contract if ID is present
+                if (contractDTO.getId() != 0) {
+                    contract = contractRepository.findById(contractDTO.getId())
+                            .orElseGet(Contract::new); // fallback to new if not found
+                } else {
+                    contract = new Contract();
+                }
+
+                contract.setContractType(contractDTO.getContractType());
+                contract.setContractTerm(contractDTO.getContractTerm());
+                contract.setStartDate(contractDTO.getStartDate());
+                contract.setFinishDate(contractDTO.getFinishDate());
+                contract.setOngoing(contractDTO.isOngoing());
+                contract.setWorkType(contractDTO.getWorkType());
+                contract.setHoursPerWeek(contractDTO.getHoursPerWeek());
+                contract.setUpdatedAt(contractDTO.getUpdatedAt());
+                contract.setEmployee(employeeFromDB); // IMPORTANT: link contract to employee
+
+                return contract;
+            }).toList();
+
+            // Optional: clear old contracts if necessary
+            employeeFromDB.getContracts().clear();
+            employeeFromDB.getContracts().addAll(updatedContracts);
+        }
+
+        // Step 3: Save employee (cascade may save contracts depending on mapping)
         this.employeeRepository.save(employeeFromDB);
+
         logger.info("Updated details for employee with id: {}", employeeFromDB.getId());
         return Optional.of(employeeFromDB);
     }
