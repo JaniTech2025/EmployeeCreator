@@ -64,7 +64,7 @@ public class EmployeeArchivalService {
             for (Contract contract : contracts) {
                 ContractArchive contractArchive = contractArchiveMapper.toArchive(contract);
                 contractArchive.setId(contract.getId());
-                contractArchive.setContract(contract);
+                // contractArchive.setContract(contract);
                 contractArchive.setEmployee(employeeArchive);
                 contractArchiveRepository.save(contractArchive);
             }

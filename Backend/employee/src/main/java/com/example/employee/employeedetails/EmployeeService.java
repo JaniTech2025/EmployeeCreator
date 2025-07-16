@@ -150,9 +150,37 @@ public class EmployeeService {
     }
 
     // Archive first and then delete
+    // @Transactional
+    // public void archiveAndDeleteEmployee(int employeeId) {
+
+    // logger.info("Archiving employee with id: {}", employeeId);
+
+    // Employee employee = employeeRepository.findById(employeeId)
+    // .orElseThrow(() -> {
+    // logger.warn("Employee with ID {} not found for archiving", employeeId);
+    // return new NotFoundException("Employee not found");
+    // });
+
+    // List<Contract> contracts = contractRepository.findByEmployeeId(employeeId);
+    // List<ContractArchive> archivedContracts = contracts.stream()
+    // .map(contractArchiveMapper::toArchive)
+    // .collect(Collectors.toList());
+    // contractArchiveRepository.saveAll(archivedContracts);
+    // logger.debug("Archived ongoing and inactive contracts {}, for Employee id
+    // {}", contracts.size(),
+    // employeeId);
+
+    // EmployeeArchive archivedEmployee = employeeArchiveMapper.toArchive(employee);
+    // employeeArchiveRepository.save(archivedEmployee);
+    // logger.debug("Archived employee with id: {}", archivedEmployee.getId());
+
+    // contractRepository.deleteAll(contracts);
+    // employeeRepository.delete(employee);
+    // logger.debug("Deleted employee with id: {}", employeeId);
+    // }
+
     @Transactional
     public void archiveAndDeleteEmployee(int employeeId) {
-
         logger.info("Archiving employee with id: {}", employeeId);
 
         Employee employee = employeeRepository.findById(employeeId)
@@ -161,18 +189,20 @@ public class EmployeeService {
                     return new NotFoundException("Employee not found");
                 });
 
-        List<Contract> contracts = contractRepository.findByEmployeeId(employeeId);
-        List<ContractArchive> archivedContracts = contracts.stream()
-                .map(contractArchiveMapper::toArchive)
-                .collect(Collectors.toList());
-        contractArchiveRepository.saveAll(archivedContracts);
-        logger.debug("Archived ongoing and inactive contracts {}, for Employee id {}", contracts.size(),
-                employeeId);
-
+        // Archive employee first - create and save archivedEmployee before contracts
         EmployeeArchive archivedEmployee = employeeArchiveMapper.toArchive(employee);
         employeeArchiveRepository.save(archivedEmployee);
         logger.debug("Archived employee with id: {}", archivedEmployee.getId());
 
+        // Archive contracts, linking to archived employee
+        List<Contract> contracts = contractRepository.findByEmployeeId(employeeId);
+        List<ContractArchive> archivedContracts = contracts.stream()
+                .map(contract -> contractArchiveMapper.toArchive(contract, archivedEmployee))
+                .collect(Collectors.toList());
+        contractArchiveRepository.saveAll(archivedContracts);
+        logger.debug("Archived {} contracts for Employee id {}", contracts.size(), employeeId);
+
+        // Delete original contracts and employee
         contractRepository.deleteAll(contracts);
         employeeRepository.delete(employee);
         logger.debug("Deleted employee with id: {}", employeeId);

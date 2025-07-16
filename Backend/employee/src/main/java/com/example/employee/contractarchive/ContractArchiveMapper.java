@@ -13,17 +13,28 @@ public interface ContractArchiveMapper {
 
     ContractArchiveMapper INSTANCE = Mappers.getMapper(ContractArchiveMapper.class);
 
+    @Mapping(target = "id", ignore = true)
+    // @Mapping(target = "contract", source = "contract")
+    @Mapping(target = "contractType", source = "contract.contractType")
+    @Mapping(target = "contractTerm", source = "contract.contractTerm")
+    @Mapping(target = "startDate", source = "contract.startDate")
+    @Mapping(target = "finishDate", source = "contract.finishDate")
+    @Mapping(target = "ongoing", source = "contract.ongoing")
+    @Mapping(target = "workType", source = "contract.workType")
+    @Mapping(target = "hoursPerWeek", source = "contract.hoursPerWeek")
+    @Mapping(target = "createdAt", source = "contract.createdAt")
+    @Mapping(target = "updatedAt", source = "contract.updatedAt")
+    @Mapping(target = "employee", source = "employeeArchive")
+    @Mapping(target = "employeeId", expression = "java(employeeArchive.getId())")
     @Mapping(target = "archivedAt", expression = "java(java.time.LocalDateTime.now())")
-    @Mapping(source = "employeeArchive", target = "employee")
-    @Mapping(target = "id", ignore = true) // Let DB generate ID
-    @Mapping(target = "contract", ignore = true) // 'contract' not meaningful, so ignore
     ContractArchive toArchive(Contract contract, EmployeeArchive employeeArchive);
 
     @Mapping(target = "archivedAt", expression = "java(java.time.LocalDateTime.now())")
     @Mapping(target = "employee", ignore = true)
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "contract", ignore = true)
+    // @Mapping(target = "contract", ignore = true)
     ContractArchive toArchive(Contract contract);
 
     List<ContractArchive> toArchiveList(List<Contract> contracts);
+
 }
