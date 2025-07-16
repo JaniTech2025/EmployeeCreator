@@ -8,12 +8,14 @@ import {
   Heading,
   Divider,
   HStack,
-  Grid,
+  Grid
 } from "@chakra-ui/react";
 
 import Pagination from "../Pagination/Pagination";
 import { ChevronRightIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { EmployeeContext } from "../../context/EmployeeContext";
+import UpdateButton from "../UpdateButton";
+import DeleteButton from "../DeleteButton";
 
 const ITEMS_PER_PAGE = 4;
 
@@ -23,7 +25,7 @@ export const ViewEmployees = () => {
 
   if (!context) throw new Error("ViewEmployees must be used within an EmployeeProvider");
 
-  const { employees, refreshEmployees } = context;
+  const { employees, refreshEmployees, deleteEmployee } = context;
 
   const indexOfLast = currentPage * ITEMS_PER_PAGE;
   const indexOfFirst = indexOfLast - ITEMS_PER_PAGE;
@@ -35,6 +37,22 @@ export const ViewEmployees = () => {
   const toggleContract = (id: number) => {
     setExpandedId((prev) => (prev === id ? null : id));
   };
+
+  function handleDelete(empid: number): void {
+    console.log("Inside Parent delete component");
+    deleteEmployee(empid).catch(error => {
+    console.error("Failed to delete employee:", error);
+  })
+ }
+
+
+  function handleUpdate(): void {
+    console.log("To implement update handler here");
+  }
+
+
+  console.log(employees);
+  
 
   return (
     <Box p={10}>
@@ -60,6 +78,16 @@ export const ViewEmployees = () => {
                 <Text>Address: {emp.residentialAddress}</Text>
                 <Text>Email: {emp.email}</Text>
                 <Text>Mobile: {emp.mobileNumber}</Text>
+
+
+
+                <UpdateButton onUpdate={handleUpdate}/>
+
+                <DeleteButton 
+                  empid={emp.id} 
+                  onDelete={handleDelete} 
+                />
+
 
                 {emp.contracts && emp.contracts.length > 0 && (
                   <>
