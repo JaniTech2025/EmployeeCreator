@@ -1,12 +1,17 @@
 import * as React from "react";
 import { api } from "../services/api";
-import { EmployeeGetDTO } from "../types/Employee";
+import { EmployeeCreateDTO, 
+         EmployeeGetDTO, 
+         EmployeeResponseDTO, 
+         } from "../types/Employee";
+
 
 export const EmployeeContext = React.createContext<{
   employees: EmployeeGetDTO[];
   setEmployees: React.Dispatch<React.SetStateAction<EmployeeGetDTO[]>>;
   refreshEmployees: () => Promise<void>;
   deleteEmployee: (empid: number) => Promise<void>;
+  createNewEmployee: (emp: EmployeeCreateDTO) => Promise<void>;
 } | null>(null);
 
 const EmployeeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -18,6 +23,27 @@ const EmployeeProvider: React.FC<{ children: React.ReactNode }> = ({ children })
       setEmployees(res.data);
     } catch (error) {
       console.error("Failed to fetch employees:", error);
+    }
+  };
+
+ const createNewEmployee = async(employeedata: EmployeeCreateDTO) => {
+    try{
+      const now = new Date().toISOString();
+      const updatedEmployeeData: EmployeeCreateDTO = {
+                            ...employeedata,
+                            createdAt: now,
+                            updatedAt: now,
+                            contracts: employeedata.contracts?.map(contract => ({
+                            ...contract,
+                            createdAt: now,  
+                            updatedAt: now
+                            })) ?? []
+                           };
+      const res = await api.post<EmployeeResponseDTO[]>("/employees", updatedEmployeeData);
+      await refreshEmployees();
+      console.log("Employee created:", res.data);
+    } catch(error){
+      console.log("Unable to create employee:", error)
     }
   };
   
@@ -36,7 +62,7 @@ const EmployeeProvider: React.FC<{ children: React.ReactNode }> = ({ children })
   }, []);
 
   return (
-    <EmployeeContext.Provider value={{ employees, setEmployees, refreshEmployees, deleteEmployee }}>
+    <EmployeeContext.Provider value={{ employees, setEmployees, refreshEmployees, deleteEmployee, createNewEmployee }}>
       {children}
     </EmployeeContext.Provider>
   );

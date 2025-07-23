@@ -11,11 +11,12 @@ import {
   Grid
 } from "@chakra-ui/react";
 
-import Pagination from "../Pagination/Pagination";
+import Pagination from "../components/Pagination";
 import { ChevronRightIcon, ChevronDownIcon } from "@chakra-ui/icons";
-import { EmployeeContext } from "../../context/EmployeeContext";
-import UpdateButton from "../UpdateButton";
-import DeleteButton from "../DeleteButton";
+import { EmployeeContext } from "../context/EmployeeContext";
+import UpdateButton from "../components/UpdateButton";
+import DeleteButton from "../components/DeleteButton";
+import DropDown from "./DropDown";
 
 const ITEMS_PER_PAGE = 4;
 
@@ -48,6 +49,7 @@ export const ViewEmployees = () => {
 
   function handleUpdate(): void {
     console.log("To implement update handler here");
+    //CreateEmployee();
   }
 
 
@@ -56,9 +58,13 @@ export const ViewEmployees = () => {
 
   return (
     <Box p={10}>
-      <Heading as="h2" size="xl" mb={6} textAlign="center" color="blue.700">
+
+    <HStack justify="center" mb={20} spacing={10} color="blue.700">
+      <Heading as="h2" size="xl" textAlign="center">
         All On Board
       </Heading>
+      <DropDown />
+    </HStack>
 
       <VStack spacing={6} align="stretch">
         {currentEmployees.map((emp) => (

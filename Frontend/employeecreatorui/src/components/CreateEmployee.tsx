@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import { EmployeeCreateDTO } from "../../types/Employee";
-import { ContractCreateDTO } from "../../types/Contract";
+import React, { useContext, useState } from "react";
+import { EmployeeCreateDTO } from "../types/Employee";
+import { ContractCreateDTO } from "../types/Contract";
+import { EmployeeContext } from "../context/EmployeeContext";
+
 
 import {
   Box,
@@ -14,6 +16,8 @@ import {
   NumberInput,
   NumberInputField,
   Select,
+  Divider,
+  useDisclosure,
   VStack
 } from '@chakra-ui/react';
 
@@ -25,7 +29,21 @@ const defaultContract: ContractCreateDTO = {
   workType: "FullTime",
 };
 
-export const EmployeeForm: React.FC = () => {
+interface CreateEmployeeProps {
+  onClose: () => void;
+}
+
+export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
+
+  const context = useContext(EmployeeContext);
+    if (!context) {
+    throw new Error('CreateEmployee must be used within an EmployeeProvider');
+  }
+
+
+  const { createNewEmployee } = context;
+
+
   const [employee, setEmployee] = useState<EmployeeCreateDTO>({
     firstName: "",
     middleName: "",
@@ -37,7 +55,7 @@ export const EmployeeForm: React.FC = () => {
     photoUrl: "",
     createdAt: new Date().toISOString().split("T")[0],
     updatedAt: new Date().toISOString().split("T")[0],
-    contracts: [defaultContract],
+    contracts: [defaultContract]
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -66,17 +84,25 @@ export const EmployeeForm: React.FC = () => {
    const handleCancel = () => {
     console.log("Cancelling", employee);
     // Call your API here
+    
   };
 
 
-  const handleSubmit = () => {
-    console.log("Submitted:", employee);
-    // Call your API here
+  const handleSubmit = async() => {
+    try {
+      console.log("Submitted:", employee);
+      await createNewEmployee(employee);
+      onClose();  
+    } catch (err) {
+      console.error("Failed to create employee", err);
+    }
   };
 
   return (
     <Box maxW="800px" mx="auto" p={6}>
       <Text fontSize="2xl" mb={4}>Create Employee</Text>
+      <Divider mb={4} borderColor="gray.500" />
+
       <VStack spacing={4} align="stretch">
         <FormControl isRequired>
           <FormLabel>First Name</FormLabel>
@@ -123,7 +149,8 @@ export const EmployeeForm: React.FC = () => {
 
         {employee.contracts?.map((contract, index) => (
           <Box key={index} p={4} border="1px solid #ccc" borderRadius="md">
-            <Text fontWeight="bold" mb={2}>Contract #{index + 1}</Text>
+            <Text fontWeight="bold" mb={5} >Contract Details</Text>
+            <Divider mb={4} borderColor="gray.500" />
 
             <Stack spacing={3}>
               <FormControl isRequired>
