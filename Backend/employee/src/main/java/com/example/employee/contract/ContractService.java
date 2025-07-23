@@ -13,7 +13,7 @@ import com.example.employee.common.exceptions.ValidationErrors;
 import com.example.employee.common.exceptions.ServiceValidationException;
 
 import java.util.Optional;
-
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,6 +43,7 @@ public class ContractService {
         List<ContractResponseDTO> contracts = contractRepository.findByEmployeeId(employeeId)
                 .stream()
                 .map(contractMapper::toResponseDTO)
+                .sorted(Comparator.comparing(ContractResponseDTO::getStartDate).reversed())
                 .collect(Collectors.toList());
         logger.debug("Found {} contracts for employee id: {}", contracts.size(), employeeId);
         return contracts;

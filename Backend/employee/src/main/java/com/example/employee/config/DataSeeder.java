@@ -91,16 +91,40 @@ public class DataSeeder implements CommandLineRunner {
 
             LocalDate startDate = LocalDate.now().minusDays(random.nextInt(60));
             contract.setStartDate(startDate);
-            boolean ongoing = random.nextBoolean();
-            contract.setOngoing(ongoing);
-            contract.setFinishDate(ongoing ? null
-                    : LocalDate.now().plusMonths(3 + random.nextInt(6)));
+            // boolean ongoing = random.nextBoolean();
+            // contract.setOngoing(ongoing);
+            contract.setFinishDate(
+                    random.nextBoolean() ? null : LocalDate.now().plusMonths(3 + random.nextInt(6)));
             contract.setWorkType(faker.options().option(Contract.WorkType.values()));
             double hours = 10.0 + (40.0 - 10.0) * random.nextDouble();
             contract.setHoursPerWeek(BigDecimal.valueOf(Math.round(hours * 10) / 10.0));
             contract.setCreatedAt(LocalDateTime.now());
             contract.setUpdatedAt(LocalDateTime.now());
             contractRepository.save(contract);
+
+            // Additional historical contract (from last year)
+            Contract historicalContract = new Contract();
+            historicalContract.setEmployee(emp);
+            historicalContract.setContractType(faker.options().option(Contract.ContractType.values()));
+            historicalContract.setContractTerm(faker.options().option("3 months", "6 months", "1 year"));
+
+            LocalDate lastYearStart = LocalDate.now().minusYears(1).minusDays(random.nextInt(90)); // e.g., June–Sept
+                                                                                                   // last year
+            historicalContract.setStartDate(lastYearStart);
+
+            // Ensure finish date is always after start and within last year
+            LocalDate lastYearFinish = lastYearStart.plusMonths(3 + random.nextInt(6));
+            if (lastYearFinish.isAfter(LocalDate.now().minusMonths(1))) {
+                lastYearFinish = LocalDate.now().minusMonths(1); // Ensure it's historical
+            }
+            historicalContract.setFinishDate(lastYearStart.plusMonths(3 + random.nextInt(6)));
+
+            // Ongoing is false because it's historical
+            historicalContract.setWorkType(faker.options().option(Contract.WorkType.values()));
+            historicalContract.setHoursPerWeek(BigDecimal.valueOf(Math.round(hours * 10) / 10.0));
+            historicalContract.setCreatedAt(LocalDateTime.now().minusYears(1));
+            historicalContract.setUpdatedAt(LocalDateTime.now().minusYears(1));
+            contractRepository.save(historicalContract);
 
             // Prepare archive tables
 

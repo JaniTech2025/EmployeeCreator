@@ -121,7 +121,7 @@ public class EmployeeService {
                 contract.setContractTerm(contractDto.getContractTerm());
                 contract.setStartDate(contractDto.getStartDate());
                 contract.setFinishDate(contractDto.getFinishDate());
-                contract.setOngoing(contractDto.isOngoing());
+                // contract.setOngoing(contractDto.isOngoing());
                 contract.setWorkType(contractDto.getWorkType());
                 contract.setHoursPerWeek(contractDto.getHoursPerWeek());
 
@@ -268,7 +268,7 @@ public class EmployeeService {
                 contract.setContractTerm(contractDTO.getContractTerm());
                 contract.setStartDate(contractDTO.getStartDate());
                 contract.setFinishDate(contractDTO.getFinishDate());
-                contract.setOngoing(contractDTO.isOngoing());
+                // contract.setOngoing(contractDTO.isOngoing());
                 contract.setWorkType(contractDTO.getWorkType());
                 contract.setHoursPerWeek(contractDTO.getHoursPerWeek());
                 contract.setUpdatedAt(contractDTO.getUpdatedAt());
