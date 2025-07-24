@@ -53,7 +53,6 @@ export const ViewEmployees = () => {
   }
 
 
-  console.log(employees);
   
 
   return (
@@ -123,8 +122,8 @@ export const ViewEmployees = () => {
                               <Text fontWeight="semibold">Type:</Text>
                               <Text>{contract.contract_type}</Text>
 
-                              <Text fontWeight="semibold">Term:</Text>
-                              <Text>{contract.contract_term || "N/A"}</Text>
+                              {/* <Text fontWeight="semibold">Term:</Text>
+                              <Text>{contract.contract_term || "N/A"}</Text> */}
 
                               <Text fontWeight="semibold">Start:</Text>
                               <Text>{contract.start_date}</Text>

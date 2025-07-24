@@ -6,7 +6,6 @@ interface DeleteButtonProps {
 }
 
 const DeleteButton: React.FC<DeleteButtonProps> = ({ empid, onDelete }) => {
-  console.log("Parent has passed Delete click event to Delete component", empid)
   return (
     <Button
       bg="#007fff"

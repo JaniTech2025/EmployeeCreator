@@ -50,7 +50,6 @@ export interface EmployeeResponseDTO {
 export interface ContractResponseDTO {
   id: number;
   contractType: string;
-  contractTerm: string;
   startDate: string;        
   finishDate: string | null;
   workType: string;

@@ -57,6 +57,7 @@ const EmployeeProvider: React.FC<{ children: React.ReactNode }> = ({ children })
     }
   };
 
+
   React.useEffect(() => {
     refreshEmployees();
   }, []);

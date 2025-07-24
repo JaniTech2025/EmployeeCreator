@@ -14,7 +14,7 @@ export interface ContractCreateDTO {
 export interface ContractViewDTO {
   id: number;
   contract_type: string;         
-  contract_term?: string;        
+  // contract_term?: string;        
   start_date: string;            // format:  ISO date string 
   finish_date?: string | null;   // format: ISO date string or null
   ongoing: boolean;
