@@ -87,7 +87,8 @@ public class DataSeeder implements CommandLineRunner {
             Contract contract = new Contract();
             contract.setEmployee(emp);
             contract.setContractType(faker.options().option(Contract.ContractType.values()));
-            contract.setContractTerm(faker.options().option("3 months", "6 months", "1 year"));
+            // contract.setContractTerm(faker.options().option("3 months", "6 months", "1
+            // year"));
 
             LocalDate startDate = LocalDate.now().minusDays(random.nextInt(60));
             contract.setStartDate(startDate);
@@ -106,7 +107,8 @@ public class DataSeeder implements CommandLineRunner {
             Contract historicalContract = new Contract();
             historicalContract.setEmployee(emp);
             historicalContract.setContractType(faker.options().option(Contract.ContractType.values()));
-            historicalContract.setContractTerm(faker.options().option("3 months", "6 months", "1 year"));
+            // historicalContract.setContractTerm(faker.options().option("3 months", "6
+            // months", "1 year"));
 
             LocalDate lastYearStart = LocalDate.now().minusYears(1).minusDays(random.nextInt(90)); // e.g., June–Sept
                                                                                                    // last year

@@ -12,6 +12,8 @@ import com.example.employee.employeedetails.Employee;
 import org.hibernate.annotations.CreationTimestamp;
 import jakarta.persistence.*;
 
+import java.time.Period;
+
 @Entity
 @Table(name = "contracts")
 public class Contract {
@@ -35,9 +37,33 @@ public class Contract {
     @JsonProperty("contract_type")
     private ContractType contractType;
 
-    @Column(name = "contract_term", length = 100)
+    // @Column(name = "contract_term", length = 100)
+    // @JsonProperty("contract_term")
+    // private String contractTerm;
+
+    @Transient
     @JsonProperty("contract_term")
-    private String contractTerm;
+    public String getContractTerm() {
+        if (startDate == null) {
+            return "";
+        }
+        if (finishDate == null) {
+            return "Ongoing";
+        }
+
+        Period period = Period.between(startDate, finishDate);
+        int years = period.getYears();
+        int months = period.getMonths();
+
+        if (years > 0) {
+            return years + (years == 1 ? " year" : " years") +
+                    (months > 0 ? " " + months + (months == 1 ? " month" : " months") : "");
+        } else if (months > 0) {
+            return months + (months == 1 ? " month" : " months");
+        } else {
+            return "Less than a month";
+        }
+    }
 
     @Column(name = "start_date")
     @JsonProperty("start_date")
@@ -100,13 +126,13 @@ public class Contract {
         this.contractType = contractType;
     }
 
-    public String getContractTerm() {
-        return contractTerm;
-    }
+    // public String getContractTerm() {
+    // return contractTerm;
+    // }
 
-    public void setContractTerm(String contractTerm) {
-        this.contractTerm = contractTerm;
-    }
+    // public void setContractTerm(String contractTerm) {
+    // this.contractTerm = contractTerm;
+    // }
 
     public LocalDate getStartDate() {
         return startDate;

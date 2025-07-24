@@ -118,7 +118,7 @@ public class EmployeeService {
             List<Contract> contracts = contractDtos.stream().map(contractDto -> {
                 Contract contract = new Contract();
                 contract.setContractType(contractDto.getContractType());
-                contract.setContractTerm(contractDto.getContractTerm());
+                // contract.setContractTerm(contractDto.getContractTerm());
                 contract.setStartDate(contractDto.getStartDate());
                 contract.setFinishDate(contractDto.getFinishDate());
                 // contract.setOngoing(contractDto.isOngoing());
@@ -265,7 +265,7 @@ public class EmployeeService {
                 }
 
                 contract.setContractType(contractDTO.getContractType());
-                contract.setContractTerm(contractDTO.getContractTerm());
+                // contract.setContractTerm(contractDTO.getContractTerm());
                 contract.setStartDate(contractDTO.getStartDate());
                 contract.setFinishDate(contractDTO.getFinishDate());
                 // contract.setOngoing(contractDTO.isOngoing());
