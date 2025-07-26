@@ -1,5 +1,6 @@
 import { Button, ButtonProps } from "@chakra-ui/react";
 
+
 interface DeleteButtonProps {
   empid: number;
   onDelete: (empid: number) => void;
@@ -8,9 +9,9 @@ interface DeleteButtonProps {
 const DeleteButton: React.FC<DeleteButtonProps> = ({ empid, onDelete }) => {
   return (
     <Button
-      bg="#007fff"
+      bg="red.500"
       color="white"
-      _hover={{ bg: "#0066cc" }}
+      _hover={{ bg: "red.600" }}
       mx={4}
       mb={2}
       onClick={() => onDelete(empid)} 

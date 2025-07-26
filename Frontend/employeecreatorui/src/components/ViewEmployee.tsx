@@ -8,7 +8,8 @@ import {
   Heading,
   Divider,
   HStack,
-  Grid
+  Grid,
+  useToast
 } from "@chakra-ui/react";
 
 import Pagination from "../components/Pagination";
@@ -18,9 +19,12 @@ import UpdateButton from "../components/UpdateButton";
 import DeleteButton from "../components/DeleteButton";
 import DropDown from "./DropDown";
 
+
 const ITEMS_PER_PAGE = 4;
 
 export const ViewEmployees = () => {
+  const toast = useToast();
+
   const [currentPage, setCurrentPage] = useState(1);
   const context = useContext(EmployeeContext);
 
@@ -39,8 +43,21 @@ export const ViewEmployees = () => {
     setExpandedId((prev) => (prev === id ? null : id));
   };
 
+
+
+
   function handleDelete(empid: number): void {
-    console.log("Inside Parent delete component");
+    // console.log("Inside Parent delete component");
+
+     toast({
+      title: 'Success!',
+      description: 'successfully deleted employee record with id:' + empid,
+      status: 'success',
+      duration: 3500,
+      isClosable: true,
+    });
+
+
     deleteEmployee(empid).catch(error => {
     console.error("Failed to delete employee:", error);
   })

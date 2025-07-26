@@ -3,7 +3,6 @@ import { EmployeeCreateDTO } from "../types/Employee";
 import { ContractCreateDTO } from "../types/Contract";
 import { EmployeeContext } from "../context/EmployeeContext";
 
-
 import {
   Box,
   Button,
@@ -12,13 +11,12 @@ import {
   Input,
   Stack,
   Text,
-  Switch,
   NumberInput,
   NumberInputField,
   Select,
   Divider,
-  useDisclosure,
-  VStack
+  VStack,
+  useToast
 } from '@chakra-ui/react';
 
 
@@ -31,11 +29,16 @@ const defaultContract: ContractCreateDTO = {
   ongoing: false
 };
 
+
+
 interface CreateEmployeeProps {
   onClose: () => void;
 }
 
 export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
+
+    const toast = useToast();
+
 
 
   const context = useContext(EmployeeContext);
@@ -124,6 +127,15 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
   const handleSubmit = async() => {
     try {
       console.log("Submitted:", employee);
+
+      toast({
+        title: 'Success!',
+        description: 'successfully created a new employee',
+        status: 'success',
+        duration: 3500,
+        isClosable: true,
+      });
+
       await createNewEmployee(employee);
       onClose();  
 
