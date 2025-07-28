@@ -8,24 +8,24 @@ import com.example.employee.contract.dto.ContractUpdateDTO;
 
 public class UpdateEmployeeDTO {
 
-    private String fname;
+    private String firstName;
 
-    private String middle_name;
+    private String middleName;
 
-    private String last_name;
+    private String lastName;
 
     @Email(message = "Email should be valid")
     private String email;
 
-    private String mobile_number;
+    private String mobileNumber;
 
-    private String residential_address;
+    private String residentialAddress;
 
-    private String employee_status;
+    private String employeeStatus;
 
-    private LocalDate created_at;
+    private LocalDate createdAt;
 
-    private LocalDate updated_at;
+    private LocalDate updatedAt;
 
     private String photoUrl;
 
@@ -41,28 +41,28 @@ public class UpdateEmployeeDTO {
 
     // Getters and Setters
 
-    public String getFname() {
-        return fname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFname(String fname) {
-        this.fname = fname;
+    public void setFname(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getMiddle_name() {
-        return middle_name;
+    public String getMiddleName() {
+        return middleName;
     }
 
-    public void setMiddle_name(String middle_name) {
-        this.middle_name = middle_name;
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -73,44 +73,44 @@ public class UpdateEmployeeDTO {
         this.email = email;
     }
 
-    public String getMobile_number() {
-        return mobile_number;
+    public String getMobileNumber() {
+        return mobileNumber;
     }
 
-    public void setMobile_number(String mobile_number) {
-        this.mobile_number = mobile_number;
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 
-    public String getResidential_address() {
-        return residential_address;
+    public String getResidentialAddress() {
+        return residentialAddress;
     }
 
-    public void setResidential_address(String residential_address) {
-        this.residential_address = residential_address;
+    public void setResidentialAddress(String residentialAddress) {
+        this.residentialAddress = residentialAddress;
     }
 
-    public String getEmployee_status() {
-        return employee_status;
+    public String getEmployeeStatus() {
+        return employeeStatus;
     }
 
-    public void setEmployee_status(String employee_status) {
-        this.employee_status = employee_status;
+    public void setEmployeeStatus(String employeeStatus) {
+        this.employeeStatus = employeeStatus;
     }
 
-    public LocalDate getCreated_at() {
-        return created_at;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(LocalDate created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public LocalDate getUpdated_at() {
-        return updated_at;
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(LocalDate updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public String getphotoUrl() {

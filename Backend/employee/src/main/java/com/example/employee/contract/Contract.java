@@ -34,7 +34,7 @@ public class Contract {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "contract_type", nullable = false)
-    @JsonProperty("contract_type")
+    // @JsonProperty("contract_type")
     private ContractType contractType;
 
     // @Column(name = "contract_term", length = 100)
@@ -42,7 +42,7 @@ public class Contract {
     // private String contractTerm;
 
     @Transient
-    @JsonProperty("contract_term")
+    // @JsonProperty("contract_term")
     public String getContractTerm() {
         if (startDate == null) {
             return "";
@@ -66,11 +66,11 @@ public class Contract {
     }
 
     @Column(name = "start_date")
-    @JsonProperty("start_date")
+    // @JsonProperty("start_date")
     private LocalDate startDate;
 
     @Column(name = "finish_date")
-    @JsonProperty("finish_date")
+    // @JsonProperty("finish_date")
     private LocalDate finishDate;
 
     // @Column(name = "ongoing", nullable = false)
@@ -78,27 +78,27 @@ public class Contract {
     // private boolean ongoing = false;
 
     @Transient
-    @JsonProperty("ongoing")
+    // @JsonProperty("ongoing")
     public boolean isOngoing() {
         return ((finishDate == null) || LocalDate.now().isBefore(finishDate) || LocalDate.now().isEqual(finishDate));
     }
 
     @Enumerated(EnumType.STRING)
     @Column(name = "work_type", nullable = false)
-    @JsonProperty("work_type")
+    // @JsonProperty("work_type")
     private WorkType workType;
 
     @Column(name = "hours_per_week", precision = 4, scale = 1)
-    @JsonProperty("hours_per_week")
+    // @JsonProperty("hours_per_week")
     private BigDecimal hoursPerWeek;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
-    @JsonProperty("created_at")
+    // @JsonProperty("created_at")
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
-    @JsonProperty("updated_at")
+    // @JsonProperty("updated_at")
     private LocalDateTime updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)

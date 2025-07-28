@@ -12,32 +12,32 @@ public class ContractUpdateDTO {
 
     private Integer id;
 
-    @JsonProperty("contract_type")
+    @JsonProperty("contractType")
     private ContractType contractType;
 
-    @JsonProperty("contract_term")
+    // @JsonProperty("contract_term")
     private String contractTerm;
 
-    @JsonProperty("start_date")
+    // @JsonProperty("start_date")
     private LocalDate startDate;
 
-    @JsonProperty("finish_date")
+    // @JsonProperty("finish_date")
     private LocalDate finishDate;
 
     private boolean ongoing;
 
-    @JsonProperty("work_type")
+    // @JsonProperty("work_type")
     private WorkType workType;
 
-    @JsonProperty("hours_per_week")
+    // @JsonProperty("hours_per_week")
     private BigDecimal hoursPerWeek;
 
     private int employeeId;
 
-    @JsonProperty("updated_at")
+    // @JsonProperty("updated_at")
     private LocalDateTime updatedAt;
 
-    // ✅ Getter & Setter for id (needed in service layer)
+    // Getter & Setter for id (needed in service layer)
     public Integer getId() {
         return id;
     }
