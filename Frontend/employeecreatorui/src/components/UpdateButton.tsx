@@ -6,12 +6,13 @@ interface UpdateButtonProps extends ButtonProps {
 
 const UpdateButton: React.FC<UpdateButtonProps> = ({ onUpdate }) => {
   return (
-    <Button
+      <Button
       bg="teal.400"
       color="white"
       _hover={{ bg: "teal.600" }}
       mx={4}
       mb={2}
+      onClick={onUpdate}
     >
       Update
     </Button>

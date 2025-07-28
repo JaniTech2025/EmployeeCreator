@@ -127,7 +127,7 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
   const handleSubmit = async() => {
     try {
       console.log("Submitted:", employee);
-
+      await createNewEmployee(employee);
       toast({
         title: 'Success!',
         description: 'successfully created a new employee',
@@ -135,8 +135,6 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
         duration: 3500,
         isClosable: true,
       });
-
-      await createNewEmployee(employee);
       onClose();  
 
     } catch (err) {

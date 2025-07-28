@@ -11,6 +11,7 @@ export const EmployeeContext = React.createContext<{
   setEmployees: React.Dispatch<React.SetStateAction<EmployeeGetDTO[]>>;
   refreshEmployees: () => Promise<void>;
   deleteEmployee: (empid: number) => Promise<void>;
+  updateEmployee: (empid: number, emp: EmployeeGetDTO) => Promise<void>;
   createNewEmployee: (emp: EmployeeCreateDTO) => Promise<void>;
 } | null>(null);
 
@@ -39,7 +40,7 @@ const EmployeeProvider: React.FC<{ children: React.ReactNode }> = ({ children })
                             updatedAt: now
                             })) ?? []
                            };
-      const res = await api.post<EmployeeResponseDTO[]>("/employees", updatedEmployeeData);
+      const res = await api.post<EmployeeGetDTO[]>("/employees", updatedEmployeeData);
       await refreshEmployees();
       console.log("Employee created:", res.data);
     } catch(error){
@@ -57,13 +58,26 @@ const EmployeeProvider: React.FC<{ children: React.ReactNode }> = ({ children })
     }
   };
 
+  
+    const updateEmployee = async (empid: number, employeedata: EmployeeGetDTO) => {
+    try {
+      console.log("Context has received", employeedata);
+      const res = await api.put(`/employees/${empid}`, employeedata);
+      await refreshEmployees();
+    } catch (error) {
+      console.error("Unable to update employee:", error);
+    }
+  };
+
+
 
   React.useEffect(() => {
     refreshEmployees();
   }, []);
 
   return (
-    <EmployeeContext.Provider value={{ employees, setEmployees, refreshEmployees, deleteEmployee, createNewEmployee }}>
+    <EmployeeContext.Provider value={{ employees, setEmployees, refreshEmployees, 
+                                        deleteEmployee, updateEmployee, createNewEmployee }}>
       {children}
     </EmployeeContext.Provider>
   );

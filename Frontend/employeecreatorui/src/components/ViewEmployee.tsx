@@ -9,7 +9,13 @@ import {
   Divider,
   HStack,
   Grid,
-  useToast
+  useToast,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
 } from "@chakra-ui/react";
 
 import Pagination from "../components/Pagination";
@@ -18,11 +24,15 @@ import { EmployeeContext } from "../context/EmployeeContext";
 import UpdateButton from "../components/UpdateButton";
 import DeleteButton from "../components/DeleteButton";
 import DropDown from "./DropDown";
+import EmployeeUpdateForm from "./EmployeeUpdateForm";
+import { EmployeeGetDTO } from "../types/Employee";
 
 
 const ITEMS_PER_PAGE = 4;
 
 export const ViewEmployees = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);  
+  const [selectedEmployee, setSelectedEmployee] = useState<EmployeeGetDTO | null>(null);
   const toast = useToast();
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -64,13 +74,20 @@ export const ViewEmployees = () => {
  }
 
 
-  function handleUpdate(): void {
-    console.log("To implement update handler here");
-    //CreateEmployee();
+
+  // Open modal with the current employee details
+  function handleUpdate(empid: number, emp: EmployeeGetDTO): void {
+    // console.log("View Employee has received to update", emp)
+    setSelectedEmployee(emp);
+    setIsModalOpen(true);
+    // updateEmployee(empid, emp);
   }
 
+  // function handleCancel(): void {
+  //   setIsModalOpen(false);
+  // }
 
-  
+
 
   return (
     <Box p={10}>
@@ -102,8 +119,9 @@ export const ViewEmployees = () => {
                 <Text>Mobile: {emp.mobileNumber}</Text>
 
 
-
-                <UpdateButton onUpdate={handleUpdate}/>
+                <UpdateButton 
+                  onUpdate={() => handleUpdate(emp.id, emp)}
+                />
 
                 <DeleteButton 
                   empid={emp.id} 
@@ -137,24 +155,24 @@ export const ViewEmployees = () => {
                           >
                             <Grid templateColumns="150px 1fr" rowGap={2} columnGap={4}>
                               <Text fontWeight="semibold">Type:</Text>
-                              <Text>{contract.contract_type}</Text>
+                              <Text>{contract.contractType}</Text>
 
                               {/* <Text fontWeight="semibold">Term:</Text>
                               <Text>{contract.contract_term || "N/A"}</Text> */}
 
                               <Text fontWeight="semibold">Start:</Text>
-                              <Text>{contract.start_date}</Text>
+                              <Text>{contract.startDate}</Text>
 
                               <Text fontWeight="semibold">
                                 {contract.ongoing ? "Ongoing:" : "Finish:"}
                               </Text>
-                              <Text>{contract.ongoing ? "Yes" : contract.finish_date || "N/A"}</Text>
+                              <Text>{contract.ongoing ? "Yes" : contract.finishDate || "N/A"}</Text>
 
                               <Text fontWeight="semibold">Work Type:</Text>
-                              <Text>{contract.work_type}</Text>
+                              <Text>{contract.workType}</Text>
 
                               <Text fontWeight="semibold">Hours/Week:</Text>
-                              <Text>{contract.hours_per_week}</Text>
+                              <Text>{contract.hoursPerWeek}</Text>
                             </Grid>
                           </Box>
                         ))}
@@ -172,6 +190,46 @@ export const ViewEmployees = () => {
         totalPages={totalPages}
         onPageChange={setCurrentPage}
       />
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} size="xl" scrollBehavior="inside">
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Update Employee</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                {selectedEmployee && (
+                  <EmployeeUpdateForm
+                    employee={selectedEmployee}
+                    onUpdate={(updatedEmp) => {
+                      setIsModalOpen(false);
+                      setSelectedEmployee(null);
+                      refreshEmployees();
+                      toast({
+                        title: "Employee Updated",
+                        status: "success",
+                        duration: 3000,
+                        isClosable: true,
+                      });
+                    }}
+                    setisModalOpen={setIsModalOpen}
+                  />
+                )}
+
+
+              </ModalBody>
+              {/* <ModalFooter>
+                <Button 
+                  bg="teal.400"
+                  color="white"
+                  _hover={{ bg: "teal.600" }}
+                  mx={4}
+                  mb={2}
+                  onClick={() => setIsModalOpen(false)}>
+                    Cancel
+                </Button>
+              </ModalFooter> */}
+            </ModalContent>
+          </Modal>
+
     </Box>
   );
 };

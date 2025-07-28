@@ -1,4 +1,4 @@
-import { ContractCreateDTO, ContractViewDTO } from "./Contract";
+import { ContractCreateDTO, ContractViewDTO, ContractResponseDTO } from "./Contract";
 
 
 
@@ -45,15 +45,4 @@ export interface EmployeeResponseDTO {
   updatedAt: string; 
   photoUrl: string;
   contracts: ContractResponseDTO[];
-}
-
-export interface ContractResponseDTO {
-  id: number;
-  contractType: string;
-  startDate: string;        
-  finishDate: string | null;
-  workType: string;
-  hoursPerWeek: number;
-  createdAt: string;        
-  updatedAt: string | null;
 }
