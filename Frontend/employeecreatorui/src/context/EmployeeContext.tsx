@@ -2,7 +2,6 @@ import * as React from "react";
 import { api } from "../services/api";
 import { EmployeeCreateDTO, 
          EmployeeGetDTO, 
-         EmployeeResponseDTO, 
          } from "../types/Employee";
 
 

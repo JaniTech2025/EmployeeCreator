@@ -15,12 +15,21 @@ import {
   IconButton,
   Text,
   useToast,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
 } from '@chakra-ui/react';
+
+import { AddIcon } from '@chakra-ui/icons';
+
 import { DeleteIcon } from '@chakra-ui/icons';
 
 import { EmployeeGetDTO } from "../types/Employee";
 import { ContractViewDTO } from "../types/Contract";
 import { EmployeeContext } from "../context/EmployeeContext";
+import AddContract from './AddContract';
 
 
 type Props = {
@@ -82,6 +91,8 @@ const EmployeeUpdateForm: React.FC<Props> = ({ employee, onUpdate, setisModalOpe
   return (
     <Box maxW="800px" mx="auto" p={6} bg="white" shadow="md" borderRadius="md">
       <Heading mb={4}>Update Employee</Heading>
+      <Divider mb={4} borderColor="gray.300" />
+
       <VStack spacing={4} align="stretch">
         <FormControl>
           <FormLabel>First Name</FormLabel>
@@ -105,6 +116,14 @@ const EmployeeUpdateForm: React.FC<Props> = ({ employee, onUpdate, setisModalOpe
             value={formData.lastName}
             onChange={(e) => handleChange('lastName', e.target.value)}
           />
+        </FormControl>
+
+        <FormControl>
+          <FormLabel>Photo url</FormLabel>
+            <Input
+            value={formData.photoUrl}
+            onChange={(e) => handleChange('photoUrl', e.target.value)}
+            />
         </FormControl>
 
         <FormControl>
@@ -142,19 +161,41 @@ const EmployeeUpdateForm: React.FC<Props> = ({ employee, onUpdate, setisModalOpe
           </Select>
         </FormControl> */}
 
-        <Divider my={4} />
-        <Heading size="md">Contracts</Heading>
+        <Divider my={4} borderColor="gray.300"/>
+        <Heading size="md">Contracts
+        {/* <IconButton
+          icon={<AddIcon />}
+          aria-label="Add contract"
+          variant="ghost"
+          color="blue"
+          fontSize="12px"
+        /> */}
+        </Heading>
 
-        {formData.contracts?.map((contract, index) => (
+        <AddContract></AddContract>
+
+        {formData.contracts?.slice(0,1).map((contract, index) => (
           <Box
             key={contract.id}
-            p={4}
+            // p={1}
             border="1px solid #ccc"
             borderRadius="md"
             position="relative"
           >
+
+      <Accordion allowToggle>
+        <AccordionItem border="none">
+          <h2>
+            <AccordionButton _expanded={{ bg: "blue.400" }}>
+              <Box flex="1" textAlign="left">
+                View/Update recent Contract
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+          </h2>
+        <AccordionPanel pb={4}>
             <HStack justify="space-between" mb={2}>
-              <Text fontWeight="bold">Contract #{contract.id}</Text>
+              {/* <Text fontWeight="bold">Recent contract</Text> */}
               <IconButton
                 aria-label="Delete contract"
                 icon={<DeleteIcon />}
@@ -231,6 +272,16 @@ const EmployeeUpdateForm: React.FC<Props> = ({ employee, onUpdate, setisModalOpe
                 <NumberInputField />
               </NumberInput>
             </FormControl>
+            <Button colorScheme="blue" mt={1} onClick={handleSubmit}>
+              Update
+            </Button>
+            <Button colorScheme="green" mt={1} onClick={handleCancel}>
+              Cancel
+            </Button>               
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>   
+             
           </Box>
         ))}
 
@@ -238,13 +289,9 @@ const EmployeeUpdateForm: React.FC<Props> = ({ employee, onUpdate, setisModalOpe
           <Text color="gray.500">No contracts available.</Text>
         )}
 
-        <Button colorScheme="blue" mt={1} onClick={handleSubmit}>
-          Update
-        </Button>
-        <Button colorScheme="green" mt={1} onClick={handleCancel}>
-          Cancel
-        </Button>        
+      
       </VStack>
+ 
     </Box>
   );
 };

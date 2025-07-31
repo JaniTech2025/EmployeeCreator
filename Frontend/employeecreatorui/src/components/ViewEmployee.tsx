@@ -13,7 +13,6 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
   ModalCloseButton,
   ModalBody,
 } from "@chakra-ui/react";
@@ -61,7 +60,7 @@ export const ViewEmployees = () => {
 
      toast({
       title: 'Success!',
-      description: 'successfully deleted employee record with id:' + empid,
+      description: 'employee record with id:' + empid + 'has been deleted',
       status: 'success',
       duration: 3500,
       isClosable: true,
@@ -86,8 +85,6 @@ export const ViewEmployees = () => {
   // function handleCancel(): void {
   //   setIsModalOpen(false);
   // }
-
-
 
   return (
     <Box p={10}>
@@ -143,7 +140,8 @@ export const ViewEmployees = () => {
 
                     {expandedId === emp.id && (
                       <VStack align="start" spacing={2} mt={2}>
-                        {emp.contracts.map((contract, index) => (
+                        {/* List top two contracts only */}
+                        {emp.contracts.slice(0,2).map((contract, index) => (
                           <Box
                             key={contract.id || index}
                             pl={4}
@@ -193,7 +191,7 @@ export const ViewEmployees = () => {
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} size="xl" scrollBehavior="inside">
             <ModalOverlay />
             <ModalContent>
-              <ModalHeader>Update Employee</ModalHeader>
+              {/* <ModalHeader>Update Employee</ModalHeader> */}
               <ModalCloseButton />
               <ModalBody>
                 {selectedEmployee && (
