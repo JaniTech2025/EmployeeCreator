@@ -15,8 +15,9 @@
         //         "updatedAt": "2024-07-30T09:25:57.4925"
         //     }
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { ContractCreateDTO } from '../types/Contract';
+import { EmployeeContext } from '../context/EmployeeContext';
 import {
   Accordion,
   AccordionItem,
@@ -46,20 +47,33 @@ import {
 //   updatedAt: string;
 // }
 
-const AddContract: React.FC = () => {
-  const initialFormState: ContractCreateDTO = {
-    contractType: 'Temporary',
-    startDate: '2023-07-07',
-    finishDate: '2023-12-07',
-    workType: 'FullTime',
-    hoursPerWeek: 36.8,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    ongoing: true
-  };
+
+type AddContractProps = {
+  empid: number;
+}
+
+
+const initialFormState: ContractCreateDTO = {
+  contractType: 'Temporary',
+  startDate: new Date().toISOString().split('T')[0],
+  finishDate: null,
+  workType: 'FullTime',
+  hoursPerWeek: 40,
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
+  ongoing: true,
+};
+
+
+
+const AddContract: React.FC<AddContractProps> = ({empid}) => {
 
   const [formData, setFormData] = useState<ContractCreateDTO>(initialFormState);
   const toast = useToast();
+  const context = useContext(EmployeeContext);
+
+  if (!context) throw new Error("AddContract must be used within an EmployeeProvider");
+  const { createContract } = context;
 
   const handleChange = (field: keyof ContractCreateDTO, value: any) => {
     setFormData(prev => ({
@@ -68,20 +82,26 @@ const AddContract: React.FC = () => {
     }));
   };
 
-  const handleSave = () => {
-    toast({
-      title: 'Saved!',
-      description: 'Contract details saved successfully.',
-      status: 'success',
-      duration: 3000,
-      isClosable: true,
-    });
-
+  const handleSave = async (empid:number, formData: ContractCreateDTO) => {
     // Replace with your actual save logic (e.g. API call)
-    console.log('Saved:', formData);
+    try{
+      await createContract(empid, formData);
+      toast({
+          title: 'Saved!',
+          description: 'Contract details saved successfully.',
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+        });
+        console.log('Saved:', formData);
+    }catch(error){
+       console.log("Error creating contract", error);
+    }
+    setFormData(initialFormState);
+
   };
 
-  const handleDiscard = () => {
+  const handleReset = () => {
     setFormData(initialFormState);
     toast({
       title: 'Changes Discarded',
@@ -93,10 +113,10 @@ const AddContract: React.FC = () => {
   };
 
   return (
-    <Accordion allowToggle>
+    <Accordion allowToggle bgColor="green.50">
       <AccordionItem border="1px solid" borderColor="gray.200" borderRadius="md">
         <h2>
-          <AccordionButton _expanded={{ bg: "blue.400" }}>
+          <AccordionButton _expanded={{ bg: "green.400" }}>
             <Box flex="1" textAlign="left">
               Add new Contract
             </Box>
@@ -113,7 +133,6 @@ const AddContract: React.FC = () => {
               >
                 <option value="Temporary">Temporary</option>
                 <option value="Permanent">Permanent</option>
-                <option value="Contract">Contract</option>
               </Select>
             </FormControl>
 
@@ -125,7 +144,6 @@ const AddContract: React.FC = () => {
               >
                 <option value="FullTime">Full Time</option>
                 <option value="PartTime">Part Time</option>
-                <option value="Casual">Casual</option>
               </Select>
             </FormControl>
 
@@ -158,10 +176,10 @@ const AddContract: React.FC = () => {
             </FormControl>
 
             <HStack justify="flex-end" pt={4}>
-              <Button variant="outline" colorScheme="gray" onClick={handleDiscard}>
-                Discard
+              <Button variant="solid" colorScheme="green" onClick={handleReset}>
+                Reset
               </Button>
-              <Button colorScheme="blue" onClick={handleSave}>
+              <Button colorScheme="green" onClick={() => handleSave(empid, formData)}>
                 Save
               </Button>
             </HStack>

@@ -22,7 +22,6 @@ import {
   AccordionIcon,
 } from '@chakra-ui/react';
 
-import { AddIcon } from '@chakra-ui/icons';
 
 import { DeleteIcon } from '@chakra-ui/icons';
 
@@ -91,197 +90,211 @@ const EmployeeUpdateForm: React.FC<Props> = ({ employee, onUpdate, setisModalOpe
   return (
     <Box maxW="800px" mx="auto" p={6} bg="white" shadow="md" borderRadius="md">
       <Heading mb={4}>Update Employee</Heading>
-      <Divider mb={4} borderColor="gray.300" />
+      <Divider mb={4} borderColor="blue.300" />
 
       <VStack spacing={4} align="stretch">
-        <FormControl>
-          <FormLabel>First Name</FormLabel>
-          <Input
-            value={formData.firstName}
-            onChange={(e) => handleChange('firstName', e.target.value)}
-          />
-        </FormControl>
 
-        <FormControl>
-          <FormLabel>Middle Name</FormLabel>
-          <Input
-            value={formData.middleName ?? ""}
-            onChange={(e) => handleChange('middleName', e.target.value)}
-          />
-        </FormControl>
-
-        <FormControl>
-          <FormLabel>Last Name</FormLabel>
-          <Input
-            value={formData.lastName}
-            onChange={(e) => handleChange('lastName', e.target.value)}
-          />
-        </FormControl>
-
-        <FormControl>
-          <FormLabel>Photo url</FormLabel>
+  <Accordion allowToggle bg="blue.50">
+        <AccordionItem
+        border="1px solid"
+        borderColor="gray.300"
+        borderRadius="md"
+        overflow="hidden"
+        // mb={2}
+      >
+      <h2>
+      <AccordionButton _expanded={{ bg: "blue.400" }}>    
+         <Box flex="1" textAlign="left">
+            Update Employee Details
+          </Box>
+          <AccordionIcon />
+        </AccordionButton>
+      </h2>
+      <AccordionPanel pb={4}>
+        <VStack spacing={4} align="stretch">
+          <FormControl>
+            <FormLabel>First Name</FormLabel>
             <Input
-            value={formData.photoUrl}
-            onChange={(e) => handleChange('photoUrl', e.target.value)}
+              value={formData.firstName}
+              onChange={(e) => handleChange("firstName", e.target.value)}
             />
-        </FormControl>
+          </FormControl>
 
-        <FormControl>
-          <FormLabel>Email</FormLabel>
-          <Input
-            value={formData.email}
-            onChange={(e) => handleChange('email', e.target.value)}
-          />
-        </FormControl>
+          <FormControl>
+            <FormLabel>Middle Name</FormLabel>
+            <Input
+              value={formData.middleName ?? ""}
+              onChange={(e) => handleChange("middleName", e.target.value)}
+            />
+          </FormControl>
 
-        <FormControl>
-          <FormLabel>Mobile Number</FormLabel>
-          <Input
-            value={formData.mobileNumber}
-            onChange={(e) => handleChange('mobileNumber', e.target.value)}
-          />
-        </FormControl>
+          <FormControl>
+            <FormLabel>Last Name</FormLabel>
+            <Input
+              value={formData.lastName}
+              onChange={(e) => handleChange("lastName", e.target.value)}
+            />
+          </FormControl>
 
-        <FormControl>
-          <FormLabel>Residential Address</FormLabel>
-          <Input
-            value={formData.residentialAddress}
-            onChange={(e) => handleChange('residentialAddress', e.target.value)}
-          />
-        </FormControl>
+          <FormControl>
+            <FormLabel>Photo URL</FormLabel>
+            <Input
+              value={formData.photoUrl}
+              onChange={(e) => handleChange("photoUrl", e.target.value)}
+            />
+          </FormControl>
 
-        {/* <FormControl>
-          <FormLabel>Status</FormLabel>
-          <Select
-            value={formData.employeeStatus}
-            onChange={(e) => handleChange('employeeStatus', e.target.value)}
-          >
-            <option value="Active">Active</option>
-            <option value="Inactive">Inactive</option>
-          </Select>
-        </FormControl> */}
+          <FormControl>
+            <FormLabel>Email</FormLabel>
+            <Input
+              value={formData.email}
+              onChange={(e) => handleChange("email", e.target.value)}
+            />
+          </FormControl>
 
-        <Divider my={4} borderColor="gray.300"/>
-        <Heading size="md">Contracts
-        {/* <IconButton
-          icon={<AddIcon />}
-          aria-label="Add contract"
-          variant="ghost"
-          color="blue"
-          fontSize="12px"
-        /> */}
-        </Heading>
+          <FormControl>
+            <FormLabel>Mobile Number</FormLabel>
+            <Input
+              value={formData.mobileNumber}
+              onChange={(e) => handleChange("mobileNumber", e.target.value)}
+            />
+          </FormControl>
 
-        <AddContract></AddContract>
+          <FormControl>
+            <FormLabel>Residential Address</FormLabel>
+            <Input
+              value={formData.residentialAddress}
+              onChange={(e) =>
+                handleChange("residentialAddress", e.target.value)
+              }
+            />
+          </FormControl>
+        </VStack>
+      </AccordionPanel>
+    </AccordionItem>
+  </Accordion>
 
-        {formData.contracts?.slice(0,1).map((contract, index) => (
-          <Box
-            key={contract.id}
-            // p={1}
-            border="1px solid #ccc"
-            borderRadius="md"
-            position="relative"
-          >
 
-      <Accordion allowToggle>
-        <AccordionItem border="none">
-          <h2>
-            <AccordionButton _expanded={{ bg: "blue.400" }}>
-              <Box flex="1" textAlign="left">
-                View/Update recent Contract
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-          </h2>
-        <AccordionPanel pb={4}>
-            <HStack justify="space-between" mb={2}>
-              {/* <Text fontWeight="bold">Recent contract</Text> */}
-              <IconButton
-                aria-label="Delete contract"
-                icon={<DeleteIcon />}
-                colorScheme="red"
-                size="sm"
-                onClick={() => handleDeleteContract(index)}
-              />
-            </HStack>
+          {/* <FormControl>
+            <FormLabel>Status</FormLabel>
+            <Select
+              value={formData.employeeStatus}
+              onChange={(e) => handleChange('employeeStatus', e.target.value)}
+            >
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+            </Select>
+          </FormControl> */}
 
-            <FormControl mb={2}>
-              <FormLabel>Contract Type</FormLabel>
-              {/* <Input
-                value={contract.contract_type}
-                onChange={(e) =>
-                  handleContractChange(index, 'contract_type', e.target.value)
-                }
-              /> */}
-              <Select
-                value={contract.contractType}
-                onChange={(e) =>
-                  handleContractChange(index, 'contractType', e.target.value)
-                }
-              >
-                <option value="Permanent">Permanent</option>
-                <option value="Temporary">Temporary</option>
-              </Select>
-            </FormControl>
+          {/* <Divider my={4} borderColor="gray.300"/> */}
+          {/* <Heading size="md">Contracts
+          </Heading>
+          <Divider mb={4} borderColor="gray.300" /> */}
 
-            <FormControl mb={2}>
-              <FormLabel>Start Date</FormLabel>
-              <Input
-                type="date"
-                value={contract.startDate}
-                onChange={(e) =>
-                  handleContractChange(index, 'startDate', e.target.value)
-                }
-              />
-            </FormControl>
 
-            <FormControl mb={2}>
-              <FormLabel>Finish Date</FormLabel>
-              <Input
-                type="date"
-                value={contract.finishDate ?? ''}
-                onChange={(e) =>
-                  handleContractChange(index, 'finishDate', e.target.value)
-                }
-              />
-            </FormControl>
 
-            <FormControl mb={2}>
-              <FormLabel>Work Type</FormLabel>
-              <Select
-                value={contract.workType}
-                onChange={(e) =>
-                  handleContractChange(index, 'workType', e.target.value)
-                }
-              >
-                <option value="FullTime">Full Time</option>
-                <option value="PartTime">Part Time</option>
-              </Select>
-            </FormControl>
+          {formData.contracts?.slice(0,1).map((contract, index) => (
+            <Box
+              key={contract.id}
+              // p={1}
+              border="1px solid #ccc"
+              borderRadius="md"
+              position="relative"
+            >
 
-            <FormControl>
-              <FormLabel>Hours/Week</FormLabel>
-              <NumberInput
-                precision={1}
-                step={0.1}
-                value={contract.hoursPerWeek}
-                onChange={(_, value) =>
-                  handleContractChange(index, 'hoursPerWeek', value)
-                }
-              >
-                <NumberInputField />
-              </NumberInput>
-            </FormControl>
-            <Button colorScheme="blue" mt={1} onClick={handleSubmit}>
-              Update
-            </Button>
-            <Button colorScheme="green" mt={1} onClick={handleCancel}>
-              Cancel
-            </Button>               
-                </AccordionPanel>
-              </AccordionItem>
-            </Accordion>   
-             
+        <Accordion allowToggle bgColor="blue.50">
+          <AccordionItem border="none">
+            <h2>
+              <AccordionButton _expanded={{ bg: "blue.400" }}>
+                <Box flex="1" textAlign="left">
+                  Edit Recent Contract
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+          <AccordionPanel pb={4}>
+              <HStack justify="space-between" mb={2} justifyContent="right">
+                {/* <Text fontWeight="bold">Recent contract</Text> */}
+                <IconButton
+                  aria-label="Delete contract"
+                  icon={<DeleteIcon />}
+                  colorScheme="blue"
+                  size="sm"
+                  onClick={() => handleDeleteContract(index)}
+                />
+              </HStack>
+
+              <FormControl mb={2}>
+                <FormLabel>Contract Type</FormLabel>
+                {/* <Input
+                  value={contract.contract_type}
+                  onChange={(e) =>
+                    handleContractChange(index, 'contract_type', e.target.value)
+                  }
+                /> */}
+                <Select
+                  value={contract.contractType}
+                  onChange={(e) =>
+                    handleContractChange(index, 'contractType', e.target.value)
+                  }
+                >
+                  <option value="Permanent">Permanent</option>
+                  <option value="Temporary">Temporary</option>
+                </Select>
+              </FormControl>
+
+              <FormControl mb={2}>
+                <FormLabel>Start Date</FormLabel>
+                <Input
+                  type="date"
+                  value={contract.startDate}
+                  onChange={(e) =>
+                    handleContractChange(index, 'startDate', e.target.value)
+                  }
+                />
+              </FormControl>
+
+              <FormControl mb={2}>
+                <FormLabel>Finish Date</FormLabel>
+                <Input
+                  type="date"
+                  value={contract.finishDate ?? ''}
+                  onChange={(e) =>
+                    handleContractChange(index, 'finishDate', e.target.value)
+                  }
+                />
+              </FormControl>
+
+              <FormControl mb={2}>
+                <FormLabel>Work Type</FormLabel>
+                <Select
+                  value={contract.workType}
+                  onChange={(e) =>
+                    handleContractChange(index, 'workType', e.target.value)
+                  }
+                >
+                  <option value="FullTime">Full Time</option>
+                  <option value="PartTime">Part Time</option>
+                </Select>
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Hours/Week</FormLabel>
+                <NumberInput
+                  precision={1}
+                  step={0.1}
+                  value={contract.hoursPerWeek}
+                  onChange={(_, value) =>
+                    handleContractChange(index, 'hoursPerWeek', value)
+                  }
+                >
+                  <NumberInputField />
+                </NumberInput>
+                </FormControl>
+              </AccordionPanel>
+            </AccordionItem>
+          </Accordion>   
+              
           </Box>
         ))}
 
@@ -289,8 +302,18 @@ const EmployeeUpdateForm: React.FC<Props> = ({ employee, onUpdate, setisModalOpe
           <Text color="gray.500">No contracts available.</Text>
         )}
 
+        <AddContract empid={formData.id}></AddContract>
+
+
       
       </VStack>
+
+         <Button colorScheme="blue" mt={6} onClick={handleSubmit}>
+              Save
+            </Button>
+            <Button colorScheme="red" mt={6}  ml={4} onClick={handleCancel}>
+              Cancel
+            </Button>        
  
     </Box>
   );

@@ -16,7 +16,13 @@ import {
   Select,
   Divider,
   VStack,
-  useToast
+  useToast,
+  Accordion,
+  AccordionPanel,
+  AccordionItem,
+  AccordionButton,
+  AccordionIcon,
+  HStack
 } from '@chakra-ui/react';
 
 
@@ -162,25 +168,30 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
   }
 
   return (
-        <Box maxW="800px" mx="auto" p={6}>
+        <Box maxW="800px" mx="auto" p={1}>
           <Text fontSize="2xl" mb={4}>Create Employee</Text>
           <Divider mb={4} borderColor="gray.500" />
 
           <VStack spacing={4} align="stretch">
-            <FormControl isRequired>
-              <FormLabel>First Name</FormLabel>
-              <Input name="firstName" value={employee.firstName} onChange={handleChange} />
-            </FormControl>
+            <HStack spacing={4} align="start">
+              <FormControl isRequired flex={1}>
+                <FormLabel>First Name</FormLabel>
+                <Input name="firstName" value={employee.firstName} onChange={handleChange} />
+              </FormControl>
 
-            <FormControl mb={4}>
-              <FormLabel>Middle Name</FormLabel>
-              <Input name="middleName" value={employee.middleName} onChange={handleChange} />
-            </FormControl>
+              <FormControl flex={1}>
+                <FormLabel>Middle Name</FormLabel>
+                <Input name="middleName" value={employee.middleName} onChange={handleChange} />
+              </FormControl>
 
-            <FormControl isRequired  mb={4}>
-              <FormLabel>Last Name</FormLabel>
-              <Input name="lastName" value={employee.lastName} onChange={handleChange} />
-            </FormControl>
+              <FormControl isRequired flex={1}>
+                <FormLabel>Last Name</FormLabel>
+                <Input name="lastName" value={employee.lastName} onChange={handleChange} />
+              </FormControl>
+            </HStack>
+
+
+            <HStack spacing={4} align="start">
 
             <FormControl  mb={4}>
               <FormLabel>Email</FormLabel>
@@ -191,6 +202,8 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
               <FormLabel>Mobile Number</FormLabel>
               <Input name="mobileNumber" value={employee.mobileNumber} onChange={handleChange} />
             </FormControl>
+
+            </HStack>
 
             {/* <FormControl>
               <FormLabel>Residential Address</FormLabel>
@@ -208,6 +221,8 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
               <Input name="suburb" value={address.suburb} onChange={handleAddressChange}/>
             </FormControl>
 
+
+            <HStack spacing={4} align="start">
             <FormControl mb={4}>
               <FormLabel>State/Territory</FormLabel>
               {/* <Input name="state" value={address.state} onChange={handleAddressChange}/> */}
@@ -227,6 +242,7 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
             <FormLabel>Postcode</FormLabel>
               <Input type="text" placeholder="3000" name="postcode" maxLength={4} value={address.postcode} onChange={handleAddressChange}/>
             </FormControl>
+            </HStack>
 
 
             {/* <FormControl>
@@ -243,100 +259,121 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
             </FormControl>
 
             {employee.contracts && employee.contracts.length > 0 && (
-              <Box p={4} border="1px solid #ccc" borderRadius="md">
-                <Text fontWeight="bold" mb={5}>Contract Details</Text>
-                <Divider mb={4} borderColor="gray.500" />
+         
 
-                <Stack spacing={3}>
-                <FormControl isRequired>
-                    <FormLabel>Contract Type</FormLabel>
-                    <Select
-                      value={employee.contracts[0].contractType || "Permanent"}                      
-                      onChange={(e) => handleContractChange("contractType", e.target.value)}
-                      placeholder="Enter contract type"
+              <Accordion allowToggle>
+                <AccordionItem
+                  border="1px solid"
+                  borderColor="gray.200"
+                  borderRadius="md"
+                  overflow="hidden"
+                  mb={4}
+                >
+                  <h2>
+                    <AccordionButton
+                      bg="white"
+                      _expanded={{ bg: "gray.100" }}
+                      borderRadius="md"
+                      p={4}
                     >
-                      <option value="Permanent">Permanent</option>
-                      <option value="Temporary">Temporary</option>
-                    </Select>
-                  </FormControl>
-{/* 
-                  <FormControl>
-                    <FormLabel>Contract Term</FormLabel>
-                    <Input
-                      value={employee.contracts[0].contractTerm || ""}
-                      onChange={(e) => handleContractChange("contractTerm", e.target.value)}
-                      placeholder="Enter approx duration in months/years"
-                    />
-                  </FormControl> */}
+                      <Box flex="1" textAlign="left" fontWeight="bold">
+                        Add Contract Details (Optional)
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel bg="white" p={4}>
+                    <Stack spacing={3}>
+                      <FormControl isRequired>
+                        <FormLabel>Contract Type</FormLabel>
+                        <Select
+                          value={employee.contracts[0].contractType || "Permanent"}
+                          onChange={(e) => handleContractChange("contractType", e.target.value)}
+                          placeholder="Enter contract type"
+                        >
+                          <option value="Permanent">Permanent</option>
+                          <option value="Temporary">Temporary</option>
+                        </Select>
+                      </FormControl>
 
-                  <FormControl isRequired>
-                    <FormLabel>Start Date</FormLabel>
-                    <Input
-                      type="date"
-                      value={employee.contracts[0].startDate}
-                      onChange={(e) => handleContractChange("startDate", e.target.value)}
-                    />
-                  </FormControl>
+                      {/* <FormControl>
+                        <FormLabel>Contract Term</FormLabel>
+                        <Input
+                          value={employee.contracts[0].contractTerm || ""}
+                          onChange={(e) => handleContractChange("contractTerm", e.target.value)}
+                          placeholder="Enter approx duration in months/years"
+                        />
+                      </FormControl> */}
 
-                  <FormControl>
-                    <FormLabel>Finish Date</FormLabel>
-                    <Input
-                      type="date"
-                      value={employee.contracts[0].finishDate || ""}
-                      onChange={(e) =>
-                        handleContractChange("finishDate", e.target.value || null)
-                      }
-                    />
-                  </FormControl>
+                      <FormControl isRequired>
+                        <FormLabel>Start Date</FormLabel>
+                        <Input
+                          type="date"
+                          value={employee.contracts[0].startDate}
+                          onChange={(e) => handleContractChange("startDate", e.target.value)}
+                        />
+                      </FormControl>
 
-                  {/* Optional: Uncomment if using 'ongoing' */}
-                  {/* <FormControl display="flex" alignItems="center">
-                    <FormLabel mb="0">Ongoing</FormLabel>
-                    <Switch
-                      isChecked={employee.contracts[0].ongoing}
-                      onChange={(e) =>
-                        handleContractChange("ongoing", e.target.checked)
-                      }
-                    />
-                  </FormControl> */}
+                      <FormControl>
+                        <FormLabel>Finish Date</FormLabel>
+                        <Input
+                          type="date"
+                          value={employee.contracts[0].finishDate || ""}
+                          onChange={(e) =>
+                            handleContractChange("finishDate", e.target.value || null)
+                          }
+                        />
+                      </FormControl>
 
-                  <FormControl isRequired>
-                    <FormLabel>Work Type</FormLabel>
-                    <Select
-                      value={employee.contracts[0].workType}
-                      onChange={(e) => handleContractChange("workType", e.target.value)}
-                    >
-                      <option value="FullTime">FullTime</option>
-                      <option value="PartTime">PartTime</option>
-                    </Select>
-                  </FormControl>
+                      {/* Optional: Uncomment if using 'ongoing' */}
+                      {/* <FormControl display="flex" alignItems="center">
+                        <FormLabel mb="0">Ongoing</FormLabel>
+                        <Switch
+                          isChecked={employee.contracts[0].ongoing}
+                          onChange={(e) =>
+                            handleContractChange("ongoing", e.target.checked)
+                          }
+                        />
+                      </FormControl> */}
 
-                  <FormControl>
-                    <FormLabel>Hours Per Week</FormLabel>
-                    <NumberInput
-                      min={0}
-                      max={100}
-                      value={employee.contracts[0].hoursPerWeek ?? ""}
-                      onChange={(_, num) =>
-                        handleContractChange("hoursPerWeek", num)
-                      }
-                    >
-                      <NumberInputField />
-                    </NumberInput>
-                  </FormControl>
-                </Stack>
-              </Box>
+                      <FormControl isRequired>
+                        <FormLabel>Work Type</FormLabel>
+                        <Select
+                          value={employee.contracts[0].workType}
+                          onChange={(e) => handleContractChange("workType", e.target.value)}
+                        >
+                          <option value="FullTime">FullTime</option>
+                          <option value="PartTime">PartTime</option>
+                        </Select>
+                      </FormControl>
+
+                      <FormControl>
+                        <FormLabel>Hours Per Week</FormLabel>
+                        <NumberInput
+                          min={0}
+                          max={100}
+                          value={employee.contracts[0].hoursPerWeek ?? ""}
+                          onChange={(_, num) => handleContractChange("hoursPerWeek", num)}
+                        >
+                          <NumberInputField />
+                        </NumberInput>
+                      </FormControl>
+                    </Stack>
+                  </AccordionPanel>
+                </AccordionItem>
+              </Accordion>
     )}
 
 
+      <HStack spacing={2} mt={2} align="right">
         <Button onClick={handleSubmit} colorScheme="green">
           Submit
         </Button>
 
-
-        <Button onClick={handleCancel} colorScheme="blue" mt={2}>
+        <Button onClick={handleCancel} colorScheme="blue">
           Cancel
         </Button>
+      </HStack>
         
       </VStack>
     </Box>

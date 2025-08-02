@@ -20,7 +20,7 @@ interface ModalProps {
 export default function EmpModal({ isOpen, onClose, children }: ModalProps) {
   return (
     <Modal isOpen={isOpen} onClose={onClose} 
-           isCentered size="md" 
+           isCentered size="2xl" 
            closeOnOverlayClick={false}>
       <ModalOverlay backdropFilter='blur(10px) hue-rotate(90deg)'/>
       <ModalContent position="relative" p={4}>
