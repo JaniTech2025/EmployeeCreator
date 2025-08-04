@@ -35,6 +35,7 @@ const getEmptyReport = (): EmptyReport => {
     updatedAt: '',
     photoUrl: '',
     contracts: [],
+
   };
 };
 
@@ -47,7 +48,7 @@ export const EmployeeContext = React.createContext<{
   updateEmployee: (empid: number, emp: EmployeeGetDTO) => Promise<void>;
   createNewEmployee: (emp: EmployeeCreateDTO) => Promise<void>;
   createContract: ( empid: number, contract: ContractCreateDTO) => Promise<void>;
-  createReport: () => Promise<EmployeeCreateDTO>;
+  createReport: () => Promise<EmployeeGetDTO[]>;
 } | null>(null);
 
 const EmployeeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -103,14 +104,14 @@ const EmployeeProvider: React.FC<{ children: React.ReactNode }> = ({ children })
     }
   };
 
-  const createReport = async (): Promise<EmployeeCreateDTO>  => {
+  const createReport = async (): Promise<EmployeeGetDTO[]>  => {
     try {
       const response = await api.get(`/employees`);
       console.log(response.data);
       return response.data;
     } catch (error) {
       console.error("Unable to generate report:", error);
-      return getEmptyReport();
+      return [getEmptyReport()];
     }
   };
 

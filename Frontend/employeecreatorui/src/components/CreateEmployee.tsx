@@ -2,6 +2,7 @@ import React, { ChangeEvent, useContext, useState } from "react";
 import { EmployeeCreateDTO } from "../types/Employee";
 import { ContractCreateDTO } from "../types/Contract";
 import { EmployeeContext } from "../context/EmployeeContext";
+import { ImagePicker }  from "./ImagePicker";
 
 import {
   Box,
@@ -9,6 +10,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Image,
   Stack,
   Text,
   NumberInput,
@@ -253,9 +255,64 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
               </Select>
             </FormControl> */}
 
-            <FormControl>
+            {/* <FormControl>
               <FormLabel>Photo URL</FormLabel>
               <Input name="photoUrl" value={employee.photoUrl} onChange={handleChange} />
+            </FormControl> */}
+{/* 
+            <FormControl>
+              <FormLabel>Photo URL</FormLabel>
+            <Input
+                type="file"
+                name="photoUrl"
+                accept="image/*"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    // Create a local preview URL for the image
+                    const previewUrl = URL.createObjectURL(file);
+                    setEmployee((prev) => ({ ...prev, photoUrl: "https://randomuser.me/photos" }));
+                  }
+                }}
+              />
+
+              {employee.photoUrl && (
+                <Box mt={2}>
+                  <Image
+                    src={employee.photoUrl}
+                    alt="Photo Preview"
+                    boxSize="100px"
+                    objectFit="cover"
+                    borderRadius="md"
+                    fallbackSrc="./default_profile.png"
+                  />
+                </Box>
+              )}
+            </FormControl> */}
+
+            <FormControl>
+              <FormLabel>Photo URL</FormLabel>
+               <ImagePicker onSelect={(url) => setEmployee((prev) => ({ ...prev, photoUrl: url }))} />
+
+              {employee.photoUrl && (
+                <Box mt={2}>
+                  <Image
+                    src={employee.photoUrl}
+                    alt="Selected Photo"
+                    boxSize="100px"
+                    objectFit="cover"
+                    borderRadius="md"
+                    fallbackSrc="/default_profile.png"
+                    onError={() => {
+                      setEmployee((prev) => ({
+                        ...prev,
+                        photoUrl: "/default_profile.png",
+                      }));
+                    }}
+                  />
+                </Box>
+              )}
+
             </FormControl>
 
             {employee.contracts && employee.contracts.length > 0 && (
