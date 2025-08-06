@@ -6,20 +6,28 @@ import com.example.employee.contract.Contract.WorkType;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import jakarta.validation.constraints.*;
 
 public class ContractResponseDTO {
 
     private int id;
+    @NotNull
     private ContractType contractType;
+    @NotBlank
     private String contractTerm;
+    @NotNull
     private LocalDate startDate;
     private LocalDate finishDate;
     private boolean ongoing;
+    @NotNull
     private WorkType workType;
+    @DecimalMin("0.0")
+    @DecimalMax("40.0")
     private BigDecimal hoursPerWeek;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private int employeeId;
+    @NotBlank
     private String employeeFullName;
 
     // Getters and Setters

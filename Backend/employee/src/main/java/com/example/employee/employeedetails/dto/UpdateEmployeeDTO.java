@@ -1,24 +1,33 @@
 package com.example.employee.employeedetails.dto;
 
 import jakarta.validation.constraints.*;
-import java.util.List;
-
 import java.time.LocalDate;
+import java.util.List;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
 import com.example.employee.contract.dto.ContractUpdateDTO;
 
 public class UpdateEmployeeDTO {
 
+    @Size(max = 50, message = "First name must not exceed 50 characters")
     private String firstName;
 
+    @Size(max = 50, message = "Middle name must not exceed 50 characters")
     private String middleName;
 
+    @Size(max = 50, message = "Last name must not exceed 50 characters")
     private String lastName;
 
     @Email(message = "Email should be valid")
+    @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$", message = "Email should be a valid format")
+    @Size(max = 100, message = "Email must not exceed 100 characters")
     private String email;
 
+    @Pattern(regexp = "^(\\+614|04)\\d{8}$", message = "Mobile number must start with +614 or 04 and have 10 digits total")
     private String mobileNumber;
 
+    @Size(max = 255, message = "Residential address must not exceed 255 characters")
     private String residentialAddress;
 
     private String employeeStatus;
@@ -27,9 +36,13 @@ public class UpdateEmployeeDTO {
 
     private LocalDate updatedAt;
 
+    @Pattern(regexp = "^(https?://).*$", message = "Photo URL must be a valid HTTP/HTTPS URL")
     private String photoUrl;
 
-    private List<ContractUpdateDTO> contracts;
+    @Valid
+    private List<@Valid ContractUpdateDTO> contracts;
+
+    // Getters and Setters
 
     public List<ContractUpdateDTO> getContracts() {
         return contracts;
@@ -38,8 +51,6 @@ public class UpdateEmployeeDTO {
     public void setContracts(List<ContractUpdateDTO> contracts) {
         this.contracts = contracts;
     }
-
-    // Getters and Setters
 
     public String getFirstName() {
         return firstName;

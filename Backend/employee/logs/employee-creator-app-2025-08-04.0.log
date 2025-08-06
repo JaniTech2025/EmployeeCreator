@@ -1,0 +1,315 @@
+2025-08-04 12:14:50 INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-08-04 12:14:50 INFO  c.e.employee.EmployeeApplication - Starting EmployeeApplication using Java 21.0.6 with PID 9064 (C:\Users\ho 800g2\OneDrive\Desktop\Jani\nology\sessions\Spring\EmployeeCreator\Backend\employee\target\classes started by ho 800g2 in C:\Users\ho 800g2\OneDrive\Desktop\Jani\nology\sessions\Spring\EmployeeCreator\Backend\employee)
+2025-08-04 12:14:50 DEBUG c.e.employee.EmployeeApplication - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-08-04 12:14:50 INFO  c.e.employee.EmployeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-08-04 12:14:50 INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-04 12:14:50 INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-04 12:14:51 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-04 12:14:51 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 80 ms. Found 4 JPA repository interfaces.
+2025-08-04 12:14:52 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-04 12:14:52 INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-08-04 12:14:52 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-04 12:14:52 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-08-04 12:14:52 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-08-04 12:14:52 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1648 ms
+2025-08-04 12:14:52 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-04 12:14:52 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-08-04 12:14:52 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-04 12:14:52 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-04 12:14:52 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-04 12:14:53 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1e8ca48e
+2025-08-04 12:14:53 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-04 12:14:53 WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-04 12:14:53 WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-04 12:14:53 INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-04 12:14:54 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-04 12:14:56 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-04 12:14:56 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-04 12:14:57 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-04 12:14:57 INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-08-04 12:14:57 INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-08-04 12:14:57 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-08-04 12:14:57 INFO  c.e.employee.EmployeeApplication - Started EmployeeApplication in 7.793 seconds (process running for 8.36)
+2025-08-04 12:15:21 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-04 12:15:21 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-04 12:15:21 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-08-04 12:15:21 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 12:15:21 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 12:15:21 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-04 12:15:21 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 12:15:21 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 12:15:21 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-04 14:28:55 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h14m1s76ms80µs200ns).
+2025-08-04 14:37:43 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 14:37:43 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 14:37:43 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-04 14:37:43 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 14:37:43 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 14:37:43 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-04 16:43:39 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h31m13s961ms861µs400ns).
+2025-08-04 20:06:55 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h51m15s366ms899µs200ns).
+2025-08-04 20:06:57 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 20:06:57 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 20:06:57 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-04 20:06:57 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 20:06:57 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 20:06:57 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-04 21:05:43 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=19m47s874ms339µs400ns).
+2025-08-04 21:05:53 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 21:05:53 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 21:05:53 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-04 21:05:53 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 21:05:53 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 21:05:53 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-04 21:55:24 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-04 21:55:24 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-08-04 21:55:24 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-04 21:55:24 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-04 21:55:24 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-04 22:06:19 INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-08-04 22:06:19 WARN  o.s.b.t.j.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/ho%20800g2/.m2/repository/org/json/json/20240303/json-20240303.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/ho%20800g2/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2025-08-04 22:06:20 INFO  c.e.e.EmployeeApplicationTests - Starting EmployeeApplicationTests using Java 21.0.6 with PID 25368 (started by ho 800g2 in C:\Users\ho 800g2\OneDrive\Desktop\Jani\nology\sessions\Spring\EmployeeCreator\Backend\employee)
+2025-08-04 22:06:20 DEBUG c.e.e.EmployeeApplicationTests - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-08-04 22:06:20 INFO  c.e.e.EmployeeApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2025-08-04 22:06:21 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-04 22:06:21 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 87 ms. Found 4 JPA repository interfaces.
+2025-08-04 22:06:21 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-04 22:06:22 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-08-04 22:06:22 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-04 22:06:22 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-04 22:06:22 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-04 22:06:23 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5e681097
+2025-08-04 22:06:23 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-04 22:06:23 WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-04 22:06:23 WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-04 22:06:23 INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-04 22:06:24 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-04 22:06:26 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-04 22:06:26 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-04 22:06:27 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-04 22:06:28 INFO  c.e.e.EmployeeApplicationTests - Started EmployeeApplicationTests in 8.921 seconds (process running for 10.21)
+2025-08-04 22:06:30 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-04 22:06:30 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-04 22:06:30 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-04 22:06:42 INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-08-04 22:06:42 INFO  c.e.employee.EmployeeApplication - Starting EmployeeApplication using Java 21.0.6 with PID 7556 (C:\Users\ho 800g2\OneDrive\Desktop\Jani\nology\sessions\Spring\EmployeeCreator\Backend\employee\target\classes started by ho 800g2 in C:\Users\ho 800g2\OneDrive\Desktop\Jani\nology\sessions\Spring\EmployeeCreator\Backend\employee)
+2025-08-04 22:06:42 DEBUG c.e.employee.EmployeeApplication - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-08-04 22:06:42 INFO  c.e.employee.EmployeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-08-04 22:06:42 INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-04 22:06:42 INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-04 22:06:43 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-04 22:06:43 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 79 ms. Found 4 JPA repository interfaces.
+2025-08-04 22:06:44 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-04 22:06:44 INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-08-04 22:06:44 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-04 22:06:44 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-08-04 22:06:44 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-08-04 22:06:44 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1567 ms
+2025-08-04 22:06:44 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-04 22:06:44 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-08-04 22:06:44 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-04 22:06:45 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-04 22:06:45 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-04 22:06:45 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6ad952
+2025-08-04 22:06:45 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-04 22:06:45 WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-04 22:06:45 WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-04 22:06:45 INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-04 22:06:46 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-04 22:06:46 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-04 22:06:47 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-04 22:06:47 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-04 22:06:48 INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-08-04 22:06:48 INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-08-04 22:06:48 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-08-04 22:06:48 INFO  c.e.employee.EmployeeApplication - Started EmployeeApplication in 6.145 seconds (process running for 6.632)
+2025-08-04 22:12:12 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-04 22:12:12 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-04 22:12:12 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-08-04 22:12:12 WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'DELETE' is not supported]
+2025-08-04 22:13:34 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 22:13:34 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 22:13:34 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-04 22:14:06 WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2025-08-04 22:14:47 WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2025-08-04 22:31:15 WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot coerce empty String ("") to `com.example.employee.contract.Contract$ContractType` value (but could if coercion was enabled using `CoercionConfig`)]
+2025-08-04 22:32:31 DEBUG c.e.e.e.EmployeeController - Received request to create new Employee
+2025-08-04 22:32:31 DEBUG c.e.e.e.EmployeeService - Creating a new employee with data: com.example.employee.employeedetails.dto.CreateEmployeeDTO@3d0d07a8
+2025-08-04 22:32:31 INFO  c.e.e.e.EmployeeService - Employee created with ID: 21
+2025-08-04 22:32:31 DEBUG c.e.e.e.EmployeeController - Created new Employee: 21
+2025-08-04 22:32:33 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 22:32:33 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 22:32:33 DEBUG c.e.e.e.EmployeeController - Fetched 11 employees
+2025-08-04 22:32:50 DEBUG c.e.e.e.EmployeeController - Archiving and deleting employee with ID: 21
+2025-08-04 22:32:50 INFO  c.e.e.e.EmployeeService - Archiving employee with id: 21
+2025-08-04 22:32:50 DEBUG c.e.e.e.EmployeeService - Archived employee with id: 21
+2025-08-04 22:32:50 DEBUG c.e.e.e.EmployeeService - Archived 1 contracts for Employee id 21
+2025-08-04 22:32:50 DEBUG c.e.e.e.EmployeeService - Deleted employee with id: 21
+2025-08-04 22:32:50 INFO  c.e.e.e.EmployeeController - Archived and deleted employee with ID: 21
+2025-08-04 22:32:52 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 22:32:52 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 22:32:52 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-04 23:02:38 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 23:02:38 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 23:02:38 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-04 23:02:38 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 23:02:38 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 23:02:38 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-04 23:02:45 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 23:02:45 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 23:02:45 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-04 23:02:45 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 23:02:45 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 23:02:45 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-04 23:12:58 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 23:12:58 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 23:12:58 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-04 23:12:58 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 23:12:58 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 23:12:58 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-04 23:13:02 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 23:13:02 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 23:13:02 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-04 23:13:02 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 23:13:02 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 23:13:02 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-04 23:13:06 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-04 23:13:06 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-08-04 23:13:06 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-04 23:13:06 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-04 23:13:06 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-04 23:13:30 INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-08-04 23:13:30 WARN  o.s.b.t.j.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/ho%20800g2/.m2/repository/org/json/json/20240303/json-20240303.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/ho%20800g2/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2025-08-04 23:13:30 INFO  c.e.e.EmployeeApplicationTests - Starting EmployeeApplicationTests using Java 21.0.6 with PID 20864 (started by ho 800g2 in C:\Users\ho 800g2\OneDrive\Desktop\Jani\nology\sessions\Spring\EmployeeCreator\Backend\employee)
+2025-08-04 23:13:30 DEBUG c.e.e.EmployeeApplicationTests - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-08-04 23:13:30 INFO  c.e.e.EmployeeApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2025-08-04 23:13:31 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-04 23:13:31 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 94 ms. Found 4 JPA repository interfaces.
+2025-08-04 23:13:32 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-04 23:13:32 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-08-04 23:13:33 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-04 23:13:33 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-04 23:13:33 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-04 23:13:34 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@79617c3d
+2025-08-04 23:13:34 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-04 23:13:34 WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-04 23:13:34 WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-04 23:13:34 INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-04 23:13:36 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-04 23:13:36 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-04 23:13:36 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-04 23:13:38 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-04 23:13:39 INFO  c.e.e.EmployeeApplicationTests - Started EmployeeApplicationTests in 9.66 seconds (process running for 11.174)
+2025-08-04 23:13:41 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-04 23:13:41 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-04 23:13:41 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-04 23:16:29 INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-08-04 23:16:29 INFO  c.e.employee.EmployeeApplication - Starting EmployeeApplication using Java 21.0.6 with PID 23652 (C:\Users\ho 800g2\OneDrive\Desktop\Jani\nology\sessions\Spring\EmployeeCreator\Backend\employee\target\classes started by ho 800g2 in C:\Users\ho 800g2\OneDrive\Desktop\Jani\nology\sessions\Spring\EmployeeCreator\Backend\employee)
+2025-08-04 23:16:29 DEBUG c.e.employee.EmployeeApplication - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-08-04 23:16:29 INFO  c.e.employee.EmployeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-08-04 23:16:29 INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-04 23:16:29 INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-04 23:16:30 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-04 23:16:30 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 77 ms. Found 4 JPA repository interfaces.
+2025-08-04 23:16:31 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-04 23:16:31 INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-08-04 23:16:31 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-04 23:16:31 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-08-04 23:16:31 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-08-04 23:16:31 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1806 ms
+2025-08-04 23:16:31 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-04 23:16:31 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-08-04 23:16:31 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-04 23:16:31 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-04 23:16:31 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-04 23:16:32 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1bf6ba7b
+2025-08-04 23:16:32 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-04 23:16:32 WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-04 23:16:32 WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-04 23:16:32 INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-04 23:16:33 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-04 23:16:33 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-04 23:16:33 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-04 23:16:34 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-04 23:16:34 INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-08-04 23:16:34 INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-08-04 23:16:34 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-08-04 23:16:34 INFO  c.e.employee.EmployeeApplication - Started EmployeeApplication in 6.34 seconds (process running for 6.853)
+2025-08-04 23:16:43 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-04 23:16:43 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-04 23:16:43 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-08-04 23:16:43 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 23:16:43 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 23:16:43 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-04 23:16:43 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 23:16:43 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 23:16:43 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-04 23:18:07 DEBUG c.e.e.e.EmployeeController - Received request to create new Employee
+2025-08-04 23:18:07 DEBUG c.e.e.e.EmployeeService - Creating a new employee with data: com.example.employee.employeedetails.dto.CreateEmployeeDTO@74c3cc3
+2025-08-04 23:18:07 INFO  c.e.e.e.EmployeeService - Employee created with ID: 42
+2025-08-04 23:18:07 DEBUG c.e.e.e.EmployeeController - Created new Employee: 42
+2025-08-04 23:18:07 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 23:18:07 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 23:18:07 DEBUG c.e.e.e.EmployeeController - Fetched 11 employees
+2025-08-04 23:18:35 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 23:18:35 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 23:18:35 DEBUG c.e.e.e.EmployeeController - Fetched 11 employees
+2025-08-04 23:18:35 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-04 23:18:35 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-04 23:18:35 DEBUG c.e.e.e.EmployeeController - Fetched 11 employees
+2025-08-04 23:31:52 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-04 23:31:52 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-08-04 23:31:52 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-04 23:31:52 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-04 23:31:52 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

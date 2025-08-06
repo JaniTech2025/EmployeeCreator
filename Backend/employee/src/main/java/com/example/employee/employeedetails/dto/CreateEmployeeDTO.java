@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.time.LocalDate;
 import com.example.employee.contract.dto.ContractCreateDTO;
+import jakarta.validation.constraints.*;
 
 public class CreateEmployeeDTO {
 
@@ -20,8 +21,10 @@ public class CreateEmployeeDTO {
     private String email;
 
     @NotBlank(message = "Mobile number is required")
+    @Pattern(regexp = "^[0-9\\-\\+\\s()]*$")
     private String mobileNumber;
 
+    @NotBlank
     private String residentialAddress;
 
     private String employeeStatus;
@@ -30,10 +33,10 @@ public class CreateEmployeeDTO {
 
     private LocalDate updatedAt;
 
+    @NotBlank
     private String photoUrl;
 
     @Valid
-    @Size(max = 1, message = "An employee can have at most one contract")
     private List<ContractCreateDTO> contracts;
 
     public List<ContractCreateDTO> getContracts() {

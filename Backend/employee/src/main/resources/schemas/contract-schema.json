@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Contract",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "contractType": {
+      "type": "string",
+      "enum": ["Temporary", "Permanent"]
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "finishDate": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "workType": {
+      "type": "string",
+      "enum": ["FullTime", "PartTime"]
+    },
+    "hoursPerWeek": {
+      "type": "number",
+      "minimum": 0
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "employee": {
+      "$ref": "employee-schema.json"
+    }
+  },
+  "required": [
+    "contractType",
+    "startDate",
+    "workType",
+    "hoursPerWeek",
+    "createdAt",
+    "employee"
+  ],
+  "additionalProperties": false
+}

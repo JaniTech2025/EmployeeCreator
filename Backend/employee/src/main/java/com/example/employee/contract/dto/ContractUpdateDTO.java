@@ -8,16 +8,22 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import jakarta.validation.constraints.*;
+
 public class ContractUpdateDTO {
 
+    @NotNull
     private Integer id;
 
+    @NotNull
     @JsonProperty("contractType")
     private ContractType contractType;
 
+    @NotBlank
     // @JsonProperty("contract_term")
     private String contractTerm;
 
+    @NotNull
     // @JsonProperty("start_date")
     private LocalDate startDate;
 
@@ -26,12 +32,16 @@ public class ContractUpdateDTO {
 
     private boolean ongoing;
 
+    @NotNull
     // @JsonProperty("work_type")
     private WorkType workType;
 
+    @DecimalMin("0.0")
+    @DecimalMax("40.0")
     // @JsonProperty("hours_per_week")
     private BigDecimal hoursPerWeek;
 
+    @NotNull
     private int employeeId;
 
     // @JsonProperty("updated_at")

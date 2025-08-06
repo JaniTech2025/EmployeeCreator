@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
-    @Query("SELECT e FROM Employee e LEFT JOIN FETCH e.contracts ORDER BY e.firstName ASC, e.lastName ASC")
+    @Query("SELECT e FROM Employee e LEFT JOIN FETCH e.contracts ORDER BY e.firstName ASC")
     List<Employee> findAllWithContracts();
 
 }

@@ -2,6 +2,7 @@ package com.example.employee.contract.dto;
 
 import com.example.employee.contract.Contract.ContractType;
 import com.example.employee.contract.Contract.WorkType;
+import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -28,7 +29,7 @@ public class ContractCreateDTO {
     private WorkType workType;
 
     @DecimalMin("0.0")
-    @DecimalMax("100.0")
+    @DecimalMax("40.0")
     private BigDecimal hoursPerWeek;
 
     // @Min(1)

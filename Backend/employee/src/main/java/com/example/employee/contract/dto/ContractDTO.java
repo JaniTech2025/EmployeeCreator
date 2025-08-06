@@ -6,21 +6,36 @@ import java.time.LocalDateTime;
 
 import com.example.employee.contract.Contract.ContractType;
 import com.example.employee.contract.Contract.WorkType;
+import jakarta.validation.constraints.*;
 
 public class ContractDTO {
 
     private int id;
+
+    @NotNull(message = "Contract type must not be null")
     private ContractType contractType;
+
+    @NotBlank
     private String contractTerm;
+
+    @NotNull
     private LocalDate startDate;
+
     private LocalDate finishDate;
+
     private boolean ongoing;
+
+    @NotNull
     private WorkType workType;
+
+    @NotNull(message = "Hours per week must not be null")
+    @DecimalMin("0.0")
+    @DecimalMax("40.0")
     private BigDecimal hoursPerWeek;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    // Optional: You can include employeeId if needed
     private Integer employeeId;
 
     // Getters and Setters
