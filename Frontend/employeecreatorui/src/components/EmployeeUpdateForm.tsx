@@ -140,7 +140,8 @@ const EmployeeUpdateForm: React.FC<Props> = ({ employee, onUpdate, setisModalOpe
             <FormLabel>Photo URL</FormLabel>
             <Input
               value={formData.photoUrl}
-              onChange={(e) => handleChange("photoUrl", e.target.value)}
+              // onChange={(e) => handleChange("photoUrl", e.target.value)}
+              isDisabled={true}
             />
           </FormControl>
 
@@ -302,9 +303,7 @@ const EmployeeUpdateForm: React.FC<Props> = ({ employee, onUpdate, setisModalOpe
           <Text color="gray.500">No contracts available.</Text>
         )}
 
-        <AddContract empid={formData.id}></AddContract>
-
-
+        <AddContract empid={formData.id} previousContract={formData.contracts?.[0] ?? null}></AddContract>
       
       </VStack>
 

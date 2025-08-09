@@ -3,6 +3,8 @@ import { EmployeeCreateDTO } from "../types/Employee";
 import { ContractCreateDTO } from "../types/Contract";
 import { EmployeeContext } from "../context/EmployeeContext";
 import { ImagePicker }  from "./ImagePicker";
+import { ZodError } from 'zod';
+import { employeeSchema, addressSchema } from "./validators/CreateEmpValidator";
 
 import {
   Box,
@@ -46,6 +48,7 @@ interface CreateEmployeeProps {
 export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
 
     const toast = useToast();
+    const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});    
 
 
 
@@ -58,12 +61,14 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
   const { createNewEmployee } = context;
 
 
+
   const [employee, setEmployee] = useState<EmployeeCreateDTO>({
     firstName: "",
     middleName: "",
     lastName: "",
     email: "",
     mobileNumber: "",
+    // residentialAddress: "",
     residentialAddress: "",
     employeeStatus: "Active",
     photoUrl: "",
@@ -76,6 +81,8 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
                                             suburb: "",
                                             state:"",
                                             postcode: ""});
+
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -92,6 +99,7 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
 
     let updatedValue = value;
 
+
   
     // if (field === "contractType") {
     //   if (!value || value === "") {
@@ -105,16 +113,20 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
       [field]: updatedValue,
     };
 
+    
     if (field === "startDate" || field === "finishDate") {
-      const startDate = field === "startDate" ? (value as string) : currentContract.startDate;
-      const finishDate = field === "finishDate" ? (value as string) : currentContract.finishDate;
-
       updatedContract.contractType = currentContract.contractType || "Permanent";
     }
+
+    if(field === "startDate"){
+      console.log(value);
+    }
+
 
     setEmployee(prev => ({
       ...prev,
       contracts: [updatedContract],
+      // contracts: (updatedContract.startDate === "")? [updatedContract] : [],
     }));
 
     console.log(updatedContract)
@@ -134,8 +146,27 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
 
   const handleSubmit = async() => {
     try {
-      console.log("Submitted:", employee);
-      await createNewEmployee(employee);
+
+    employeeSchema.omit({ residentialAddress: true }).parse(employee);
+
+    addressSchema.parse(address);
+
+
+    setValidationErrors({});
+
+    const fullAddress = `${address.streetAddress}, ${address.suburb}, ${address.state} ${address.postcode}`;
+
+
+      const employeeToSend = {
+        ...employee,
+        residentialAddress: fullAddress,
+        contracts: employee.contracts && employee.contracts.length > 0 && employee.contracts[0].startDate.trim() !== ""
+          ? employee.contracts
+          : []
+      };      
+      await createNewEmployee(employeeToSend);
+      console.log("Submitted:", employeeToSend);
+
       toast({
         title: 'Success!',
         description: 'successfully created a new employee',
@@ -146,29 +177,53 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
       onClose();  
 
     } catch (err) {
+       if (err instanceof ZodError) {
+        const errors: Record<string, string> = {};
+        err.issues.forEach((e) => {
+          const key = e.path.length > 0 ? e.path.join(".") : "_error";
+          errors[key] = e.message;
+        });
+      setValidationErrors(errors);
+
+      toast({
+        title: 'Validation Error',
+        description: 'Please fix the errors in the form.',
+        status: 'error',
+        duration: 3500,
+        isClosable: true,
+      });
+    } else {
       console.error("Failed to create employee", err);
+    }
     }
 
   };
 
-  function handleAddressChange(event: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void {
-    const {name, value} = event.target;
+function handleAddressChange(event: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void {
+  const { name, value } = event.target;
 
-    setAddress((prev) => {
-      const updated = { ...prev, [name]: value };
+  setAddress((prev) => {
+    const updated = { ...prev, [name]: value };
 
-      const fullAddress = `${updated.streetAddress}, ${updated.suburb} ${updated.state} ${updated.postcode}`;
+    const fullAddress = `${updated.streetAddress}, ${updated.suburb}, ${updated.state} ${updated.postcode}`;
 
-      setEmployee((emp) => ({
-        ...emp,
-        residentialAddress: fullAddress,
-      }));
+    setEmployee((emp) => ({
+      ...emp,
+      residentialAddress: fullAddress,
+    }));
 
-      return updated;
-    });
-      
-  }
+    return updated;
+  });
+}
 
+
+  const employeeDetailsComplete =  Boolean(
+  employee.firstName.trim() &&
+  employee.email?.trim() &&
+  employee.lastName.trim() &&
+  employee.photoUrl?.trim() &&
+  employee.residentialAddress?.trim() &&
+  employee.mobileNumber.trim());
   return (
         <Box maxW="800px" mx="auto" p={1}>
           <Text fontSize="2xl" mb={4}>Create Employee</Text>
@@ -179,6 +234,11 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
               <FormControl isRequired flex={1}>
                 <FormLabel>First Name</FormLabel>
                 <Input name="firstName" value={employee.firstName} onChange={handleChange} />
+                  {validationErrors["firstName"] && (
+                  <Text color="red.500" fontSize="sm">
+                    {validationErrors["firstName"]}
+                  </Text>
+                )}
               </FormControl>
 
               <FormControl flex={1}>
@@ -189,20 +249,35 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
               <FormControl isRequired flex={1}>
                 <FormLabel>Last Name</FormLabel>
                 <Input name="lastName" value={employee.lastName} onChange={handleChange} />
+                {validationErrors["lastName"] && (              
+                 <Text color="red.500" fontSize="sm">
+                    {validationErrors["lastName"]}
+                  </Text>
+                )}
               </FormControl>
             </HStack>
 
 
             <HStack spacing={4} align="start">
 
-            <FormControl  mb={4}>
+            <FormControl  isRequired mb={4}>
               <FormLabel>Email</FormLabel>
               <Input name="email" type="email" value={employee.email} onChange={handleChange} />
+             {validationErrors["email"] && (
+              <Text color="red.500" fontSize="sm">
+                  {validationErrors["email"]}
+              </Text>  
+             )}
             </FormControl>
 
             <FormControl isRequired mb={4}>
               <FormLabel>Mobile Number</FormLabel>
               <Input name="mobileNumber" value={employee.mobileNumber} onChange={handleChange} />
+              {validationErrors["mobileNumber"] && (
+              <Text color="red.500" fontSize="sm">
+                  {validationErrors["mobileNumber"]}
+              </Text>  
+              )}
             </FormControl>
 
             </HStack>
@@ -211,21 +286,34 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
               <FormLabel>Residential Address</FormLabel>
               <Input name="residentialAddress" value={employee.residentialAddress} onChange={handleChange} />
             </FormControl> */}
-
-            <FormControl mb={4}>
-              <FormLabel>Street Address</FormLabel>
-              <Input name="streetAddress" value={address.streetAddress} onChange={handleAddressChange}/>
-            </FormControl>
+          <FormControl isRequired mb={4}>
+            <FormLabel>Street Address</FormLabel>
+            <Input
+              name="streetAddress"
+              value={address.streetAddress}    
+              onChange={handleAddressChange}
+            />
+            {validationErrors["streetAddress"] && (
+              <Text color="red.500" fontSize="sm">
+                {validationErrors["streetAddress"]}
+              </Text>
+            )}
+          </FormControl>
 
             
-            <FormControl mb={4}>
-              <FormLabel>Suburb/Town</FormLabel>
-              <Input name="suburb" value={address.suburb} onChange={handleAddressChange}/>
-            </FormControl>
+        <FormControl isRequired mb={4}>
+          <FormLabel>Suburb/Town</FormLabel>
+          <Input name="suburb" value={address.suburb} onChange={handleAddressChange}/>
+          {validationErrors["suburb"] && (
+            <Text color="red.500" fontSize="sm">
+              {validationErrors["suburb"]}
+            </Text>
+          )}
+        </FormControl>
 
 
             <HStack spacing={4} align="start">
-            <FormControl mb={4}>
+            <FormControl isRequired mb={4}>
               <FormLabel>State/Territory</FormLabel>
               {/* <Input name="state" value={address.state} onChange={handleAddressChange}/> */}
                   <Select name="state" placeholder="Select state or territory" onChange={handleAddressChange}>
@@ -238,12 +326,25 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
                   <option value="ACT">Australian Capital Territory</option>
                   <option value="NT">Northern Territory</option>
             </Select>
+            {validationErrors.state && <Text color="red.500">{validationErrors.state}</Text>}
             </FormControl>
 
-            <FormControl mb={4}>
+         <FormControl isRequired mb={4}>
             <FormLabel>Postcode</FormLabel>
-              <Input type="text" placeholder="3000" name="postcode" maxLength={4} value={address.postcode} onChange={handleAddressChange}/>
-            </FormControl>
+            <Input
+              type="text"
+              placeholder="3000"
+              name="postcode"
+              maxLength={4}
+              value={address.postcode}
+              onChange={handleAddressChange}
+            />
+            {validationErrors.postcode && (
+              <Text color="red.500" fontSize="sm">
+                {validationErrors.postcode}
+              </Text>
+            )}
+          </FormControl>
             </HStack>
 
 
@@ -290,7 +391,7 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
               )}
             </FormControl> */}
 
-            <FormControl>
+            <FormControl isRequired>
               <FormLabel>Photo URL</FormLabel>
                <ImagePicker onSelect={(url) => setEmployee((prev) => ({ ...prev, photoUrl: url }))} />
 
@@ -306,7 +407,7 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
                     onError={() => {
                       setEmployee((prev) => ({
                         ...prev,
-                        photoUrl: "/default_profile.png",
+                        photoUrl: "./default_profile.png",
                       }));
                     }}
                   />
@@ -324,6 +425,7 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
                   borderColor="gray.200"
                   borderRadius="md"
                   overflow="hidden"
+                  isDisabled={!employeeDetailsComplete}
                   mb={4}
                 >
                   <h2>
@@ -346,7 +448,7 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
                         <Select
                           value={employee.contracts[0].contractType || "Permanent"}
                           onChange={(e) => handleContractChange("contractType", e.target.value)}
-                          placeholder="Enter contract type"
+                          placeholder="Select contract type"
                         >
                           <option value="Permanent">Permanent</option>
                           <option value="Temporary">Temporary</option>

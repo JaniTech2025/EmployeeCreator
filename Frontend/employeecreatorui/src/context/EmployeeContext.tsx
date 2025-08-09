@@ -67,6 +67,7 @@ const EmployeeProvider: React.FC<{ children: React.ReactNode }> = ({ children })
  const createNewEmployee = async(employeedata: EmployeeCreateDTO) => {
     try{
       const now = new Date().toISOString();
+      console.log(employeedata.contracts);
       const updatedEmployeeData: EmployeeCreateDTO = {
                             ...employeedata,
                             createdAt: now,
@@ -77,6 +78,7 @@ const EmployeeProvider: React.FC<{ children: React.ReactNode }> = ({ children })
                             updatedAt: now
                             })) ?? []
                            };
+      console.log("Sending", updatedEmployeeData);
       const res = await api.post<EmployeeGetDTO[]>("/employees", updatedEmployeeData);
       await refreshEmployees();
       console.log("Employee created:", res.data);

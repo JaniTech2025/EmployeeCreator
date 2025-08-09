@@ -67,9 +67,14 @@ export const ViewEmployees = () => {
     });
 
 
-    deleteEmployee(empid).catch(error => {
-    console.error("Failed to delete employee:", error);
-  })
+    deleteEmployee(empid)
+      .then(() => {
+        refreshEmployees(); 
+      })
+      .catch(error => {
+        console.error("Failed to delete employee:", error);
+      });
+
  }
 
 

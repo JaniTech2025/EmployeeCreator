@@ -34,8 +34,11 @@ import {
   Button,
   HStack,
   VStack,
-  useToast
+  useToast,
+  Text,
 } from '@chakra-ui/react';
+import { ZodIssue } from "zod";
+import { getContractSchema } from './validators/createContractValidator';
 
 // interface AddContractData {
 //   contractType: string;
@@ -50,6 +53,7 @@ import {
 
 type AddContractProps = {
   empid: number;
+  previousContract?: ContractCreateDTO | null;   
 }
 
 
@@ -66,40 +70,89 @@ const initialFormState: ContractCreateDTO = {
 
 
 
-const AddContract: React.FC<AddContractProps> = ({empid}) => {
+  const AddContract: React.FC<AddContractProps> = ({empid, previousContract}) => {
+
+  console.log(previousContract?.finishDate);  
 
   const [formData, setFormData] = useState<ContractCreateDTO>(initialFormState);
   const toast = useToast();
   const context = useContext(EmployeeContext);
 
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+
+
   if (!context) throw new Error("AddContract must be used within an EmployeeProvider");
-  const { createContract } = context;
+  const { createContract, refreshEmployees } = context;
 
   const handleChange = (field: keyof ContractCreateDTO, value: any) => {
     setFormData(prev => ({
       ...prev,
-      [field]: value,
+      [field]: field === "hoursPerWeek" ? Number(value) || 0 : value,
     }));
   };
 
-  const handleSave = async (empid:number, formData: ContractCreateDTO) => {
-    // Replace with your actual save logic (e.g. API call)
-    try{
-      await createContract(empid, formData);
-      toast({
-          title: 'Saved!',
-          description: 'Contract details saved successfully.',
-          status: 'success',
-          duration: 3000,
-          isClosable: true,
-        });
-        console.log('Saved:', formData);
-    }catch(error){
-       console.log("Error creating contract", error);
-    }
-    setFormData(initialFormState);
+  // const handleSave = async (empid:number, formData: ContractCreateDTO) => {
+  //   // Replace with your actual save logic (e.g. API call)
+  //   try{
+  //     await createContract(empid, formData);
+  //     await refreshEmployees();
+  //     toast({
+  //         title: 'Saved!',
+  //         description: 'Contract details saved successfully.',
+  //         status: 'success',
+  //         duration: 3000,
+  //         isClosable: true,
+  //       });
+  //       console.log('Saved:', formData);
+  //   }catch(error){
+  //      console.log("Error creating contract", error);
+  //   }
+  //   setFormData(initialFormState);
+  // };
 
-  };
+const handleSave = async (empid: number, formData: ContractCreateDTO) => {
+    const schema = getContractSchema(previousContract?.finishDate || null);
+    const result = schema.safeParse(formData);
+
+
+
+  if (!result.success) {
+    const errors: Record<string, string> = {};
+    result.error.issues.forEach((issue: ZodIssue) => {
+      const path = issue.path.join(".");
+      errors[path] = issue.message;
+    });
+    setValidationErrors(errors);
+    return;
+  }
+  setValidationErrors({});
+
+  try {
+    await createContract(empid, formData);
+    await refreshEmployees();
+
+    toast({
+      title: "Saved!",
+      description: "Contract details saved successfully.",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
+
+    setFormData(initialFormState);
+  } catch (err) {
+    console.error("Error creating contract", err);
+    toast({
+      title: "Error",
+      description: "Failed to save contract.",
+      status: "error",
+      duration: 3000,
+      isClosable: true,
+    });
+  }
+};
+
+
 
   const handleReset = () => {
     setFormData(initialFormState);
@@ -154,6 +207,11 @@ const AddContract: React.FC<AddContractProps> = ({empid}) => {
                 value={formData.startDate}
                 onChange={(e) => handleChange('startDate', e.target.value)}
               />
+              {validationErrors["startDate"] && (
+                <Text color="red.500" fontSize="sm">
+                  {validationErrors["startDate"]}
+                </Text>
+              )}              
             </FormControl>
 
             <FormControl>
@@ -163,16 +221,28 @@ const AddContract: React.FC<AddContractProps> = ({empid}) => {
                 value={formData.finishDate || ""}
                 onChange={(e) => handleChange('finishDate', e.target.value)}
               />
+              {validationErrors.finishDate && (
+                  <Text color="red.500" fontSize="sm">
+                    {validationErrors.finishDate}
+                  </Text>
+             )}              
             </FormControl>
 
             <FormControl>
               <FormLabel>Hours per Week</FormLabel>
               <NumberInput
+                max={40}
+                min={18}
                 value={formData.hoursPerWeek}
                 onChange={(_, value) => handleChange('hoursPerWeek', value)}
               >
                 <NumberInputField />
               </NumberInput>
+              {validationErrors.hoursPerWeek && (
+                  <Text color="red.500" fontSize="sm">
+                    {validationErrors.hoursPerWeek}
+                  </Text>
+              )}              
             </FormControl>
 
             <HStack justify="flex-end" pt={4}>
