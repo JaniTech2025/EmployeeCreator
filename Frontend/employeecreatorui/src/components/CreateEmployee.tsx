@@ -4,7 +4,7 @@ import { ContractCreateDTO } from "../types/Contract";
 import { EmployeeContext } from "../context/EmployeeContext";
 import { ImagePicker }  from "./ImagePicker";
 import { ZodError } from 'zod';
-import { employeeSchema, addressSchema } from "./validators/CreateEmpValidator";
+import { employeeSchema, addressSchema } from "./validators/EmployeeSchema";
 
 import {
   Box,
@@ -26,12 +26,16 @@ import {
   AccordionItem,
   AccordionButton,
   AccordionIcon,
-  HStack
+  HStack,
+  Tooltip,
+  IconButton
 } from '@chakra-ui/react';
+
+import { RepeatIcon } from '@chakra-ui/icons'; 
 
 
 const defaultContract: ContractCreateDTO = {
-  contractType: "",
+  contractType: "Permanent",
   startDate: "",
   finishDate: null,
   workType: "FullTime",
@@ -60,6 +64,13 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
 
   const { createNewEmployee } = context;
 
+
+    const resetContractDetails = () => {
+    setEmployee(prev => ({
+      ...prev,
+      contracts: [defaultContract],
+    }));
+  };
 
 
   const [employee, setEmployee] = useState<EmployeeCreateDTO>({
@@ -192,6 +203,7 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
         duration: 3500,
         isClosable: true,
       });
+        console.log("Validation errors:", errors);
     } else {
       console.error("Failed to create employee", err);
     }
@@ -428,19 +440,30 @@ function handleAddressChange(event: ChangeEvent<HTMLInputElement | HTMLSelectEle
                   isDisabled={!employeeDetailsComplete}
                   mb={4}
                 >
-                  <h2>
-                    <AccordionButton
-                      bg="white"
-                      _expanded={{ bg: "gray.100" }}
-                      borderRadius="md"
-                      p={4}
-                    >
-                      <Box flex="1" textAlign="left" fontWeight="bold">
-                        Add Contract Details (Optional)
-                      </Box>
-                      <AccordionIcon />
-                    </AccordionButton>
-                  </h2>
+                <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <AccordionButton
+                    bg="white"
+                    _expanded={{ bg: "gray.100" }}
+                    borderRadius="md"
+                    p={4}
+                    flex="1"
+                    style={{ textAlign: 'left', fontWeight: 'bold' }}
+                  >
+                    Add Contract Details (Optional)
+                    <AccordionIcon />
+                  </AccordionButton>
+
+                  <Tooltip label="Reset Contract Details" aria-label="Reset Contract Details Tooltip">
+                    <IconButton
+                      aria-label="Reset Contract Details"
+                      icon={<RepeatIcon />}
+                      size="sm"
+                      ml={2}
+                      onClick={resetContractDetails}
+                    />
+                  </Tooltip>
+                </h2>
+
                   <AccordionPanel bg="white" p={4}>
                     <Stack spacing={3}>
                       <FormControl isRequired>
@@ -482,7 +505,12 @@ function handleAddressChange(event: ChangeEvent<HTMLInputElement | HTMLSelectEle
                             handleContractChange("finishDate", e.target.value || null)
                           }
                         />
-                      </FormControl>
+                        {validationErrors["contracts.0.finishDate"] && (
+                          <Text color="red.500" fontSize="sm">
+                            {validationErrors["contracts.0.finishDate"]}
+                          </Text>
+                        )}                        
+                        </FormControl>
 
                       {/* Optional: Uncomment if using 'ongoing' */}
                       {/* <FormControl display="flex" alignItems="center">
@@ -516,6 +544,11 @@ function handleAddressChange(event: ChangeEvent<HTMLInputElement | HTMLSelectEle
                         >
                           <NumberInputField />
                         </NumberInput>
+                        {validationErrors["contracts.0.hoursPerWeek"] && (
+                          <Text color="red.500" fontSize="sm">
+                            {validationErrors["contracts.0.hoursPerWeek"]}
+                          </Text>
+                        )}                        
                       </FormControl>
                     </Stack>
                   </AccordionPanel>

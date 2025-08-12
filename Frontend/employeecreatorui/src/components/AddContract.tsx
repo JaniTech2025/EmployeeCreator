@@ -18,6 +18,7 @@
 import React, { useContext, useState } from 'react';
 import { ContractCreateDTO } from '../types/Contract';
 import { EmployeeContext } from '../context/EmployeeContext';
+import { contractSchemaWithPrevFinishDate } from './validators/ContractSchema';
 import {
   Accordion,
   AccordionItem,
@@ -37,8 +38,7 @@ import {
   useToast,
   Text,
 } from '@chakra-ui/react';
-import { ZodIssue } from "zod";
-import { getContractSchema } from './validators/createContractValidator';
+import { ZodIssue } from 'zod';
 
 // interface AddContractData {
 //   contractType: string;
@@ -54,6 +54,7 @@ import { getContractSchema } from './validators/createContractValidator';
 type AddContractProps = {
   empid: number;
   previousContract?: ContractCreateDTO | null;   
+  onContractAdded?: () => Promise<void>;   
 }
 
 
@@ -70,7 +71,7 @@ const initialFormState: ContractCreateDTO = {
 
 
 
-  const AddContract: React.FC<AddContractProps> = ({empid, previousContract}) => {
+  const AddContract: React.FC<AddContractProps> = ({empid, previousContract, onContractAdded }) => {
 
   console.log(previousContract?.finishDate);  
 
@@ -87,7 +88,7 @@ const initialFormState: ContractCreateDTO = {
   const handleChange = (field: keyof ContractCreateDTO, value: any) => {
     setFormData(prev => ({
       ...prev,
-      [field]: field === "hoursPerWeek" ? Number(value) || 0 : value,
+      [field]: field === "hoursPerWeek" ? Number(value) : value,
     }));
   };
 
@@ -111,7 +112,7 @@ const initialFormState: ContractCreateDTO = {
   // };
 
 const handleSave = async (empid: number, formData: ContractCreateDTO) => {
-    const schema = getContractSchema(previousContract?.finishDate || null);
+    const schema = contractSchemaWithPrevFinishDate(previousContract?.finishDate || null);
     const result = schema.safeParse(formData);
 
 
@@ -139,7 +140,14 @@ const handleSave = async (empid: number, formData: ContractCreateDTO) => {
       isClosable: true,
     });
 
+
+    //Notify EmployeeUpdateForm that a cnew contract has been added
     setFormData(initialFormState);
+      if (onContractAdded) {
+        await onContractAdded();  
+    }
+
+
   } catch (err) {
     console.error("Error creating contract", err);
     toast({

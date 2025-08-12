@@ -3,7 +3,7 @@ import { api } from "../services/api";
 import { EmployeeCreateDTO, 
          EmployeeGetDTO, 
          } from "../types/Employee";
-import { ContractCreateDTO } from "../types/Contract";
+import { ContractCreateDTO, ContractViewDTO } from "../types/Contract";
 
 
 interface EmptyReport{
@@ -49,6 +49,8 @@ export const EmployeeContext = React.createContext<{
   createNewEmployee: (emp: EmployeeCreateDTO) => Promise<void>;
   createContract: ( empid: number, contract: ContractCreateDTO) => Promise<void>;
   createReport: () => Promise<EmployeeGetDTO[]>;
+  getEmployeeById: (id: number) => Promise<EmployeeGetDTO | undefined>;
+  refreshRecentContract: (id: number) => Promise<ContractViewDTO | undefined>;
 } | null>(null);
 
 const EmployeeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -117,6 +119,34 @@ const EmployeeProvider: React.FC<{ children: React.ReactNode }> = ({ children })
     }
   };
 
+  const getEmployeeById = async (id: number): Promise<EmployeeGetDTO | undefined> => {
+    try{
+       const response = await api.get(`/api/employees/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error("Unable to fetch eployees", error);
+      return undefined;
+    }
+  };
+
+  
+  const refreshRecentContract = async (id: number): Promise<ContractViewDTO | undefined> => {
+    try {
+      const response = await api.get(`/api/employees/${id}/contracts`);
+      const contracts: ContractViewDTO[] = response.data;
+
+      if (contracts && contracts.length > 0) {
+        return contracts[0];  
+      }
+    } catch (error) {
+      console.error("Unable to fetch first contract", error);
+    }
+    return undefined;
+  };
+
+
+
+
   const createContract = async (empid: number, contractdata: ContractCreateDTO) => {
     try{
       console.log(contractdata);
@@ -136,7 +166,8 @@ const EmployeeProvider: React.FC<{ children: React.ReactNode }> = ({ children })
   return (
     <EmployeeContext.Provider value={{ employees, setEmployees, refreshEmployees, 
                                         deleteEmployee, updateEmployee, createNewEmployee,
-                                        createContract, createReport  }}>
+                                        createContract, createReport, getEmployeeById, 
+                                        refreshRecentContract  }}>
       {children}
     </EmployeeContext.Provider>
   );
