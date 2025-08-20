@@ -6,6 +6,7 @@ import {
   FormControl,
   FormLabel,
   VStack,
+  Text,
   Heading,
   Divider,
   useToast,
@@ -16,14 +17,16 @@ import {
   AccordionIcon,
 } from '@chakra-ui/react';
 
-
-import { DeleteIcon, RepeatIcon } from '@chakra-ui/icons';
-
 import { EmployeeGetDTO } from "../types/Employee";
 import { ContractViewDTO } from "../types/Contract";
 import { EmployeeContext } from "../context/EmployeeContext";
 import AddContract from './AddContract';
 import EditRecentContract from './EditRecentContract';
+import { employeeUpdateSchema } from './validators/EmployeeSchema';
+import EmpModal from './EmpModal';
+
+import { ZodError } from 'zod';
+
 
 
 type Props = {
@@ -35,6 +38,13 @@ type Props = {
 const EmployeeUpdateForm: React.FC<Props> = ({ employee, onUpdate, setisModalOpen }) => {
   const context = useContext(EmployeeContext);
   const toast = useToast();
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});    
+
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [deleteIndex, setDeleteIndex] = useState<number | null>(null);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+
+
 
   if (!context) throw new Error("ViewEmployees must be used within an EmployeeProvider");
   const { updateEmployee, getEmployeeById, 
@@ -44,6 +54,7 @@ const EmployeeUpdateForm: React.FC<Props> = ({ employee, onUpdate, setisModalOpe
 
   const handleChange = (field: keyof EmployeeGetDTO, value: string) => {
     setFormData({ ...formData, [field]: value });
+    setHasUnsavedChanges(true);     
   };
 
   const handleContractChange = (
@@ -53,6 +64,7 @@ const EmployeeUpdateForm: React.FC<Props> = ({ employee, onUpdate, setisModalOpe
     const updatedContracts = [...(formData.contracts ?? [])];
     updatedContracts[index] = updatedContract;
     setFormData({ ...formData, contracts: updatedContracts });
+    setHasUnsavedChanges(true);
   };
 
 
@@ -62,6 +74,7 @@ const handleContractAdded = async () => {
   try {
     await refreshEmployees();
     setFormData(employee);
+    setHasUnsavedChanges(true)    
   } catch (error) {
     console.error("Failed to refresh employees:", error);
   }
@@ -69,8 +82,23 @@ const handleContractAdded = async () => {
 
   const handleSubmit = async () => {
     try {
-      console.log("Sending form data: ", formData);
-      await updateEmployee(formData.id, formData);
+      const parsedData = employeeUpdateSchema.parse(formData);
+
+      setValidationErrors({});
+
+
+      // Spreading parsed data after validation over formData, makes
+      const dataToSend = {
+        ...formData,          
+        ...parsedData,        
+        id: formData.id   
+      };
+      console.log("Sending form data: ", dataToSend);
+      // await updateEmployee(formData.id, formData);
+
+      // To allow transformations
+      await updateEmployee(dataToSend.id, dataToSend);
+
       toast({
         title: 'Success!',
         description: 'successfully update details for employee: ' + formData.firstName + " " + formData.lastName,
@@ -79,8 +107,27 @@ const handleContractAdded = async () => {
         isClosable: true,
       });      
       setisModalOpen(false);
-    } catch (error) {
-      console.error("Error submitting form:", error);
+    } catch (err) {
+        if (err instanceof ZodError) {
+          const errors: Record<string, string> = {};
+          err.issues.forEach((e) => {
+            const key = e.path.length > 0 ? e.path.join(".") : "_error";
+            errors[key] = e.message;
+          });
+
+        setValidationErrors(errors);
+
+        toast({
+          title: 'Validation Error',
+          description: 'Please fix the errors in the form.',
+          status: 'error',
+          duration: 3500,
+          isClosable: true,
+        });
+          console.log("Validation errors:", errors);
+      } else {
+        console.error("Error submitting form", err);
+      }
     }
   };
 
@@ -88,11 +135,60 @@ const handleContractAdded = async () => {
     setisModalOpen(false);
   };
 
-  const handleDeleteContract = (index: number) => {
-    const updatedContracts = [...formData.contracts ?? []];
-    updatedContracts.splice(index, 1);
-    setFormData({ ...formData, contracts: updatedContracts });
-  };
+  
+// const handleDeleteContract = (index: number) => {
+//   const confirmed = window.confirm("Are you sure you want to delete this contract?");
+//   if (!confirmed) return;
+
+//   const updatedContracts = [...(formData.contracts ?? [])];
+//   updatedContracts.splice(index, 1);
+
+//   setFormData({ ...formData, contracts: updatedContracts });
+
+//   toast({
+//     title: "Contract removed!",
+//     description: "Confirm deletion by clicking Save.",
+//     status: "success",
+//     duration: 3500,
+//     isClosable: true,
+//   });
+// };
+
+const handleDeleteContract = (index: number) => {
+  setDeleteIndex(index);
+  setIsDeleteModalOpen(true);
+};
+
+const confirmDelete = async () => {
+  if (deleteIndex === null) return;
+
+  const updatedContracts = [...(formData.contracts ?? [])];
+  updatedContracts.splice(deleteIndex, 1);
+  setFormData({ ...formData, contracts: updatedContracts });
+  setHasUnsavedChanges(true);  
+
+
+  try {
+    await refreshEmployees();
+    await refreshRecentContract(formData.id);
+
+  } catch (err) {
+    console.error("Error refreshing contracts:", err);
+  }
+
+  toast({
+    title: "Contract removed!",
+    description: "Confirm deletion by clicking Save.",
+    status: "success",
+    duration: 3500,
+    isClosable: true,
+  });
+
+  setDeleteIndex(null);
+  setIsDeleteModalOpen(false);
+};
+
+
 
 
 
@@ -127,6 +223,11 @@ const handleContractAdded = async () => {
               value={formData.firstName}
               onChange={(e) => handleChange("firstName", e.target.value)}
             />
+          {validationErrors["firstName"] && (
+            <Text color="red.500" fontSize="sm">
+              {validationErrors["firstName"]}
+            </Text>    
+          )}        
           </FormControl>
 
           <FormControl>
@@ -135,6 +236,11 @@ const handleContractAdded = async () => {
               value={formData.middleName ?? ""}
               onChange={(e) => handleChange("middleName", e.target.value)}
             />
+            {validationErrors.middleName && (
+              <Text color="red.500" fontSize="sm">
+                {validationErrors.middleName}
+              </Text>
+            )}
           </FormControl>
 
           <FormControl>
@@ -143,6 +249,11 @@ const handleContractAdded = async () => {
               value={formData.lastName}
               onChange={(e) => handleChange("lastName", e.target.value)}
             />
+          {validationErrors["lastName"] && (
+            <Text color="red.500" fontSize="sm">
+              {validationErrors["lastName"]}
+            </Text>    
+          )}             
           </FormControl>
 
           <FormControl>
@@ -159,6 +270,11 @@ const handleContractAdded = async () => {
               value={formData.email}
               onChange={(e) => handleChange("email", e.target.value)}
             />
+            {validationErrors["email"] && (
+              <Text color="red.500" fontSize="sm">
+                {validationErrors["email"]}
+              </Text>  
+            )}
           </FormControl>
 
           <FormControl>
@@ -167,6 +283,11 @@ const handleContractAdded = async () => {
               value={formData.mobileNumber}
               onChange={(e) => handleChange("mobileNumber", e.target.value)}
             />
+            {validationErrors["mobileNumber"] && (
+              <Text color="red.500" fontSize="sm">
+                {validationErrors["mobileNumber"]}
+              </Text>  
+            )}            
           </FormControl>
 
           <FormControl>
@@ -177,6 +298,11 @@ const handleContractAdded = async () => {
                 handleChange("residentialAddress", e.target.value)
               }
             />
+            {validationErrors["residentialAddress"] && (
+              <Text color="red.500" fontSize="sm">
+                {validationErrors["residentialAddress"]}
+              </Text>
+            )}            
           </FormControl>
         </VStack>
       </AccordionPanel>
@@ -186,16 +312,21 @@ const handleContractAdded = async () => {
 
 
    
-
-        <EditRecentContract
-          id={formData.id}
-          contract={formData.contracts?.[0]}   
-          index={0}                            
-          onContractChange={(updatedContract) =>
-            handleContractChange(0, updatedContract)
-          }
-          onDeleteContract={() => handleDeleteContract(0)}
-        />
+          {formData.contracts && formData.contracts.length > 0 ? (
+            <EditRecentContract
+              id={formData.id}
+              contract={formData.contracts[0]}   // always the most recent
+              index={0}
+              onContractChange={(updatedContract) =>
+                handleContractChange(0, updatedContract)
+              }
+              onDeleteContract={() => handleDeleteContract(0)}
+            />
+          ) : (
+            <Text color="gray.500" fontStyle="italic">
+              No contracts available. Add a new contract below.
+            </Text>
+          )}
 
          <AddContract 
            empid={formData.id}
@@ -205,13 +336,48 @@ const handleContractAdded = async () => {
 
       
       </VStack>
+            {hasUnsavedChanges && (
+              <Box
+                bg="yellow.100"
+                border="1px solid"
+                borderColor="yellow.300"
+                p={3}
+                borderRadius="md"
+                mb={4}
+              >
+                <Text fontSize="sm" color="yellow.800">
+                  You have unsaved changes. Click <b>Save</b> to update the employee record.
+                </Text>
+              </Box>
+            )}
 
-         <Button colorScheme="blue" mt={6} onClick={handleSubmit}>
+            <Button colorScheme="blue" mt={6}   ml={4} onClick={handleSubmit}>
               Save
             </Button>
+
             <Button colorScheme="red" mt={6}  ml={4} onClick={handleCancel}>
               Cancel
-            </Button>        
+            </Button>     
+
+            <EmpModal isOpen={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)}>
+              <VStack spacing={4} align="stretch">
+                <Text fontSize="lg" fontWeight="bold">
+                  Delete Contract
+                </Text>
+                <Text>
+                  Are you sure you want to delete this contract?
+                </Text>
+                <Box display="flex" justifyContent="flex-end" gap={3}>
+                  <Button variant="outline" onClick={() => setIsDeleteModalOpen(false)}>
+                    Cancel
+                  </Button>
+                  <Button colorScheme="red" onClick={confirmDelete}>
+                    Delete
+                  </Button>
+                </Box>
+              </VStack>
+            </EmpModal>
+   
  
     </Box>
   );

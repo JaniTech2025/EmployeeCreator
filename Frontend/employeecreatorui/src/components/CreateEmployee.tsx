@@ -188,25 +188,25 @@ export const CreateEmployee: React.FC<CreateEmployeeProps> = ({onClose}) => {
       onClose();  
 
     } catch (err) {
-       if (err instanceof ZodError) {
-        const errors: Record<string, string> = {};
-        err.issues.forEach((e) => {
-          const key = e.path.length > 0 ? e.path.join(".") : "_error";
-          errors[key] = e.message;
-        });
-      setValidationErrors(errors);
+            if (err instanceof ZodError) {
+              const errors: Record<string, string> = {};
+              err.issues.forEach((e) => {
+                const key = e.path.length > 0 ? e.path.join(".") : "_error";
+                errors[key] = e.message;
+              });
+            setValidationErrors(errors);
 
-      toast({
-        title: 'Validation Error',
-        description: 'Please fix the errors in the form.',
-        status: 'error',
-        duration: 3500,
-        isClosable: true,
-      });
-        console.log("Validation errors:", errors);
-    } else {
-      console.error("Failed to create employee", err);
-    }
+            toast({
+              title: 'Validation Error',
+              description: 'Please fix the errors in the form.',
+              status: 'error',
+              duration: 3500,
+              isClosable: true,
+            });
+              console.log("Validation errors:", errors);
+          } else {
+            console.error("Failed to create employee", err);
+          }
     }
 
   };

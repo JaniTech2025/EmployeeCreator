@@ -38,7 +38,8 @@ import {
   useToast,
   Text,
 } from '@chakra-ui/react';
-import { ZodIssue } from 'zod';
+
+import {ZodError, ZodIssue} from 'zod';
 
 // interface AddContractData {
 //   contractType: string;
@@ -73,9 +74,14 @@ const initialFormState: ContractCreateDTO = {
 
   const AddContract: React.FC<AddContractProps> = ({empid, previousContract, onContractAdded }) => {
 
+
+
   console.log(previousContract?.finishDate);  
 
   const [formData, setFormData] = useState<ContractCreateDTO>(initialFormState);
+
+  const [hoursInput, setHoursInput] = useState(formData.hoursPerWeek?.toString());
+
   const toast = useToast();
   const context = useContext(EmployeeContext);
 
@@ -88,9 +94,17 @@ const initialFormState: ContractCreateDTO = {
   const handleChange = (field: keyof ContractCreateDTO, value: any) => {
     setFormData(prev => ({
       ...prev,
-      [field]: field === "hoursPerWeek" ? Number(value) : value,
+      [field]: value,
     }));
   };
+
+  const handleHoursChange = (valueAsString: string, valueAsNumber: number) => {
+    setHoursInput(valueAsString);
+
+    if (!isNaN(valueAsNumber) && valueAsNumber >= 10 && valueAsNumber <= 40) {
+      setFormData(prev => ({ ...prev, hoursPerWeek: valueAsNumber }));
+    }
+    };
 
   // const handleSave = async (empid:number, formData: ContractCreateDTO) => {
   //   // Replace with your actual save logic (e.g. API call)
@@ -130,7 +144,6 @@ const handleSave = async (empid: number, formData: ContractCreateDTO) => {
 
   try {
     await createContract(empid, formData);
-    await refreshEmployees();
 
     toast({
       title: "Saved!",
@@ -141,7 +154,7 @@ const handleSave = async (empid: number, formData: ContractCreateDTO) => {
     });
 
 
-    //Notify EmployeeUpdateForm that a cnew contract has been added
+    //Notify EmployeeUpdateForm that a new contract has been added
     setFormData(initialFormState);
       if (onContractAdded) {
         await onContractAdded();  
@@ -238,14 +251,15 @@ const handleSave = async (empid: number, formData: ContractCreateDTO) => {
 
             <FormControl>
               <FormLabel>Hours per Week</FormLabel>
-              <NumberInput
-                max={40}
-                min={18}
-                value={formData.hoursPerWeek}
-                onChange={(_, value) => handleChange('hoursPerWeek', value)}
-              >
+                <NumberInput
+                  max={40}
+                  min={0}
+                  value={hoursInput}
+                  onChange={handleHoursChange}
+                >
                 <NumberInputField />
               </NumberInput>
+
               {validationErrors.hoursPerWeek && (
                   <Text color="red.500" fontSize="sm">
                     {validationErrors.hoursPerWeek}

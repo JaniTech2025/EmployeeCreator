@@ -18,10 +18,12 @@ import {
   useToast,
 } from '@chakra-ui/react';
 
-import { DeleteIcon, RepeatIcon } from '@chakra-ui/icons';
+import { DeleteIcon } from '@chakra-ui/icons';
 
 import { ContractViewDTO } from '../types/Contract';
 import { EmployeeContext } from '../context/EmployeeContext';
+import { getContractSchema } from './validators/ContractSchema';
+
 
 type EditRecentContractProps = {
   id: number;
@@ -38,51 +40,46 @@ const EditRecentContract: React.FC<EditRecentContractProps> = ({
   onDeleteContract,
 }) => {
   const context = useContext(EmployeeContext);
-  const toast = useToast();
+
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+
 
   if (!context) throw new Error('EditRecentContract must be used within EmployeeProvider');
-  const { refreshRecentContract } = context;
 
   const [loading, setLoading] = useState(false);
 
-  const handleRefresh = async () => {
-    setLoading(true);
-    try {
-      const latestContract = await refreshRecentContract(id);
-      if (latestContract) {
-        toast({
-          title: 'Contract refreshed',
-          status: 'success',
-          duration: 2000,
-          isClosable: true,
-        });
-        onContractChange(latestContract); 
-      } else {
-        toast({
-          title: 'No contract found',
-          status: 'info',
-          duration: 2000,
-          isClosable: true,
-        });
-      }
-    } catch (error) {
-      toast({
-        title: 'Failed to refresh contract',
-        status: 'error',
-        duration: 3000,
-        isClosable: true,
-      });
-      console.error('Failed to refresh recent contract', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
-  const handleFieldChange = (field: keyof ContractViewDTO, value: string | number) => {
-    if (!contract) return;
-    const updatedContract = { ...contract, [field]: value };
-    onContractChange(updatedContract); // notify parent on every change
-  };
+const schema = getContractSchema();
+
+const handleFieldChange = (field: keyof ContractViewDTO, value: string | number) => {
+  if (!contract) return;
+
+  const updatedContract = { ...contract, [field]: value };
+
+  const result = schema.safeParse(updatedContract);
+
+  if (!result.success) {
+    const fieldErrors: Record<string, string> = {};
+
+    result.error.issues.forEach(issue => {
+      const errorPath = issue.path[0];
+      if (errorPath === field) {
+        fieldErrors[field] = issue.message;
+      }
+    });
+
+    setValidationErrors(prev => ({ ...prev, ...fieldErrors }));
+  } else {
+    setValidationErrors(prev => {
+      const newErrors = { ...prev };
+      delete newErrors[field];
+      return newErrors;
+    });
+
+    onContractChange(updatedContract);
+  }
+};
+
 
   if (loading) return <Text>Loading recent contract...</Text>;
 
@@ -97,17 +94,6 @@ const EditRecentContract: React.FC<EditRecentContractProps> = ({
                 Edit Recent Contract
               </Box>
               <AccordionIcon />
-              <IconButton
-                aria-label="Refresh recent contract"
-                icon={<RepeatIcon />}
-                size="sm"
-                colorScheme="blue"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleRefresh();
-                }}
-                ml={2}
-              />
             </AccordionButton>
           </h2>
           <AccordionPanel pb={4}>
@@ -121,7 +107,7 @@ const EditRecentContract: React.FC<EditRecentContractProps> = ({
               />
             </HStack>
 
-            <FormControl mb={2}>
+            <FormControl mb={2} isDisabled>
               <FormLabel>Contract Type</FormLabel>
               <Select
                 value={contract.contractType}
@@ -132,13 +118,18 @@ const EditRecentContract: React.FC<EditRecentContractProps> = ({
               </Select>
             </FormControl>
 
-            <FormControl mb={2}>
+            <FormControl mb={2} isDisabled>
               <FormLabel>Start Date</FormLabel>
               <Input
                 type="date"
                 value={contract.startDate}
                 onChange={(e) => handleFieldChange('startDate', e.target.value)}
               />
+            {validationErrors["startDate"] && (
+                <Text color="red.500" fontSize="sm">
+                {validationErrors["startDate"]}
+                </Text>    
+            )}                  
             </FormControl>
 
             <FormControl mb={2}>
@@ -148,9 +139,14 @@ const EditRecentContract: React.FC<EditRecentContractProps> = ({
                 value={contract.finishDate ?? ''}
                 onChange={(e) => handleFieldChange('finishDate', e.target.value)}
               />
+            {validationErrors["finishDate"] && (
+                <Text color="red.500" fontSize="sm">
+                {validationErrors["finishDate"]}
+                </Text>    
+            )}  
             </FormControl>
 
-            <FormControl mb={2}>
+            <FormControl mb={2} isDisabled>
               <FormLabel>Work Type</FormLabel>
               <Select
                 value={contract.workType}
@@ -161,7 +157,7 @@ const EditRecentContract: React.FC<EditRecentContractProps> = ({
               </Select>
             </FormControl>
 
-            <FormControl>
+            <FormControl isDisabled>
               <FormLabel>Hours/Week</FormLabel>
               <NumberInput
                 precision={1}
@@ -171,6 +167,11 @@ const EditRecentContract: React.FC<EditRecentContractProps> = ({
               >
                 <NumberInputField />
               </NumberInput>
+            {validationErrors["hoursPerWeek"] && (
+                <Text color="red.500" fontSize="sm">
+                {validationErrors["hoursPerWeek"]}
+                </Text>    
+            )}                
             </FormControl>
           </AccordionPanel>
         </AccordionItem>
