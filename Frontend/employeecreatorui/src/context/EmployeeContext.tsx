@@ -48,6 +48,7 @@ export const EmployeeContext = React.createContext<{
   updateEmployee: (empid: number, emp: EmployeeGetDTO) => Promise<void>;
   createNewEmployee: (emp: EmployeeCreateDTO) => Promise<void>;
   createContract: ( empid: number, contract: ContractCreateDTO) => Promise<void>;
+  updateContract: ( contractid: number, contract: ContractViewDTO) => Promise<void>;
   createReport: () => Promise<EmployeeGetDTO[]>;
   getEmployeeById: (id: number) => Promise<EmployeeGetDTO | undefined>;
   refreshRecentContract: (id: number) => Promise<ContractViewDTO | undefined>;
@@ -119,6 +120,30 @@ const EmployeeProvider: React.FC<{ children: React.ReactNode }> = ({ children })
     }
   };
 
+  const updateContract = async (contractid:number, contractData: ContractViewDTO) => {
+    try{
+      const response = await api.put(`/contracts/${contractid}`, contractData);
+      console.log(response.data);
+      return response.data;
+    }
+    catch (error) {
+      console.error("Unable to create contract:", error);
+      throw error;
+    }
+  }
+
+    const createContract = async (empid: number, contractdata: ContractCreateDTO) => {
+    try{
+      console.log(contractdata);
+      const res = await api.post(`/employees/${empid}/contracts`, contractdata);
+      await refreshEmployees();
+      return res.data;      
+    } catch(error){
+      console.log("Unable to create a new contract for employee: ", empid);
+      throw error;
+    }
+  }
+
   const getEmployeeById = async (id: number): Promise<EmployeeGetDTO | undefined> => {
     try{
        const response = await api.get(`/api/employees/${id}`);
@@ -147,15 +172,7 @@ const EmployeeProvider: React.FC<{ children: React.ReactNode }> = ({ children })
 
 
 
-  const createContract = async (empid: number, contractdata: ContractCreateDTO) => {
-    try{
-      console.log(contractdata);
-      const res = await api.post(`/employees/${empid}/contracts`, contractdata);
-      await refreshEmployees();
-    } catch(error){
-      console.log("Unable to create a new contract for employee: ", empid);
-    }
-  }
+
 
 
 
@@ -166,8 +183,8 @@ const EmployeeProvider: React.FC<{ children: React.ReactNode }> = ({ children })
   return (
     <EmployeeContext.Provider value={{ employees, setEmployees, refreshEmployees, 
                                         deleteEmployee, updateEmployee, createNewEmployee,
-                                        createContract, createReport, getEmployeeById, 
-                                        refreshRecentContract  }}>
+                                        createContract, updateContract, createReport, 
+                                        getEmployeeById, refreshRecentContract  }}>
       {children}
     </EmployeeContext.Provider>
   );

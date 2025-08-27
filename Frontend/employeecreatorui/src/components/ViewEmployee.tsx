@@ -176,6 +176,7 @@ export const ViewEmployees = () => {
 
                               <Text fontWeight="semibold">Hours/Week:</Text>
                               <Text>{contract.hoursPerWeek}</Text>
+
                             </Grid>
                           </Box>
                         ))}
@@ -202,17 +203,6 @@ export const ViewEmployees = () => {
                 {selectedEmployee && (
                   <EmployeeUpdateForm
                     employee={selectedEmployee}
-                    onUpdate={(updatedEmp) => {
-                      setIsModalOpen(false);
-                      setSelectedEmployee(null);
-                      refreshEmployees();
-                      toast({
-                        title: "Employee Updated",
-                        status: "success",
-                        duration: 3000,
-                        isClosable: true,
-                      });
-                    }}
                     setisModalOpen={setIsModalOpen}
                   />
                 )}

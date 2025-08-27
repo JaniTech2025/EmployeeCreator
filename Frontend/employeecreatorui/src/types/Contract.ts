@@ -13,7 +13,7 @@ export interface ContractCreateDTO {
 
 export interface ContractViewDTO {
   id: number;
-  contractType: string;         
+  contractType: string;         // "Permanent" or "Temporary"
   // contract_term?: string;        
   startDate: string;            // format:  ISO date string 
   finishDate?: string | null;   // format: ISO date string or null
