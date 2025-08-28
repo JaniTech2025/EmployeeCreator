@@ -1,0 +1,50 @@
+2025-08-19 00:35:07 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10h58m46s429ms443µs900ns).
+2025-08-19 07:56:48 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6h50m10s719ms267µs700ns).
+2025-08-19 08:12:15 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-19 08:12:15 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-19 08:12:15 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-19 08:12:17 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-19 08:12:17 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-19 08:12:17 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-19 08:58:45 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m26s170ms333µs500ns).
+2025-08-19 08:58:54 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-19 08:58:54 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-19 08:58:54 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-19 08:58:54 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-19 08:58:54 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-19 08:58:54 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-19 08:59:27 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 138
+2025-08-19 08:59:27 INFO  c.e.e.e.EmployeeService - Updating employee with id: 138
+2025-08-19 08:59:27 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 138
+2025-08-19 08:59:27 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 138
+2025-08-19 08:59:27 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 138
+2025-08-19 08:59:27 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-19 08:59:27 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-19 08:59:27 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-19 09:02:27 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 138
+2025-08-19 09:02:27 INFO  c.e.e.e.EmployeeService - Updating employee with id: 138
+2025-08-19 09:02:27 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 138
+2025-08-19 09:02:27 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 138
+2025-08-19 09:02:27 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 138
+2025-08-19 09:02:27 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-19 09:02:27 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-19 09:02:27 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-19 09:02:33 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 138, DTO: com.example.employee.contract.dto.ContractCreateDTO@71322d2e
+2025-08-19 09:02:34 DEBUG c.e.e.contract.ContractService - Created contract ID: 270 for employee ID: 138
+2025-08-19 09:02:34 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-19 09:02:34 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-19 09:02:34 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-19 09:02:34 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-19 09:02:34 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-19 09:02:34 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-19 09:02:34 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-19 09:02:34 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-19 09:02:34 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-19 09:02:43 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 138
+2025-08-19 09:02:43 INFO  c.e.e.e.EmployeeService - Updating employee with id: 138
+2025-08-19 09:02:43 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 138
+2025-08-19 09:02:43 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 138
+2025-08-19 09:02:43 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 138
+2025-08-19 09:02:43 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-19 09:02:43 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-19 09:02:43 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees

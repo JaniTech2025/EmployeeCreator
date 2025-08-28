@@ -1,0 +1,763 @@
+2025-08-20 08:54:30 INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-08-20 08:54:30 INFO  c.e.employee.EmployeeApplication - Starting EmployeeApplication using Java 21.0.6 with PID 25700 (C:\Users\ho 800g2\OneDrive\Desktop\Jani\nology\sessions\Spring\EmployeeCreator\Backend\employee\target\classes started by ho 800g2 in C:\Users\ho 800g2\OneDrive\Desktop\Jani\nology\sessions\Spring\EmployeeCreator\Backend\employee)
+2025-08-20 08:54:30 DEBUG c.e.employee.EmployeeApplication - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-08-20 08:54:30 INFO  c.e.employee.EmployeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-08-20 08:54:30 INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-20 08:54:30 INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-20 08:54:31 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-20 08:54:31 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 74 ms. Found 4 JPA repository interfaces.
+2025-08-20 08:54:31 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-20 08:54:31 INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-08-20 08:54:31 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-20 08:54:31 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-08-20 08:54:31 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-08-20 08:54:31 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1710 ms
+2025-08-20 08:54:32 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-20 08:54:32 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-08-20 08:54:32 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-20 08:54:32 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-20 08:54:32 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-20 08:54:33 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6eb71fb4
+2025-08-20 08:54:33 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-20 08:54:33 WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-20 08:54:33 WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-20 08:54:33 INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-20 08:54:34 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-20 08:54:34 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-20 08:54:35 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-20 08:54:36 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-20 08:54:36 INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-08-20 08:54:36 INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-08-20 08:54:36 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-08-20 08:54:36 INFO  c.e.employee.EmployeeApplication - Started EmployeeApplication in 7.387 seconds (process running for 8.062)
+2025-08-20 08:54:48 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-20 08:54:48 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-20 08:54:48 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2025-08-20 08:54:49 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 08:54:49 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 08:54:49 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 08:54:49 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 08:54:49 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 08:54:49 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 08:54:49 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 08:54:49 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 08:54:49 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 08:54:49 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 08:54:49 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 08:54:49 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 08:59:38 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 148
+2025-08-20 08:59:38 INFO  c.e.e.e.EmployeeService - Updating employee with id: 148
+2025-08-20 08:59:38 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 148
+2025-08-20 08:59:38 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 148
+2025-08-20 08:59:38 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 148
+2025-08-20 08:59:38 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 08:59:38 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 08:59:38 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 08:59:45 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 148, DTO: com.example.employee.contract.dto.ContractCreateDTO@10bebda1
+2025-08-20 08:59:45 DEBUG c.e.e.contract.ContractService - Created contract ID: 291 for employee ID: 148
+2025-08-20 08:59:45 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 08:59:45 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 08:59:45 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 08:59:45 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 08:59:45 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 08:59:45 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 08:59:54 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 148
+2025-08-20 08:59:54 INFO  c.e.e.e.EmployeeService - Updating employee with id: 148
+2025-08-20 08:59:54 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 148
+2025-08-20 08:59:54 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 148
+2025-08-20 08:59:55 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 148
+2025-08-20 08:59:55 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 08:59:55 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 08:59:55 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:00:16 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 148, DTO: com.example.employee.contract.dto.ContractCreateDTO@61276ff7
+2025-08-20 09:00:16 DEBUG c.e.e.contract.ContractService - Created contract ID: 292 for employee ID: 148
+2025-08-20 09:00:18 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:00:18 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:00:18 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:00:20 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:00:20 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:00:20 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:01:27 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 148
+2025-08-20 09:01:27 INFO  c.e.e.e.EmployeeService - Updating employee with id: 148
+2025-08-20 09:01:27 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 148
+2025-08-20 09:01:27 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 148
+2025-08-20 09:01:27 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 148
+2025-08-20 09:01:29 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:01:29 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:01:29 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:01:49 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 148, DTO: com.example.employee.contract.dto.ContractCreateDTO@298f26df
+2025-08-20 09:01:49 DEBUG c.e.e.contract.ContractService - Created contract ID: 293 for employee ID: 148
+2025-08-20 09:01:51 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:01:51 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:01:51 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:01:53 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:01:53 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:01:53 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:02:16 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 148, DTO: com.example.employee.contract.dto.ContractCreateDTO@5a88807e
+2025-08-20 09:02:16 DEBUG c.e.e.contract.ContractService - Created contract ID: 294 for employee ID: 148
+2025-08-20 09:02:18 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:02:18 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:02:18 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:02:20 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:02:20 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:02:20 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:02:57 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 148
+2025-08-20 09:02:57 INFO  c.e.e.e.EmployeeService - Updating employee with id: 148
+2025-08-20 09:02:57 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 148
+2025-08-20 09:02:57 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 148
+2025-08-20 09:02:57 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 148
+2025-08-20 09:02:59 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:02:59 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:02:59 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:23:12 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 148
+2025-08-20 09:23:12 INFO  c.e.e.e.EmployeeService - Updating employee with id: 148
+2025-08-20 09:23:12 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 148
+2025-08-20 09:23:12 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 148
+2025-08-20 09:23:12 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 148
+2025-08-20 09:23:14 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:23:14 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:23:14 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:26:16 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:26:16 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:26:16 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:26:31 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:26:31 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:26:31 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:26:48 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:26:48 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:26:48 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:26:55 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:26:55 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:26:55 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:27:07 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:27:07 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:27:07 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:27:14 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:27:14 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:27:14 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:27:24 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 151
+2025-08-20 09:27:24 INFO  c.e.e.e.EmployeeService - Updating employee with id: 151
+2025-08-20 09:27:24 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 151
+2025-08-20 09:27:24 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 151
+2025-08-20 09:27:24 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 151
+2025-08-20 09:27:26 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:27:26 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:27:26 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:28:42 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:28:42 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:28:42 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:28:49 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:28:49 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:28:49 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:31:26 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:31:26 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:31:26 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:31:28 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:31:28 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:31:28 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:34:49 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:34:49 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:34:49 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:35:02 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:35:02 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:35:02 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:35:51 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:35:51 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:35:51 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:35:59 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:35:59 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:35:59 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:37:57 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:37:57 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:37:57 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:38:06 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:38:06 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:38:06 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:38:20 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 150
+2025-08-20 09:38:20 INFO  c.e.e.e.EmployeeService - Updating employee with id: 150
+2025-08-20 09:38:20 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 150
+2025-08-20 09:38:20 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 150
+2025-08-20 09:38:20 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 150
+2025-08-20 09:38:22 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:38:22 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:38:22 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:39:49 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 149
+2025-08-20 09:39:49 INFO  c.e.e.e.EmployeeService - Updating employee with id: 149
+2025-08-20 09:39:49 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 149
+2025-08-20 09:39:49 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 149
+2025-08-20 09:39:50 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 149
+2025-08-20 09:39:52 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:39:52 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:39:52 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:40:09 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 149
+2025-08-20 09:40:09 INFO  c.e.e.e.EmployeeService - Updating employee with id: 149
+2025-08-20 09:40:09 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 149
+2025-08-20 09:40:09 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 149
+2025-08-20 09:40:09 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 149
+2025-08-20 09:40:11 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:40:11 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:40:11 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:43:08 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:43:08 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:43:08 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:43:10 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:43:10 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:43:10 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:44:35 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:44:35 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:44:35 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 09:44:43 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 09:44:43 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 09:44:43 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 10:11:11 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 10:11:11 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 10:11:11 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 10:11:13 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 10:11:13 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 10:11:13 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 10:13:00 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 10:13:00 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 10:13:00 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 10:13:08 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 10:13:08 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 10:13:08 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 10:13:17 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 10:13:17 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 10:13:17 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 10:13:24 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 10:13:24 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 10:13:24 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 10:16:23 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 10:16:23 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 10:16:23 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 10:16:25 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 10:16:25 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 10:16:25 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 10:16:59 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 10:16:59 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 10:16:59 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 10:17:01 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 10:17:01 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 10:17:01 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 10:17:27 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 10:17:27 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 10:17:27 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 10:17:29 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 10:17:29 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 10:17:29 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 15:05:58 INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-08-20 15:05:59 INFO  c.e.employee.EmployeeApplication - Starting EmployeeApplication using Java 21.0.6 with PID 5488 (C:\Users\ho 800g2\OneDrive\Desktop\Jani\nology\sessions\Spring\EmployeeCreator\Backend\employee\target\classes started by ho 800g2 in C:\Users\ho 800g2\OneDrive\Desktop\Jani\nology\sessions\Spring\EmployeeCreator\Backend\employee)
+2025-08-20 15:05:59 DEBUG c.e.employee.EmployeeApplication - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-08-20 15:05:59 INFO  c.e.employee.EmployeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-08-20 15:05:59 INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-20 15:05:59 INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-20 15:06:00 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-20 15:06:00 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 115 ms. Found 4 JPA repository interfaces.
+2025-08-20 15:06:01 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-20 15:06:01 INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-08-20 15:06:01 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-20 15:06:01 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-08-20 15:06:01 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-08-20 15:06:01 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2734 ms
+2025-08-20 15:06:02 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-20 15:06:02 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-08-20 15:06:02 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-20 15:06:03 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-20 15:06:03 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-20 15:06:03 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@64c3312d
+2025-08-20 15:06:03 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-20 15:06:04 WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-20 15:06:04 WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-20 15:06:04 INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-20 15:06:05 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-20 15:06:05 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-20 15:06:06 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-20 15:06:06 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-20 15:06:07 INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-08-20 15:06:07 INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-08-20 15:06:07 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-08-20 15:06:07 INFO  c.e.employee.EmployeeApplication - Started EmployeeApplication in 9.38 seconds (process running for 10.073)
+2025-08-20 15:06:37 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-20 15:06:37 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-20 15:06:37 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-08-20 15:06:37 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 15:06:37 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 15:06:37 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 15:06:37 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 15:06:37 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 15:06:37 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 15:07:13 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 158
+2025-08-20 15:07:13 INFO  c.e.e.e.EmployeeService - Updating employee with id: 158
+2025-08-20 15:07:13 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 158
+2025-08-20 15:07:13 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 158
+2025-08-20 15:07:13 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 158
+2025-08-20 15:07:13 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 15:07:13 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 15:07:13 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 15:14:08 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 158
+2025-08-20 15:14:08 INFO  c.e.e.e.EmployeeService - Updating employee with id: 158
+2025-08-20 15:14:08 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 158
+2025-08-20 15:14:08 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 158
+2025-08-20 15:14:08 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 158
+2025-08-20 15:14:08 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 15:14:08 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 15:14:08 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 15:15:10 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 158
+2025-08-20 15:15:10 INFO  c.e.e.e.EmployeeService - Updating employee with id: 158
+2025-08-20 15:15:10 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 158
+2025-08-20 15:15:10 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 158
+2025-08-20 15:15:10 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 158
+2025-08-20 15:15:10 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 15:15:10 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 15:15:10 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 15:33:30 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 158, DTO: com.example.employee.contract.dto.ContractCreateDTO@77c1b86f
+2025-08-20 15:33:30 DEBUG c.e.e.contract.ContractService - Created contract ID: 315 for employee ID: 158
+2025-08-20 15:33:30 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 15:33:30 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 15:33:30 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 15:33:30 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 15:33:30 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 15:33:30 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 15:33:30 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 15:33:30 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 15:33:30 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 15:33:42 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 158
+2025-08-20 15:33:42 INFO  c.e.e.e.EmployeeService - Updating employee with id: 158
+2025-08-20 15:33:42 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 158
+2025-08-20 15:33:42 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 158
+2025-08-20 15:33:43 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 158
+2025-08-20 15:33:43 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 15:33:43 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 15:33:43 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 15:35:30 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 158, DTO: com.example.employee.contract.dto.ContractCreateDTO@dd1906b
+2025-08-20 15:35:30 DEBUG c.e.e.contract.ContractService - Created contract ID: 316 for employee ID: 158
+2025-08-20 15:35:32 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 15:35:32 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 15:35:32 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 15:35:34 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 15:35:34 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 15:35:34 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 15:35:36 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 15:35:36 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 15:35:36 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 15:36:03 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 15:36:03 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 15:36:03 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 15:36:10 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 15:36:10 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 15:36:10 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 15:36:27 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 158
+2025-08-20 15:36:27 INFO  c.e.e.e.EmployeeService - Updating employee with id: 158
+2025-08-20 15:36:27 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 158
+2025-08-20 15:36:27 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 158
+2025-08-20 15:36:27 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 158
+2025-08-20 15:36:29 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 15:36:29 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 15:36:29 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 15:43:08 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 15:43:08 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 15:43:08 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 15:43:22 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 160, DTO: com.example.employee.contract.dto.ContractCreateDTO@3689455f
+2025-08-20 15:43:22 DEBUG c.e.e.contract.ContractService - Created contract ID: 317 for employee ID: 160
+2025-08-20 15:43:24 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 15:43:24 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 15:43:24 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 15:43:26 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 15:43:26 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 15:43:26 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 15:43:29 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 15:43:29 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 15:43:29 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 16:05:49 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 16:05:49 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 16:05:49 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 16:06:09 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 16:06:09 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 16:06:09 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 16:06:17 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 167
+2025-08-20 16:06:17 INFO  c.e.e.e.EmployeeService - Updating employee with id: 167
+2025-08-20 16:06:17 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 167
+2025-08-20 16:06:17 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 167
+2025-08-20 16:06:17 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 167
+2025-08-20 16:06:19 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 16:06:19 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 16:06:19 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 16:13:16 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 167, DTO: com.example.employee.contract.dto.ContractCreateDTO@1e27a3fd
+2025-08-20 16:13:16 DEBUG c.e.e.contract.ContractService - Created contract ID: 318 for employee ID: 167
+2025-08-20 16:13:19 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 16:13:19 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 16:13:19 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 16:13:21 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 16:13:21 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 16:13:21 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 16:13:32 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 166, DTO: com.example.employee.contract.dto.ContractCreateDTO@53eeae76
+2025-08-20 16:13:32 DEBUG c.e.e.contract.ContractService - Created contract ID: 319 for employee ID: 166
+2025-08-20 16:13:35 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 16:13:35 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 16:13:35 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 16:13:37 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 16:13:37 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 16:13:37 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 16:13:52 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 166, DTO: com.example.employee.contract.dto.ContractCreateDTO@42753912
+2025-08-20 16:13:52 DEBUG c.e.e.contract.ContractService - Created contract ID: 320 for employee ID: 166
+2025-08-20 16:13:54 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 16:13:54 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 16:13:54 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 16:13:56 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 16:13:56 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 16:13:56 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 16:14:34 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 16:14:34 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 16:14:34 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 16:14:36 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 16:14:36 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 16:14:36 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 16:14:58 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 166, DTO: com.example.employee.contract.dto.ContractCreateDTO@2f3431ab
+2025-08-20 16:14:58 DEBUG c.e.e.contract.ContractService - Created contract ID: 321 for employee ID: 166
+2025-08-20 16:15:00 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 16:15:00 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 16:15:00 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 16:15:02 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 16:15:02 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 16:15:02 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 16:15:30 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 16:15:30 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 16:15:30 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 16:15:39 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 16:15:39 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 16:15:39 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 16:15:43 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 16:15:43 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 16:15:43 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 16:16:17 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 166
+2025-08-20 16:16:17 INFO  c.e.e.e.EmployeeService - Updating employee with id: 166
+2025-08-20 16:16:17 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 166
+2025-08-20 16:16:17 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 166
+2025-08-20 16:16:17 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 166
+2025-08-20 16:16:19 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 16:16:19 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 16:16:19 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 16:16:33 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 166
+2025-08-20 16:16:33 INFO  c.e.e.e.EmployeeService - Updating employee with id: 166
+2025-08-20 16:16:33 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 166
+2025-08-20 16:16:33 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 166
+2025-08-20 16:16:33 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 166
+2025-08-20 16:16:35 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 16:16:35 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 16:16:35 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 16:18:03 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 16:18:03 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 16:18:03 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 16:18:09 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 166
+2025-08-20 16:18:09 INFO  c.e.e.e.EmployeeService - Updating employee with id: 166
+2025-08-20 16:18:09 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 166
+2025-08-20 16:18:09 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 166
+2025-08-20 16:18:09 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 166
+2025-08-20 16:18:11 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 16:18:11 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 16:18:11 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 17:18:56 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=26m21s974ms359µs500ns).
+2025-08-20 17:19:16 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 17:19:16 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 17:19:16 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 17:19:18 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 17:19:18 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 17:19:18 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 17:22:46 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 158, DTO: com.example.employee.contract.dto.ContractCreateDTO@71eeb376
+2025-08-20 17:22:46 DEBUG c.e.e.contract.ContractService - Created contract ID: 322 for employee ID: 158
+2025-08-20 17:22:49 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 17:22:49 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 17:22:49 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 17:22:51 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 17:22:51 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 17:22:51 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 17:23:00 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 158
+2025-08-20 17:23:00 INFO  c.e.e.e.EmployeeService - Updating employee with id: 158
+2025-08-20 17:23:00 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 158
+2025-08-20 17:23:00 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 158
+2025-08-20 17:23:00 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 158
+2025-08-20 17:23:02 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 17:23:02 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 17:23:02 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 17:45:16 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 158, DTO: com.example.employee.contract.dto.ContractCreateDTO@2183d245
+2025-08-20 17:45:16 DEBUG c.e.e.contract.ContractService - Created contract ID: 323 for employee ID: 158
+2025-08-20 17:45:18 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 17:45:18 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 17:45:18 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 17:45:21 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 17:45:21 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 17:45:21 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 17:45:29 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 158
+2025-08-20 17:45:29 INFO  c.e.e.e.EmployeeService - Updating employee with id: 158
+2025-08-20 17:45:29 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 158
+2025-08-20 17:45:29 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 158
+2025-08-20 17:45:29 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 158
+2025-08-20 17:45:31 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 17:45:31 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 17:45:31 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 17:46:02 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 159
+2025-08-20 17:46:02 INFO  c.e.e.e.EmployeeService - Updating employee with id: 159
+2025-08-20 17:46:02 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 159
+2025-08-20 17:46:02 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 159
+2025-08-20 17:46:02 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 159
+2025-08-20 17:46:04 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 17:46:04 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 17:46:04 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 17:54:43 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 159, DTO: com.example.employee.contract.dto.ContractCreateDTO@222d0902
+2025-08-20 17:54:43 DEBUG c.e.e.contract.ContractService - Created contract ID: 324 for employee ID: 159
+2025-08-20 17:54:45 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 17:54:45 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 17:54:45 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 17:54:47 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 17:54:47 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 17:54:47 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 18:05:41 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 18:05:41 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 18:05:41 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 18:05:44 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 18:05:44 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 18:05:44 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 18:05:49 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 159, DTO: com.example.employee.contract.dto.ContractCreateDTO@34b51cae
+2025-08-20 18:05:49 DEBUG c.e.e.contract.ContractService - Created contract ID: 325 for employee ID: 159
+2025-08-20 18:05:51 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 18:05:51 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 18:05:51 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 18:05:53 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 18:05:53 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 18:05:53 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 18:22:06 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 18:22:06 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 18:22:06 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 18:22:08 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 18:22:08 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 18:22:08 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 18:30:17 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 18:30:17 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 18:30:17 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 18:31:00 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 159
+2025-08-20 18:31:00 INFO  c.e.e.e.EmployeeService - Updating employee with id: 159
+2025-08-20 18:31:00 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 159
+2025-08-20 18:31:00 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 159
+2025-08-20 18:31:00 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 159
+2025-08-20 18:31:02 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 18:31:02 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 18:31:02 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 18:31:41 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 159
+2025-08-20 18:31:41 INFO  c.e.e.e.EmployeeService - Updating employee with id: 159
+2025-08-20 18:31:41 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 159
+2025-08-20 18:31:41 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 159
+2025-08-20 18:31:41 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 159
+2025-08-20 18:31:43 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 18:31:43 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 18:31:43 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 18:32:49 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 159
+2025-08-20 18:32:49 INFO  c.e.e.e.EmployeeService - Updating employee with id: 159
+2025-08-20 18:32:49 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 159
+2025-08-20 18:32:49 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 159
+2025-08-20 18:32:49 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 159
+2025-08-20 18:32:51 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 18:32:51 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 18:32:51 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 18:33:10 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 159
+2025-08-20 18:33:10 INFO  c.e.e.e.EmployeeService - Updating employee with id: 159
+2025-08-20 18:33:10 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 159
+2025-08-20 18:33:10 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 159
+2025-08-20 18:33:10 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 159
+2025-08-20 18:33:12 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 18:33:12 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 18:33:12 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 18:33:28 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 159
+2025-08-20 18:33:28 INFO  c.e.e.e.EmployeeService - Updating employee with id: 159
+2025-08-20 18:33:28 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 159
+2025-08-20 18:33:28 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 159
+2025-08-20 18:33:28 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 159
+2025-08-20 18:33:30 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 18:33:30 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 18:33:30 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 18:34:43 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 159
+2025-08-20 18:34:43 INFO  c.e.e.e.EmployeeService - Updating employee with id: 159
+2025-08-20 18:34:43 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 159
+2025-08-20 18:34:43 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 159
+2025-08-20 18:34:43 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 159
+2025-08-20 18:34:45 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 18:34:45 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 18:34:45 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 18:36:06 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 161
+2025-08-20 18:36:06 INFO  c.e.e.e.EmployeeService - Updating employee with id: 161
+2025-08-20 18:36:06 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 161
+2025-08-20 18:36:06 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 161
+2025-08-20 18:36:06 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 161
+2025-08-20 18:36:08 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 18:36:08 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 18:36:08 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 18:36:32 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 18:36:32 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 18:36:32 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 18:36:42 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 161
+2025-08-20 18:36:42 INFO  c.e.e.e.EmployeeService - Updating employee with id: 161
+2025-08-20 18:36:42 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 161
+2025-08-20 18:36:42 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 161
+2025-08-20 18:36:42 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 161
+2025-08-20 18:36:44 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 18:36:44 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 18:36:44 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 18:43:17 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 18:43:17 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 18:43:17 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 18:43:19 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 18:43:19 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 18:43:19 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 18:49:27 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 18:49:27 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 18:49:27 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 18:49:29 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 18:49:29 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 18:49:29 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 18:52:36 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 160
+2025-08-20 18:52:36 INFO  c.e.e.e.EmployeeService - Updating employee with id: 160
+2025-08-20 18:52:36 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 160
+2025-08-20 18:52:36 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 160
+2025-08-20 18:52:36 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 160
+2025-08-20 18:52:38 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 18:52:38 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 18:52:38 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 18:52:58 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 160
+2025-08-20 18:52:58 INFO  c.e.e.e.EmployeeService - Updating employee with id: 160
+2025-08-20 18:52:58 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 160
+2025-08-20 18:52:58 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 160
+2025-08-20 18:52:58 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 160
+2025-08-20 18:53:00 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 18:53:00 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 18:53:00 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 18:55:12 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 160
+2025-08-20 18:55:12 INFO  c.e.e.e.EmployeeService - Updating employee with id: 160
+2025-08-20 18:55:12 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 160
+2025-08-20 18:55:12 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 160
+2025-08-20 18:55:12 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 160
+2025-08-20 18:55:14 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 18:55:14 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 18:55:14 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 19:04:02 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 161
+2025-08-20 19:04:02 INFO  c.e.e.e.EmployeeService - Updating employee with id: 161
+2025-08-20 19:04:02 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 161
+2025-08-20 19:04:02 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 161
+2025-08-20 19:04:02 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 161
+2025-08-20 19:04:04 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 19:04:04 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 19:04:04 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 19:04:15 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 161
+2025-08-20 19:04:15 INFO  c.e.e.e.EmployeeService - Updating employee with id: 161
+2025-08-20 19:04:15 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 161
+2025-08-20 19:04:15 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 161
+2025-08-20 19:04:15 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 161
+2025-08-20 19:04:17 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 19:04:17 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 19:04:17 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 19:05:58 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 161
+2025-08-20 19:05:58 INFO  c.e.e.e.EmployeeService - Updating employee with id: 161
+2025-08-20 19:05:58 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 161
+2025-08-20 19:05:58 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 161
+2025-08-20 19:05:58 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 161
+2025-08-20 19:06:00 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 19:06:00 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 19:06:00 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 19:06:11 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 161
+2025-08-20 19:06:11 INFO  c.e.e.e.EmployeeService - Updating employee with id: 161
+2025-08-20 19:06:11 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 161
+2025-08-20 19:06:11 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 161
+2025-08-20 19:06:11 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 161
+2025-08-20 19:06:13 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 19:06:13 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 19:06:13 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 19:06:58 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 19:06:58 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 19:06:58 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 19:07:04 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 161
+2025-08-20 19:07:04 INFO  c.e.e.e.EmployeeService - Updating employee with id: 161
+2025-08-20 19:07:04 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 161
+2025-08-20 19:07:04 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 161
+2025-08-20 19:07:04 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 161
+2025-08-20 19:07:07 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 19:07:07 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 19:07:07 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 19:10:55 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 19:10:55 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 19:10:55 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 19:11:03 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 19:11:03 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 19:11:03 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 19:11:10 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 19:11:10 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 19:11:10 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 19:11:16 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 159
+2025-08-20 19:11:16 INFO  c.e.e.e.EmployeeService - Updating employee with id: 159
+2025-08-20 19:11:16 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 159
+2025-08-20 19:11:16 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 159
+2025-08-20 19:11:16 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 159
+2025-08-20 19:11:18 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 19:11:18 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 19:11:18 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 19:11:35 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 159, DTO: com.example.employee.contract.dto.ContractCreateDTO@3ff5b936
+2025-08-20 19:11:35 DEBUG c.e.e.contract.ContractService - Created contract ID: 326 for employee ID: 159
+2025-08-20 19:11:37 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 19:11:37 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 19:11:37 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 19:11:39 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 19:11:39 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 19:11:39 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 19:12:33 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 159, DTO: com.example.employee.contract.dto.ContractCreateDTO@677a045e
+2025-08-20 19:12:33 DEBUG c.e.e.contract.ContractService - Created contract ID: 327 for employee ID: 159
+2025-08-20 19:12:36 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 19:12:36 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 19:12:36 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 19:12:38 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 19:12:38 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 19:12:38 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 19:52:26 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m57s130ms79µs900ns).
+2025-08-20 19:52:44 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 19:52:44 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 19:52:45 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 19:52:47 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 19:52:47 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 19:52:47 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 19:58:29 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 19:58:29 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 19:58:29 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 19:58:31 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 19:58:31 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 19:58:31 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 19:58:37 DEBUG c.e.e.e.EmployeeController - Replacing employee with ID: 158
+2025-08-20 19:58:37 INFO  c.e.e.e.EmployeeService - Updating employee with id: 158
+2025-08-20 19:58:37 DEBUG c.e.e.e.EmployeeService - Fetching employee with ID: 158
+2025-08-20 19:58:37 INFO  c.e.e.e.EmployeeService - Updated details for employee with id: 158
+2025-08-20 19:58:37 INFO  c.e.e.e.EmployeeController - Replaced employee with ID: 158
+2025-08-20 19:58:39 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 19:58:39 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 19:58:39 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 19:59:25 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 158, DTO: com.example.employee.contract.dto.ContractCreateDTO@18e8b208
+2025-08-20 19:59:25 DEBUG c.e.e.contract.ContractService - Created contract ID: 328 for employee ID: 158
+2025-08-20 19:59:27 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 19:59:27 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 19:59:27 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 19:59:29 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 19:59:29 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 19:59:29 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 20:38:43 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-20 20:38:43 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-20 20:38:43 DEBUG c.e.e.e.EmployeeController - Fetched 10 employees
+2025-08-20 20:39:06 DEBUG c.e.e.contract.ContractService - Getting contracts for employee id: 158
+2025-08-20 20:39:06 DEBUG c.e.e.contract.ContractService - Found 1 contracts for employee id: 158

@@ -16,7 +16,7 @@ public interface ContractArchiveMapper {
     @Mapping(target = "id", ignore = true)
     // @Mapping(target = "contract", source = "contract")
     @Mapping(target = "contractType", source = "contract.contractType")
-    @Mapping(target = "contractTerm", source = "contract.contractTerm")
+    // @Mapping(target = "contractTerm", source = "contract.contractTerm")
     @Mapping(target = "startDate", source = "contract.startDate")
     @Mapping(target = "finishDate", source = "contract.finishDate")
     @Mapping(target = "ongoing", source = "contract.ongoing")

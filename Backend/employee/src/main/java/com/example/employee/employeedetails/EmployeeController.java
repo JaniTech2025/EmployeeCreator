@@ -43,10 +43,9 @@ public class EmployeeController {
 
     @GetMapping
     public ResponseEntity<List<Employee>> getAll() {
-        logger.debug("Fetching all employees");
-        List<Employee> allEmployees = this.employeeService.findAll();
-        logger.debug("Fetched {} employees", allEmployees.size());
-        return new ResponseEntity<>(allEmployees, HttpStatus.OK);
+        List<Employee> employees = employeeService.getAllEmployeesWithContracts();
+        logger.debug("Fetched {} employees", employees.size());
+        return ResponseEntity.ok(employees);
     }
 
     @GetMapping("/{id}")

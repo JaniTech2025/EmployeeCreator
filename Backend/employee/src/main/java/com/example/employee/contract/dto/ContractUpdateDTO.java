@@ -19,7 +19,7 @@ public class ContractUpdateDTO {
     @JsonProperty("contractType")
     private ContractType contractType;
 
-    @NotBlank
+    // @NotBlank
     // @JsonProperty("contract_term")
     private String contractTerm;
 

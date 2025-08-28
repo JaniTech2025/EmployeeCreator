@@ -1,0 +1,186 @@
+2025-08-10 00:04:46 DEBUG c.e.e.e.EmployeeController - Received request to create new Employee
+2025-08-10 00:04:46 DEBUG c.e.e.e.EmployeeService - Creating a new employee with data: com.example.employee.employeedetails.dto.CreateEmployeeDTO@530814f9
+2025-08-10 00:04:46 INFO  c.e.e.e.EmployeeService - Employee created with ID: 13
+2025-08-10 00:04:46 DEBUG c.e.e.e.EmployeeController - Created new Employee: 13
+2025-08-10 00:04:48 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 00:04:48 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 00:04:48 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 00:33:41 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 2, DTO: com.example.employee.contract.dto.ContractCreateDTO@464fbd50
+2025-08-10 00:33:41 DEBUG c.e.e.contract.ContractService - Created contract ID: 24 for employee ID: 2
+2025-08-10 00:33:43 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 00:33:43 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 00:33:43 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 00:33:45 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 00:33:45 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 00:33:45 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 00:38:36 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 2, DTO: com.example.employee.contract.dto.ContractCreateDTO@270549e4
+2025-08-10 00:38:36 DEBUG c.e.e.contract.ContractService - Created contract ID: 25 for employee ID: 2
+2025-08-10 00:38:38 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 00:38:38 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 00:38:38 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 00:38:41 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 00:38:41 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 00:38:41 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 00:38:43 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 2, DTO: com.example.employee.contract.dto.ContractCreateDTO@349b2a4e
+2025-08-10 00:38:43 DEBUG c.e.e.contract.ContractService - Created contract ID: 26 for employee ID: 2
+2025-08-10 00:38:45 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 00:38:45 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 00:38:45 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 00:38:47 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 00:38:47 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 00:38:47 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 00:58:09 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 2, DTO: com.example.employee.contract.dto.ContractCreateDTO@59c06d20
+2025-08-10 00:58:09 DEBUG c.e.e.contract.ContractService - Created contract ID: 27 for employee ID: 2
+2025-08-10 00:58:11 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 00:58:11 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 00:58:11 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 00:58:14 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 00:58:14 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 00:58:14 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 00:58:22 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 3, DTO: com.example.employee.contract.dto.ContractCreateDTO@7e68d1a3
+2025-08-10 00:58:22 DEBUG c.e.e.contract.ContractService - Created contract ID: 28 for employee ID: 3
+2025-08-10 00:58:24 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 00:58:24 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 00:58:24 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 00:58:27 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 00:58:27 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 00:58:27 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 00:58:42 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 3, DTO: com.example.employee.contract.dto.ContractCreateDTO@28a1114f
+2025-08-10 00:58:42 DEBUG c.e.e.contract.ContractService - Created contract ID: 29 for employee ID: 3
+2025-08-10 00:58:44 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 00:58:44 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 00:58:44 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 00:58:46 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 00:58:46 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 00:58:46 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:01:45 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 3, DTO: com.example.employee.contract.dto.ContractCreateDTO@77b157e
+2025-08-10 01:01:45 DEBUG c.e.e.contract.ContractService - Created contract ID: 30 for employee ID: 3
+2025-08-10 01:01:47 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:01:47 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:01:47 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:01:49 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:01:49 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:01:49 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:02:08 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 4, DTO: com.example.employee.contract.dto.ContractCreateDTO@7289d272
+2025-08-10 01:02:08 DEBUG c.e.e.contract.ContractService - Created contract ID: 31 for employee ID: 4
+2025-08-10 01:02:10 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:02:10 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:02:10 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:02:12 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:02:12 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:02:12 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:02:26 WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [1] in public org.springframework.http.ResponseEntity<com.example.employee.employeedetails.Employee> com.example.employee.employeedetails.EmployeeController.replaceEmployee(int,com.example.employee.employeedetails.dto.UpdateEmployeeDTO) throws com.example.employee.common.exceptions.NotFoundException: [Field error in object 'updateEmployeeDTO' on field 'mobileNumber': rejected value [0474-648-445]; codes [Pattern.updateEmployeeDTO.mobileNumber,Pattern.mobileNumber,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [updateEmployeeDTO.mobileNumber,mobileNumber]; arguments []; default message [mobileNumber],[Ljakarta.validation.constraints.Pattern$Flag;@2458cbd1,^(\+614|04)\d{8}$]; default message [Mobile number must start with +614 or 04 and have 10 digits total]] ]
+2025-08-10 01:05:00 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 4, DTO: com.example.employee.contract.dto.ContractCreateDTO@29d6b12c
+2025-08-10 01:05:00 DEBUG c.e.e.contract.ContractService - Created contract ID: 32 for employee ID: 4
+2025-08-10 01:05:02 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:05:03 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:05:03 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:05:05 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:05:05 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:05:05 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:05:23 WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [1] in public org.springframework.http.ResponseEntity<com.example.employee.employeedetails.Employee> com.example.employee.employeedetails.EmployeeController.replaceEmployee(int,com.example.employee.employeedetails.dto.UpdateEmployeeDTO) throws com.example.employee.common.exceptions.NotFoundException with 2 errors: [Field error in object 'updateEmployeeDTO' on field 'contracts[0].hoursPerWeek': rejected value [80]; codes [DecimalMax.updateEmployeeDTO.contracts[0].hoursPerWeek,DecimalMax.updateEmployeeDTO.contracts.hoursPerWeek,DecimalMax.contracts[0].hoursPerWeek,DecimalMax.contracts.hoursPerWeek,DecimalMax.hoursPerWeek,DecimalMax.java.math.BigDecimal,DecimalMax]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [updateEmployeeDTO.contracts[0].hoursPerWeek,contracts[0].hoursPerWeek]; arguments []; default message [contracts[0].hoursPerWeek],true,40.0]; default message [must be less than or equal to 40.0]] [Field error in object 'updateEmployeeDTO' on field 'mobileNumber': rejected value [0474-648-445]; codes [Pattern.updateEmployeeDTO.mobileNumber,Pattern.mobileNumber,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [updateEmployeeDTO.mobileNumber,mobileNumber]; arguments []; default message [mobileNumber],[Ljakarta.validation.constraints.Pattern$Flag;@2458cbd1,^(\+614|04)\d{8}$]; default message [Mobile number must start with +614 or 04 and have 10 digits total]] ]
+2025-08-10 01:07:43 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 4, DTO: com.example.employee.contract.dto.ContractCreateDTO@10dc2b04
+2025-08-10 01:07:43 DEBUG c.e.e.contract.ContractService - Created contract ID: 33 for employee ID: 4
+2025-08-10 01:07:45 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:07:45 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:07:45 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:07:48 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:07:48 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:07:48 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:09:47 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 4, DTO: com.example.employee.contract.dto.ContractCreateDTO@7a461427
+2025-08-10 01:09:47 DEBUG c.e.e.contract.ContractService - Created contract ID: 34 for employee ID: 4
+2025-08-10 01:09:49 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:09:49 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:09:49 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:09:51 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:09:51 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:09:51 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:10:21 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 4, DTO: com.example.employee.contract.dto.ContractCreateDTO@2bf3ff20
+2025-08-10 01:10:21 DEBUG c.e.e.contract.ContractService - Created contract ID: 35 for employee ID: 4
+2025-08-10 01:10:22 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 4, DTO: com.example.employee.contract.dto.ContractCreateDTO@168e8d56
+2025-08-10 01:10:22 DEBUG c.e.e.contract.ContractService - Created contract ID: 36 for employee ID: 4
+2025-08-10 01:10:23 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:10:23 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:10:23 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:10:25 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:10:25 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:10:25 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:10:27 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:10:27 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:10:27 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:10:27 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 4, DTO: com.example.employee.contract.dto.ContractCreateDTO@7e678e4d
+2025-08-10 01:10:27 DEBUG c.e.e.contract.ContractService - Created contract ID: 37 for employee ID: 4
+2025-08-10 01:10:29 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:10:29 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:10:29 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:10:31 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:10:31 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:10:31 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:10:33 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:10:33 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:10:33 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:12:58 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 4, DTO: com.example.employee.contract.dto.ContractCreateDTO@1c156963
+2025-08-10 01:12:58 DEBUG c.e.e.contract.ContractService - Created contract ID: 38 for employee ID: 4
+2025-08-10 01:13:00 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:13:00 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:13:00 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:13:02 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:13:02 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:13:02 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:14:13 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 4, DTO: com.example.employee.contract.dto.ContractCreateDTO@34e66e
+2025-08-10 01:14:13 DEBUG c.e.e.contract.ContractService - Created contract ID: 39 for employee ID: 4
+2025-08-10 01:14:15 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:14:15 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:14:15 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:14:17 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:14:17 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:14:17 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:14:39 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 4, DTO: com.example.employee.contract.dto.ContractCreateDTO@7cdc727b
+2025-08-10 01:14:39 DEBUG c.e.e.contract.ContractService - Created contract ID: 40 for employee ID: 4
+2025-08-10 01:14:41 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:14:41 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:14:41 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:14:44 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:14:44 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:14:44 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:15:21 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:15:21 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:15:21 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:15:21 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:15:21 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:15:21 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:15:46 WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [1] in public org.springframework.http.ResponseEntity<com.example.employee.employeedetails.Employee> com.example.employee.employeedetails.EmployeeController.replaceEmployee(int,com.example.employee.employeedetails.dto.UpdateEmployeeDTO) throws com.example.employee.common.exceptions.NotFoundException: [Field error in object 'updateEmployeeDTO' on field 'contracts[0].hoursPerWeek': rejected value [-9007199254740991]; codes [DecimalMin.updateEmployeeDTO.contracts[0].hoursPerWeek,DecimalMin.updateEmployeeDTO.contracts.hoursPerWeek,DecimalMin.contracts[0].hoursPerWeek,DecimalMin.contracts.hoursPerWeek,DecimalMin.hoursPerWeek,DecimalMin.java.math.BigDecimal,DecimalMin]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [updateEmployeeDTO.contracts[0].hoursPerWeek,contracts[0].hoursPerWeek]; arguments []; default message [contracts[0].hoursPerWeek],true,0.0]; default message [must be greater than or equal to 0.0]] ]
+2025-08-10 01:25:21 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:25:21 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:25:21 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:25:23 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:25:23 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:25:23 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:25:49 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:25:49 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:25:49 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:25:51 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:25:51 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:25:51 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:30:00 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:30:00 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:30:00 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:30:02 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:30:02 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:30:02 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:31:10 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 1, DTO: com.example.employee.contract.dto.ContractCreateDTO@29bd5d5d
+2025-08-10 01:31:10 DEBUG c.e.e.contract.ContractService - Created contract ID: 41 for employee ID: 1
+2025-08-10 01:31:12 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:31:12 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:31:12 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:31:14 DEBUG c.e.e.contract.ContractService - Creating contract for employee ID: 1, DTO: com.example.employee.contract.dto.ContractCreateDTO@549f5666
+2025-08-10 01:31:14 DEBUG c.e.e.contract.ContractService - Created contract ID: 42 for employee ID: 1
+2025-08-10 01:31:15 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:31:15 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:31:15 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:31:17 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:31:17 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:31:17 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees
+2025-08-10 01:31:19 DEBUG c.e.e.e.EmployeeController - Fetching all employees
+2025-08-10 01:31:19 DEBUG c.e.e.e.EmployeeService - Fetching all employees
+2025-08-10 01:31:19 DEBUG c.e.e.e.EmployeeController - Fetched 13 employees

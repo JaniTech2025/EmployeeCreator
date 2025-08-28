@@ -111,9 +111,9 @@ public class ContractArchive {
         return contractTerm;
     }
 
-    public void setContractTerm(String contractTerm) {
-        this.contractTerm = contractTerm;
-    }
+    // public void setContractTerm(String contractTerm) {
+    // this.contractTerm = contractTerm;
+    // }
 
     public LocalDate getStartDate() {
         return startDate;

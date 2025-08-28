@@ -24,7 +24,11 @@ public class UpdateEmployeeDTO {
     @Size(max = 100, message = "Email must not exceed 100 characters")
     private String email;
 
-    @Pattern(regexp = "^(\\+614|04)\\d{8}$", message = "Mobile number must start with +614 or 04 and have 10 digits total")
+    // @Pattern(regexp = "^((\\+61|0)[2-478](\\s?\\d){8})$", message = "Mobile
+    // number must be a valid Australian number, starting with +61 or 0")
+    // Data cleaning is being done in the frontend to replace special character
+    // so no need to check for special chars in regex here
+    @Pattern(regexp = "^\\+61[2-478]\\d{8}$", message = "Mobile number must be a valid Australian number starting with +61")
     private String mobileNumber;
 
     @Size(max = 255, message = "Residential address must not exceed 255 characters")

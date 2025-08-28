@@ -12,6 +12,7 @@ import com.example.employee.contractarchive.ContractArchiveRepository;
 import com.example.employee.employeearchive.EmployeeArchive;
 import com.example.employee.employeearchive.EmployeeArchiveMapper;
 import com.example.employee.employeearchive.EmployeeArchiveRepository;
+// import java.util.concurrent.ThreadLocalRandom;
 
 import com.github.javafaker.Faker;
 import org.springframework.boot.CommandLineRunner;
@@ -72,11 +73,36 @@ public class DataSeeder implements CommandLineRunner {
 
         for (int i = 0; i < 10; i++) {
             Employee emp = new Employee();
-            emp.setFirstName(faker.name().firstName());
+            String firstName = faker.name().firstName();
+            emp.setFirstName(firstName);
             emp.setMiddleName(random.nextBoolean() ? faker.name().firstName() : null);
-            emp.setLastName(faker.name().lastName());
-            emp.setEmail(faker.internet().emailAddress());
-            emp.setMobileNumber(faker.phoneNumber().cellPhone());
+            String lastName = faker.name().lastName();
+            emp.setLastName(lastName);
+            // emp.setEmail(faker.internet().emailAddress());
+
+            // int randomNumber = ThreadLocalRandom.current().nextInt(10, 100);
+
+            String email = firstName + "." + lastName + "@talent.com";
+            emp.setEmail(email);
+
+            String mobilePrefix = random.nextBoolean() ? "+614" : "04";
+            // StringBuilder mobileNumber = new StringBuilder(mobilePrefix);
+            // for (int j = 0; j < 8; j++) {
+            // mobileNumber.append(random.nextInt(10));
+            // }
+            // emp.setMobileNumber(mobileNumber.toString());
+            // emp.setMobileNumber(faker.phoneNumber().cellPhone());
+
+            // Example: mobilePrefix = "04" (for mobile numbers)
+
+            // Faker generated mobile numbers may not match, hence
+            // generating manually
+            StringBuilder mobileNumber = new StringBuilder(mobilePrefix);
+            for (int j = 0; j < 8; j++) {
+                mobileNumber.append(random.nextInt(10));
+            }
+            emp.setMobileNumber(mobileNumber.toString());
+
             emp.setPhotoUrl(photoUrls.get(i));
             emp.setResidentialAddress(faker.address().fullAddress());
             emp.setEmployeeStatus("Active");

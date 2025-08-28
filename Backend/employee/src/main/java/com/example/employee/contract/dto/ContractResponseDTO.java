@@ -13,7 +13,7 @@ public class ContractResponseDTO {
     private int id;
     @NotNull
     private ContractType contractType;
-    @NotBlank
+    // @NotBlank
     private String contractTerm;
     @NotNull
     private LocalDate startDate;

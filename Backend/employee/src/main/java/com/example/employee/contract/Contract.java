@@ -2,6 +2,7 @@ package com.example.employee.contract;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonGetter;
 
 import java.beans.Transient;
 import java.math.BigDecimal;
@@ -39,7 +40,7 @@ public class Contract {
 
     // @Column(name = "contract_term", length = 100)
     // @JsonProperty("contract_term")
-    // private String contractTerm;
+    private String contractTerm;
 
     @Transient
     // @JsonProperty("contract_term")
@@ -78,9 +79,10 @@ public class Contract {
     // private boolean ongoing = false;
 
     @Transient
-    // @JsonProperty("ongoing")
+    @JsonGetter("ongoing")
     public boolean isOngoing() {
-        return ((finishDate == null) || LocalDate.now().isBefore(finishDate) || LocalDate.now().isEqual(finishDate));
+        LocalDate today = LocalDate.now();
+        return (finishDate == null || !today.isAfter(finishDate)) && !today.isBefore(startDate);
     }
 
     @Enumerated(EnumType.STRING)
@@ -130,9 +132,9 @@ public class Contract {
     // return contractTerm;
     // }
 
-    // public void setContractTerm(String contractTerm) {
-    // this.contractTerm = contractTerm;
-    // }
+    public void setContractTerm(String contractTerm) {
+        this.contractTerm = contractTerm;
+    }
 
     public LocalDate getStartDate() {
         return startDate;

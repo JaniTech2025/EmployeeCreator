@@ -1,6 +1,8 @@
 package com.example.employee.employeedetails.dto;
 
 import com.example.employee.contract.dto.ContractDTO;
+import com.example.employee.employeedetails.Employee;
+
 import java.time.LocalDate;
 import java.util.List;
 import jakarta.validation.constraints.*;
@@ -26,7 +28,9 @@ public class EmployeeWithContractsDTO {
     @Size(max = 100, message = "Email can be at most 100 characters")
     private String email;
 
-    @Pattern(regexp = "^[0-9]{8,15}$", message = "Mobile number must be 8 to 15 digits")
+    // @Pattern(regexp = "^((\\+61|0)[2-478](\\s?\\d){8})$", message = "Mobile
+    // number must be a valid Australian number, starting with +61 or 0")
+    @Pattern(regexp = "^\\+61[2-478]\\d{8}$", message = "Mobile number must be a valid Australian number starting with +61")
     private String mobileNumber;
 
     @Size(max = 255, message = "Residential address can be at most 255 characters")

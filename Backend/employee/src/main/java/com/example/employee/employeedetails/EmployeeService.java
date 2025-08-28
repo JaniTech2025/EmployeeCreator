@@ -3,10 +3,14 @@ package com.example.employee.employeedetails;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.Comparator;
+import java.util.ArrayList;
 import jakarta.transaction.Transactional;
 
 import com.example.employee.contract.Contract;
 import com.example.employee.contract.dto.ContractCreateDTO;
+import com.example.employee.contract.dto.ContractDTO;
+
 import com.example.employee.contract.ContractRepository;
 import com.example.employee.contractarchive.ContractArchive;
 import com.example.employee.contractarchive.ContractArchiveMapper;
@@ -118,7 +122,7 @@ public class EmployeeService {
             List<Contract> contracts = contractDtos.stream().map(contractDto -> {
                 Contract contract = new Contract();
                 contract.setContractType(contractDto.getContractType());
-                // contract.setContractTerm(contractDto.getContractTerm());
+                contract.setContractTerm(contractDto.getContractTerm());
                 contract.setStartDate(contractDto.getStartDate());
                 contract.setFinishDate(contractDto.getFinishDate());
                 // contract.setOngoing(contractDto.isOngoing());
@@ -265,7 +269,7 @@ public class EmployeeService {
                 }
 
                 contract.setContractType(contractDTO.getContractType());
-                // contract.setContractTerm(contractDTO.getContractTerm());
+                contract.setContractTerm(contractDTO.getContractTerm());
                 contract.setStartDate(contractDTO.getStartDate());
                 contract.setFinishDate(contractDTO.getFinishDate());
                 // contract.setOngoing(contractDTO.isOngoing());
@@ -305,20 +309,19 @@ public class EmployeeService {
         return Optional.of(employeeFromDB);
     }
 
-    public List<EmployeeWithContractsDTO> getAllEmployeesWithContracts() {
+    public List<Employee> getAllEmployeesWithContracts() {
         logger.debug("Getting details for all employees with contracts");
+
         List<Employee> employees = employeeRepository.findAllWithContracts();
 
         if (employees.isEmpty()) {
-            logger.warn("Not found any employee with contracts");
+            logger.warn("No employees found with contracts");
             return List.of();
         }
 
-        logger.debug("Found employees with contracts");
+        logger.debug("Found {} employees with contracts", employees.size());
 
-        return employees.stream()
-                .map(employeeMapper::toDTO)
-                .collect(Collectors.toList());
+        return employees;
     }
 
 }
