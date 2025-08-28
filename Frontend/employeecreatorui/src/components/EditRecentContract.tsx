@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {
   Box,
   HStack,
@@ -36,7 +36,11 @@ const EditRecentContract: React.FC<EditRecentContractProps> = ({
 
 
 
-  const [localFinishDate, setLocalFinishDate] = useState(contract?.finishDate || "");
+const [localFinishDate, setLocalFinishDate] = useState(contract?.finishDate || "");
+
+useEffect(() => {
+  setLocalFinishDate(contract?.finishDate || "");
+}, [contract?.finishDate]);
 
 const handleFinishDateChange = (value: string) => {
   setLocalFinishDate(value); // local input state

@@ -19,7 +19,7 @@ import {
 } from '@chakra-ui/react';
 
 import { EmployeeGetDTO } from "../types/Employee";
-import { ContractCreateDTO, ContractViewDTO } from "../types/Contract";
+import { ContractViewDTO } from "../types/Contract";
 import { EmployeeContext } from "../context/EmployeeContext";
 import AddContract from './AddContract';
 import EditRecentContract from './EditRecentContract';
@@ -57,14 +57,28 @@ const EmployeeUpdateForm: React.FC<Props> = ({ employee, setisModalOpen }) => {
     setHasUnsavedChanges(true);
   };
 
-  const handleContractAdded = async () => {
-    try {
-      await refreshEmployees();
-      setFormData(employee);
-    } catch (error) {
-      console.error("Failed to refresh employees:", error);
-    }
-  };
+  // const handleContractAdded = async () => {
+  //   try {
+  //     await refreshEmployees();
+  //     setFormData(employee);
+  //   } catch (error) {
+  //     console.error("Failed to refresh employees:", error);
+  //   }
+  // };
+
+  const handleContractAdded = async (newContract: ContractViewDTO) => {
+  try {
+    await refreshEmployees();
+    setFormData(prev => ({
+      ...prev,
+      contracts: [newContract, ...(prev.contracts ?? [])],
+    }));
+
+  } catch (error) {
+    console.error("Failed to refresh employees:", error);
+  }
+};
+
 
   const handleSubmit = async () => {
     try {
@@ -75,6 +89,8 @@ const EmployeeUpdateForm: React.FC<Props> = ({ employee, setisModalOpen }) => {
 
       const dataToSend = { ...formData, ...parsedData, id: formData.id };
       await updateEmployee(dataToSend.id, dataToSend);
+
+      await refreshEmployees();
 
        setHasUnsavedChanges(false);
 

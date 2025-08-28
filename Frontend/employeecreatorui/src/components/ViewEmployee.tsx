@@ -44,6 +44,7 @@ export const ViewEmployees = () => {
   const indexOfLast = currentPage * ITEMS_PER_PAGE;
   const indexOfFirst = indexOfLast - ITEMS_PER_PAGE;
   const currentEmployees = employees.slice(indexOfFirst, indexOfLast);
+  console.log(currentEmployees);
   const totalPages = Math.ceil(employees.length / ITEMS_PER_PAGE);
 
   const [expandedId, setExpandedId] = useState<number | null>(null);
@@ -90,6 +91,7 @@ export const ViewEmployees = () => {
   // function handleCancel(): void {
   //   setIsModalOpen(false);
   // }
+
 
   return (
     <Box p={10}>

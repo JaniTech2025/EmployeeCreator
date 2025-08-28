@@ -14,7 +14,6 @@ export interface EmployeeCreateDTO {
   updatedAt?: string; // format: ISO date string
   photoUrl?: string;
   contracts?: ContractCreateDTO[];
-  ongoing?: boolean;
 }
 
 
@@ -31,7 +30,6 @@ export interface EmployeeGetDTO {
   updatedAt?: string; 
   photoUrl?: string;
   contracts?: ContractViewDTO[];
-  ongoing?: boolean;
 }
 
 export interface EmployeeResponseDTO {
