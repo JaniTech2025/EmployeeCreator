@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonGetter;
 
-import java.beans.Transient;
+import jakarta.persistence.Transient;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -43,6 +44,9 @@ public class Contract {
     private String contractTerm;
 
     @Transient
+    private boolean ongoing;
+
+    @Transient
     // @JsonProperty("contract_term")
     public String getContractTerm() {
         if (startDate == null) {
@@ -78,12 +82,13 @@ public class Contract {
     // @JsonProperty("ongoing")
     // private boolean ongoing = false;
 
-    @Transient
-    @JsonGetter("ongoing")
-    public boolean isOngoing() {
-        LocalDate today = LocalDate.now();
-        return (finishDate == null || !today.isAfter(finishDate)) && !today.isBefore(startDate);
-    }
+    // @Transient
+    // @JsonGetter("ongoing")
+    // public boolean isOngoing() {
+    // LocalDate today = LocalDate.now();
+    // return (finishDate == null || !today.isAfter(finishDate)) &&
+    // !today.isBefore(startDate);
+    // }
 
     @Enumerated(EnumType.STRING)
     @Column(name = "work_type", nullable = false)
@@ -198,5 +203,20 @@ public class Contract {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public boolean isOngoing() {
+        LocalDate today = LocalDate.now();
+
+        // Current date is on or after start date & on or before finishdate
+        if (today.isBefore(startDate) ||
+                ((finishDate != null) && today.isAfter(finishDate)))
+            return false;
+
+        return true;
+    }
+
+    public void setOngoing(boolean ongoing) {
+        this.ongoing = ongoing;
     }
 }
