@@ -159,25 +159,25 @@ export const ViewEmployees = () => {
                             w="100%"
                           >
                             <Grid templateColumns="150px 1fr" rowGap={2} columnGap={4}>
-                              <Text fontWeight="semibold">Type:</Text>
-                              <Text>{contract.contractType}</Text>
+                              <Text fontWeight="semibold"  color={contract.ongoing ? "green.500" : "black"}>Type:</Text>
+                              <Text  color={contract.ongoing ? "green.500" : "black"}>{contract.contractType}</Text>
 
                               {/* <Text fontWeight="semibold">Term:</Text>
                               <Text>{contract.contract_term || "N/A"}</Text> */}
 
-                              <Text fontWeight="semibold">Start:</Text>
-                              <Text>{contract.startDate}</Text>
+                              <Text fontWeight="semibold"  color={contract.ongoing ? "green.500" : "black"}>Start:</Text>
+                              <Text color={contract.ongoing ? "green.500" : "black"}>{contract.startDate}</Text>
 
-                              <Text fontWeight="semibold">
+                              {/* <Text fontWeight="semibold">
                                 {contract.ongoing ? "Ongoing:" : "Finish:"}
                               </Text>
-                              <Text>{contract.ongoing ? "Yes" : contract.finishDate || "N/A"}</Text>
+                              <Text color={contract.ongoing ? "green.500" : "black"}>{contract.ongoing ? "Yes" : contract.finishDate || "N/A"}</Text> */}
 
-                              <Text fontWeight="semibold">Work Type:</Text>
-                              <Text>{contract.workType}</Text>
+                              <Text fontWeight="semibold"  color={contract.ongoing ? "green.500" : "black"}>Work Type:</Text>
+                              <Text color={contract.ongoing ? "green.500" : "black"}>{contract.workType}</Text>
 
-                              <Text fontWeight="semibold">Hours/Week:</Text>
-                              <Text>{contract.hoursPerWeek}</Text>
+                              <Text fontWeight="semibold"  color={contract.ongoing ? "green.500" : "black"}>Hours/Week:</Text>
+                              <Text color={contract.ongoing ? "green.500" : "black"}>{contract.hoursPerWeek}</Text>
 
                             </Grid>
                           </Box>
