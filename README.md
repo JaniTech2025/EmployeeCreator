@@ -122,16 +122,16 @@ https://janitech2025.atlassian.net/wiki/spaces/CCS/pages/2064386/UI+design+inspi
 2. Backend: configure MySQL database in application.properties
 
 3. Backend: build and run:
-
-mvn clean install
-mvn spring-boot:run
+   mvn clean install
+   mvn spring-boot:run
 
 4. Frontend: install dependencies and start:
    cd frontend
    npm install
    npm start
 
-5. Access the web app at http://localhost:3000
+5. Access the web app at http://localhost:5173
+   Backend runs at http://localhost:8080
 
 ## Environment Variables
 
