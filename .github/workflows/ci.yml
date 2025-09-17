@@ -14,9 +14,7 @@ jobs:
       # CI-only MySQL credentials
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: app_db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-      # Backend connection credentials (can also use secrets if you want)
+      # Backend connection credentials
       DB_USERNAME: root
       DB_PASSWORD: root
       DB_NAME: app_db
@@ -27,8 +25,6 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: app_db
-          MYSQL_USER: root
-          MYSQL_PASSWORD: root
         ports:
           - 3306:3306
         options: >-
@@ -53,13 +49,21 @@ jobs:
         run: chmod +x ./mvnw
         working-directory: backend
 
+      - name: Wait for MySQL
+        run: |
+          for i in {1..30}; do
+            mysqladmin ping -h 127.0.0.1 -uroot -proot && break
+            echo "Waiting for MySQL..."
+            sleep 2
+          done
+
       - name: Build & Test Backend
         working-directory: backend
         run: ./mvnw clean verify
         env:
-          DB_USERNAME: ${{ env.DB_USERNAME }}
-          DB_PASSWORD: ${{ env.DB_PASSWORD }}
-          DB_NAME: ${{ env.DB_NAME }}
+          DB_USERNAME: root
+          DB_PASSWORD: root
+          DB_NAME: app_db
 
       # ---- Frontend (React + TypeScript) ----
       - name: Set up Node
