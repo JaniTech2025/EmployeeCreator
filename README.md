@@ -110,6 +110,10 @@ https://janitech2025.atlassian.net/wiki/spaces/CCS/pages/2064386/UI+design+inspi
 
 ![Generate employee report](images/GenerateReportDropDown.png)
 
+### EER diagram
+
+![EER diagram](images/EER diagram.png)
+
 ## Getting Started
 
 1. Clone the repository:
