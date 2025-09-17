@@ -47,7 +47,7 @@ jobs:
 
       - name: Make Maven wrapper executable
         run: chmod +x ./mvnw
-        working-directory: backend
+        working-directory: Backend
 
       - name: Wait for MySQL
         run: |
@@ -57,8 +57,8 @@ jobs:
             sleep 2
           done
 
-      - name: Build & Test Backend
-        working-directory: backend
+      - name: Build & Test backend
+        working-directory: Backend
         run: ./mvnw clean verify
         env:
           DB_USERNAME: root
