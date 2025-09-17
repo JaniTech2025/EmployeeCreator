@@ -172,3 +172,5 @@ End-to-End REST Tests: RestAssured
 # Logging
 
 SLF4J is used for logging across backend services
+
+This project uses **GitHub Actions** for continuous integration (CI) to automatically build and test the frontend and backend on every push or pull request.
