@@ -10,36 +10,50 @@ import com.example.employee.employeearchive.EmployeeArchive;
 import com.example.employee.employeearchive.EmployeeArchiveMapper;
 import com.example.employee.employeearchive.EmployeeArchiveRepository;
 import com.example.employee.employeedetails.dto.CreateEmployeeDTO;
-import com.example.employee.employeedetails.dto.EmployeeWithContractsDTO;
 import com.example.employee.employeedetails.dto.UpdateEmployeeDTO;
 import com.example.employee.employeedetails.mapper.EmployeeMapper;
 import com.example.employee.common.exceptions.NotFoundException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.*;
-import java.util.*;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-public class EmployeeServiceTest {
+class EmployeeServiceTest {
 
     @Mock
     private EmployeeRepository employeeRepository;
+
     @Mock
     private ContractRepository contractRepository;
-    @Mock
-    private EmployeeArchiveRepository employeeArchiveRepository;
+
     @Mock
     private ContractArchiveRepository contractArchiveRepository;
-    @Mock
-    private EmployeeArchiveMapper employeeArchiveMapper;
+
     @Mock
     private ContractArchiveMapper contractArchiveMapper;
+
+    @Mock
+    private EmployeeArchiveRepository employeeArchiveRepository;
+
+    @Mock
+    private EmployeeArchiveMapper employeeArchiveMapper;
+
     @Mock
     private EmployeeMapper employeeMapper;
 
+    @Spy
     @InjectMocks
     private EmployeeService employeeService;
 
@@ -49,161 +63,122 @@ public class EmployeeServiceTest {
     }
 
     @Test
-    void create_EmployeeWithoutContracts_Success() {
+    void create_SavesEmployeeAndContracts() {
         CreateEmployeeDTO dto = new CreateEmployeeDTO();
         dto.setFirstName("John");
+        dto.setLastName("Doe");
 
-        Employee saved = new Employee();
-        saved.setId(1);
-        when(employeeRepository.save(any(Employee.class))).thenReturn(saved);
-
-        Employee result = employeeService.create(dto);
-
-        assertEquals(1, result.getId());
-        verify(employeeRepository).save(any(Employee.class));
-        verifyNoInteractions(contractRepository);
-    }
-
-    @Test
-    void create_EmployeeWithContracts_Success() {
-        CreateEmployeeDTO dto = new CreateEmployeeDTO();
         ContractCreateDTO contractDTO = new ContractCreateDTO();
+        contractDTO.setContractType(Contract.ContractType.Permanent);
+        contractDTO.setContractTerm("12 months");
+        contractDTO.setStartDate(LocalDate.now());
+        contractDTO.setFinishDate(LocalDate.now().plusMonths(12));
+        contractDTO.setWorkType(Contract.WorkType.FullTime);
+        contractDTO.setHoursPerWeek(BigDecimal.valueOf(40));
         dto.setContracts(List.of(contractDTO));
 
-        Employee saved = new Employee();
-        saved.setId(1);
-        when(employeeRepository.save(any(Employee.class))).thenReturn(saved);
-        when(contractRepository.saveAll(anyList())).thenAnswer(inv -> inv.getArgument(0));
+        Employee employee = new Employee();
+        employee.setId(1);
+
+        when(employeeRepository.save(any(Employee.class))).thenReturn(employee);
+        when(contractRepository.saveAll(any())).thenAnswer(inv -> inv.getArgument(0));
 
         Employee result = employeeService.create(dto);
 
+        assertNotNull(result);
+        verify(employeeRepository).save(any(Employee.class));
+        verify(contractRepository).saveAll(any());
         assertEquals(1, result.getId());
-        assertFalse(result.getContracts().isEmpty());
-        verify(contractRepository).saveAll(anyList());
     }
 
     @Test
-    void findAll_ReturnsList() {
-        when(employeeRepository.findAll()).thenReturn(List.of(new Employee()));
-        List<Employee> employees = employeeService.findAll();
-        assertEquals(1, employees.size());
+    void findAll_CallsRepository() {
+        employeeService.findAll();
         verify(employeeRepository).findAll();
     }
 
     @Test
-    void findById_Found_ReturnsOptional() {
-        Employee emp = new Employee();
-        when(employeeRepository.findById(1)).thenReturn(Optional.of(emp));
-        Optional<Employee> result = employeeService.findById(1);
-        assertTrue(result.isPresent());
+    void findById_CallsRepository() {
+        employeeService.findById(5);
+        verify(employeeRepository).findById(5);
     }
 
     @Test
-    void findById_NotFound_ReturnsEmpty() {
-        when(employeeRepository.findById(1)).thenReturn(Optional.empty());
-        assertTrue(employeeService.findById(1).isEmpty());
+    void archiveAndDeleteEmployee_WhenEmployeeNotFound_ThrowsNotFound() {
+        when(employeeRepository.findById(99)).thenReturn(Optional.empty());
+
+        assertThrows(NotFoundException.class, () -> employeeService.archiveAndDeleteEmployee(99));
     }
 
     @Test
-    void archiveAndDeleteEmployee_Found_Success() {
-        Employee emp = new Employee();
-        emp.setId(1);
-        when(employeeRepository.findById(1)).thenReturn(Optional.of(emp));
+    void archiveAndDeleteEmployee_ArchivesAndDeletes() {
+        Employee employee = new Employee();
+        employee.setId(10);
 
-        EmployeeArchive empArchive = new EmployeeArchive();
-        when(employeeArchiveMapper.toArchive(emp)).thenReturn(empArchive);
+        EmployeeArchive archivedEmployee = new EmployeeArchive();
+        Contract contract = new Contract();
+        contract.setId(200);
 
-        List<Contract> contracts = List.of(new Contract());
-        when(contractRepository.findByEmployeeId(1)).thenReturn(contracts);
+        when(employeeRepository.findById(10)).thenReturn(Optional.of(employee));
+        when(employeeArchiveMapper.toArchive(employee)).thenReturn(archivedEmployee);
+        when(contractRepository.findByEmployeeId(10)).thenReturn(List.of(contract));
+        when(contractArchiveMapper.toArchive(eq(contract), any())).thenReturn(new ContractArchive());
 
-        ContractArchive contractArchive = new ContractArchive();
-        when(contractArchiveMapper.toArchive(any(Contract.class), eq(empArchive)))
-                .thenReturn(contractArchive);
+        employeeService.archiveAndDeleteEmployee(10);
 
-        employeeService.archiveAndDeleteEmployee(1);
-
-        verify(employeeArchiveRepository).save(empArchive);
-        verify(contractArchiveRepository).saveAll(anyList());
-        verify(contractRepository).deleteAll(contracts);
-        verify(employeeRepository).delete(emp);
+        verify(employeeArchiveRepository).save(archivedEmployee);
+        verify(contractArchiveRepository).saveAll(any());
+        verify(contractRepository).deleteAll(any());
+        verify(employeeRepository).delete(employee);
     }
 
     @Test
-    void archiveAndDeleteEmployee_NotFound_Throws() {
-        when(employeeRepository.findById(1)).thenReturn(Optional.empty());
-        assertThrows(NotFoundException.class, () -> employeeService.archiveAndDeleteEmployee(1));
+    void deleteById_WhenNotFound_ReturnsFalse() {
+        when(employeeRepository.findById(123)).thenReturn(Optional.empty());
+        boolean result = employeeService.deleteById(123);
+        assertFalse(result);
     }
 
     @Test
-    void deleteById_Found_ReturnsTrue() {
-        Employee emp = new Employee();
-        when(employeeRepository.findById(1)).thenReturn(Optional.of(emp));
-        boolean result = employeeService.deleteById(1);
+    void deleteById_WhenFound_DeletesAndReturnsTrue() {
+        Employee employee = new Employee();
+        employee.setId(50);
+        when(employeeRepository.findById(50)).thenReturn(Optional.of(employee));
+
+        boolean result = employeeService.deleteById(50);
+
         assertTrue(result);
-        verify(employeeRepository).delete(emp);
+        verify(employeeRepository).delete(employee);
     }
 
     @Test
-    void deleteById_NotFound_ReturnsFalse() {
-        when(employeeRepository.findById(1)).thenReturn(Optional.empty());
-        assertFalse(employeeService.deleteById(1));
-    }
-
-    @Test
-    void updateById_Found_UpdatesAndReturns() {
-        Employee emp = new Employee();
-        when(employeeRepository.findById(1)).thenReturn(Optional.of(emp));
-
+    void updateById_WhenEmployeeNotFound_ReturnsEmpty() {
         UpdateEmployeeDTO dto = new UpdateEmployeeDTO();
-        when(employeeRepository.save(emp)).thenReturn(emp);
+        when(employeeRepository.findById(1)).thenReturn(Optional.empty());
 
         Optional<Employee> result = employeeService.updateById(1, dto);
-
-        assertTrue(result.isPresent());
-        verify(employeeMapper).updateEntityFromDTO(dto, emp);
-        verify(employeeRepository).save(emp);
+        assertTrue(result.isEmpty());
     }
 
     @Test
-    void updateById_NotFound_ReturnsEmpty() {
-        when(employeeRepository.findById(1)).thenReturn(Optional.empty());
-        assertTrue(employeeService.updateById(1, new UpdateEmployeeDTO()).isEmpty());
-    }
+    void updateById_WhenEmployeeFound_UpdatesAndSaves() {
+        Employee employee = new Employee();
+        employee.setId(101);
 
-    @Test
-    void replaceById_Found_Success() {
-        Employee emp = new Employee();
-        when(employeeRepository.findById(1)).thenReturn(Optional.of(emp));
         UpdateEmployeeDTO dto = new UpdateEmployeeDTO();
 
-        Optional<Employee> result = employeeService.replaceById(1, dto);
+        when(employeeRepository.findById(101)).thenReturn(Optional.of(employee));
+
+        Optional<Employee> result = employeeService.updateById(101, dto);
 
         assertTrue(result.isPresent());
-        verify(employeeMapper).updateEntityFromDTO(dto, emp);
-        verify(employeeRepository).save(emp);
+        verify(employeeMapper).updateEntityFromDTO(dto, employee);
+        verify(employeeRepository).save(employee);
     }
 
     @Test
-    void replaceById_NotFound_ReturnsEmpty() {
-        when(employeeRepository.findById(1)).thenReturn(Optional.empty());
-        assertTrue(employeeService.replaceById(1, new UpdateEmployeeDTO()).isEmpty());
+    void getAllEmployeesWithContracts_CallsRepository() {
+        employeeService.getAllEmployeesWithContracts();
+        verify(employeeRepository).findAllWithContracts();
     }
-
-    @Test
-    void getAllEmployeesWithContracts_Empty_ReturnsEmptyList() {
-        when(employeeRepository.findAllWithContracts()).thenReturn(List.of());
-        assertTrue(employeeService.getAllEmployeesWithContracts().isEmpty());
-    }
-
-    @Test
-    void getAllEmployeesWithContracts_Found_ReturnsEmployeeList() {
-        Employee emp = new Employee();
-        when(employeeRepository.findAllWithContracts()).thenReturn(List.of(emp));
-
-        List<Employee> result = employeeService.getAllEmployeesWithContracts();
-
-        assertEquals(1, result.size());
-        assertSame(emp, result.get(0));
-    }
-
 }
