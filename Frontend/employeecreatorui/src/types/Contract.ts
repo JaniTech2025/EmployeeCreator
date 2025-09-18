@@ -17,7 +17,7 @@ export interface ContractViewDTO {
   // contract_term?: string;        
   startDate: string;            // format:  ISO date string 
   finishDate?: string | null;   // format: ISO date string or null
-  ongoing?: boolean;
+  ongoing: boolean;
   workType: string;             // "FullTime" or "PartTime"
   hoursPerWeek?: number;        // range: 0.0 and 100.0
   createdAt?: string;           // format: ISO datetime string
