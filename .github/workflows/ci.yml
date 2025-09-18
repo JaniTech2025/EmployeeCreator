@@ -72,7 +72,7 @@ jobs:
           node-version: "20"
 
       - name: Install & Test Frontend
-        working-directory: Frontend
+        working-directory: Frontend/employeecreatorui
         run: |
           npm ci
           npm run build
