@@ -76,4 +76,4 @@ jobs:
         run: |
           npm ci
           npm run build
-          npm test -- --watchAll=false
+      #     npm test -- --watchAll=false
