@@ -1,4 +1,4 @@
-name: Fullstack CI
+name: EmployeeCreator Fullstack CI
 
 on:
   push:
@@ -47,7 +47,7 @@ jobs:
 
       - name: Make Maven wrapper executable
         run: chmod +x ./mvnw
-        working-directory: Backend
+        working-directory: Backend/employee
 
       - name: Wait for MySQL
         run: |
@@ -58,7 +58,7 @@ jobs:
           done
 
       - name: Build & Test backend
-        working-directory: Backend
+        working-directory: Backend/employee
         run: ./mvnw clean verify
         env:
           DB_USERNAME: root
